@@ -1,0 +1,10 @@
+# Ignore YAML files
+*.yml
+*.yaml
+
+# Common files to ignore
+node_modules/
+dist/
+build/
+coverage/
+.git/

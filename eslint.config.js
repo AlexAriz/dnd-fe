@@ -18,5 +18,11 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      eqeqeq: 'error',
+      'no-console': 'error',
+      'no-unmodified-loop-condition': 'error',
+      'no-unreachable': 'error',
+    },
   },
 ])
