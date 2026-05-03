@@ -1,0 +1,7 @@
+{
+  "DUMMY": {
+    "HEADER": "Hola mundo",
+    "MESSAGE": "Ya le diste click al botón {count} veces",
+    "CTA": "Dame click"
+  }
+}

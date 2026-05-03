@@ -15,7 +15,8 @@
     "@fontsource/roboto": "^5.2.10",
     "@mui/material": "^9.0.0",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "react-intl-universal": "^2.13.4"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
