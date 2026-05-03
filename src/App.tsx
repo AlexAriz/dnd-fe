@@ -1,5 +1,7 @@
-import { Button, Container, Typography } from "@mui/material";
 import { useState } from "react";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
 
 function App() {
   const [count, setCount] = useState<number>(0);
@@ -9,7 +11,7 @@ function App() {
   };
 
   return (
-    <Container>
+    <CssBaseline enableColorScheme>
       <Typography variant="h1">Hello world</Typography>
 
       <Typography>You've clicked the button {count} times</Typography>
@@ -17,7 +19,7 @@ function App() {
       <Button onClick={onClick} variant="contained" color="success">
         Click me
       </Button>
-    </Container>
+    </CssBaseline>
   );
 }
 
