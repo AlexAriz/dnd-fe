@@ -14,7 +14,7 @@ function App() {
 
       <Typography>You've clicked the button {count} times</Typography>
 
-      <Button onClick={onClick} variant="contained">
+      <Button onClick={onClick} variant="contained" color="success">
         Click me
       </Button>
     </Container>
