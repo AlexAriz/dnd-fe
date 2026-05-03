@@ -8,6 +8,6 @@ export const LANGUAGES: Readonly<Record<string, Languages>> = {
 };
 
 export const LOCALES: Readonly<Record<Languages, unknown>> = {
-  en: en,
-  es: es,
+  en,
+  es,
 };
