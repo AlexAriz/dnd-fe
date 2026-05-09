@@ -7,7 +7,6 @@ import useLanguage from "../hooks/useLanguage";
 import Auth from "../auth";
 import Dummy from "./Dummy";
 import Welcome from "./Welcome";
-import { Typography } from "@mui/joy";
 
 function AppPage() {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ function AppPage() {
     const init = async () => {
       const session = await Auth.getSession();
 
-      if (!session.session) {
+      if (!session?.session) {
         navigate("/login");
       }
     };
@@ -27,10 +26,6 @@ function AppPage() {
 
   return (
     <>
-      <Typography>
-        Test - {import.meta.env.SUPABASE_URL} - {import.meta.env.VITE_SUPABASE_URL}
-      </Typography>
-
       {Object.values(LANGUAGES).map((language) => (
         <Button key={language} variant={locale === language ? "solid" : "soft"} onClick={() => changeLocale(language)}>
           {language}

@@ -2,8 +2,8 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 class Auth {
   private static client: SupabaseClient;
-  private static readonly supabaseUrl: string = import.meta.env.SUPABASE_URL;
-  private static readonly supabasePublishableKey: string = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
+  private static readonly supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL;
+  private static readonly supabasePublishableKey: string = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
   private static getClient() {
     if (Auth.client) {
@@ -15,9 +15,13 @@ class Auth {
   }
 
   static async getSession() {
-    const { data } = await Auth.getClient().auth.getSession();
-
-    return data;
+    try {
+      const { data } = await Auth.getClient().auth.getSession();
+      return data;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      return null;
+    }
   }
 
   static async login(email: string, password: string) {
