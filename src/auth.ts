@@ -2,8 +2,8 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 class Auth {
   private static client: SupabaseClient;
-  private static readonly supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL;
-  private static readonly supabasePublishableKey: string = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  private static readonly supabaseUrl: string = import.meta.env.SUPABASE_URL;
+  private static readonly supabasePublishableKey: string = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
 
   private static getClient() {
     if (Auth.client) {
