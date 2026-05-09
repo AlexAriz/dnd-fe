@@ -26,6 +26,7 @@ function AppPage() {
 
   return (
     <>
+      {import.meta.env.SUPABASE_URL}
       {Object.values(LANGUAGES).map((language) => (
         <Button key={language} variant={locale === language ? "solid" : "soft"} onClick={() => changeLocale(language)}>
           {language}
