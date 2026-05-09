@@ -2,6 +2,14 @@
   "DUMMY": {
     "HEADER": "Hello world",
     "MESSAGE": "You've clicked the button {count} times",
-    "CTA": "Click me"
-  }
+    "CTA": "Click me",
+    "WELCOME": "Welcome, ",
+    "DUMMY": "Dummy",
+    "HOME": "Home"
+  },
+  "LOGIN": "Login",
+  "EMAIL": "Email",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN_ERROR": "Email or password incorrect"
 }
