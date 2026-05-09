@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import LinearProgress from "@mui/material/LinearProgress";
+import Button from "@mui/joy/Button";
+import CssBaseline from "@mui/joy/CssBaseline";
+import Typography from "@mui/joy/Typography";
+import LinearProgress from "@mui/joy/LinearProgress";
 import { LANGUAGES } from "./constants/language";
 import useLanguage from "./hooks/useLanguage";
 import intl from "react-intl-universal";
@@ -16,23 +16,21 @@ function App() {
   };
 
   return (
-    <CssBaseline enableColorScheme>
+    <CssBaseline>
       {!localeLoaded ?
         <LinearProgress />
       : <>
-          <Typography variant="h1">{intl.get("DUMMY.HEADER")}</Typography>
+          <Typography level="h1">{intl.get("DUMMY.HEADER")}</Typography>
 
           <Typography>{intl.get("DUMMY.MESSAGE", { count })}</Typography>
 
           {Object.values(LANGUAGES).map((language) => (
-            <Button key={language} onClick={() => changeLocale(language)}>
+            <Button key={language} variant="outlined" onClick={() => changeLocale(language)}>
               {language}
             </Button>
           ))}
 
-          <Button onClick={onClick} variant="contained" color="success">
-            {intl.get("DUMMY.CTA")}
-          </Button>
+          <Button onClick={onClick}>{intl.get("DUMMY.CTA")}</Button>
         </>
       }
     </CssBaseline>
