@@ -3,7 +3,7 @@ import CssBaseline from "@mui/joy/CssBaseline";
 import LinearProgress from "@mui/joy/LinearProgress";
 
 import useLanguage from "./hooks/useLanguage";
-import router from "./routes";
+import router from "./global/routes";
 
 function App() {
   const { localeLoaded } = useLanguage();

@@ -9,7 +9,7 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import intl from "react-intl-universal";
 
-import Auth from "../auth";
+import Auth from "../global/auth";
 
 function Login() {
   const navigate = useNavigate();
