@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import Logger from "./logger";
 
 class Auth {
   private static client: SupabaseClient;
@@ -9,25 +10,31 @@ class Auth {
     if (Auth.client) {
       return Auth.client;
     } else {
-      Auth.client = createClient(Auth.supabaseUrl, Auth.supabasePublishableKey);
-      return Auth.client;
+      try {
+        Auth.client = createClient(Auth.supabaseUrl, Auth.supabasePublishableKey);
+        return Auth.client;
+      } catch (error) {
+        Logger.error("Error initializing Supabase", { error });
+      }
     }
   }
 
   static async getSession() {
-    try {
-      const { data } = await Auth.getClient().auth.getSession();
-      return data;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      return null;
+    const response = await Auth.getClient()?.auth.getSession();
+    if (response?.error) {
+      Logger.error("Error getting user session", { ...response.error });
+    } else {
+      return response?.data;
     }
   }
 
   static async login(email: string, password: string) {
-    const { data } = await Auth.getClient().auth.signInWithPassword({ email, password });
-
-    return data;
+    const response = await Auth.getClient()?.auth.signInWithPassword({ email, password });
+    if (response?.error) {
+      Logger.error("Error signing in", { ...response.error });
+    } else {
+      return response?.data;
+    }
   }
 }
 

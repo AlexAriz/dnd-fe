@@ -1,3 +1,4 @@
+import type { ParameterizedString } from "@sentry/core";
 import * as Sentry from "@sentry/react";
 
 class Logger {
@@ -6,9 +7,12 @@ class Logger {
       Sentry.init({
         dsn: "https://e59d6b2a1ac3d1d75c49996d2905d4e3@o4511362419458048.ingest.de.sentry.io/4511362426339408",
         enableLogs: true,
-        integrations: [Sentry.consoleLoggingIntegration({ levels: ["log", "warn", "error"] })],
       });
     }
+  }
+
+  static error(message: ParameterizedString, attributes?: Sentry.Log["attributes"]) {
+    Sentry.logger.error(message, attributes);
   }
 }
 

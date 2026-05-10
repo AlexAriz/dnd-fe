@@ -28,7 +28,7 @@ function Login() {
     }
 
     const data = await Auth.login(username, password);
-    if (data.session) {
+    if (data?.session) {
       navigate("/");
     } else {
       setButtonLoading(false);
