@@ -7,7 +7,7 @@ import useLanguage from "../hooks/useLanguage";
 import Auth from "../global/auth";
 import Routes from "../constants/routes";
 import { useAppDispatch } from "../hooks/state";
-import { userActions } from "../state/currentUser";
+import { currentUserActions } from "../state/currentUser";
 
 function AppPage() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function AppPage() {
       if (!data?.user) {
         navigate(Routes.Login);
       } else {
-        dispatch(userActions.setUser(data.user));
+        dispatch(currentUserActions.setUser(data.user));
       }
     };
 

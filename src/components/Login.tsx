@@ -12,7 +12,7 @@ import intl from "react-intl-universal";
 import Auth from "../global/auth";
 import Routes from "../constants/routes";
 import { useAppDispatch } from "../hooks/state";
-import { userActions } from "../state/currentUser";
+import { currentUserActions } from "../state/currentUser";
 
 function Login() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function Login() {
 
     const data = await Auth.login(username!, password!);
     if (data?.session) {
-      dispatch(userActions.setUser(data.user));
+      dispatch(currentUserActions.setUser(data.user));
       navigate(Routes.Root);
     } else {
       setButtonLoading(false);

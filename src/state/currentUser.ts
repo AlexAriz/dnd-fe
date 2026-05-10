@@ -5,7 +5,7 @@ type CurrentUser = Pick<SupaUser, "id" | "email">;
 
 const currentUserAdapter = createEntityAdapter<CurrentUser>();
 
-const usersSlice = createSlice({
+const currentUserSlice = createSlice({
   name: "currentUser",
   initialState: currentUserAdapter.getInitialState(),
   reducers: {
@@ -14,6 +14,6 @@ const usersSlice = createSlice({
   },
 });
 
-export default usersSlice.reducer;
+export default currentUserSlice.reducer;
 
-export const userActions = usersSlice.actions;
+export const currentUserActions = currentUserSlice.actions;
