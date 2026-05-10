@@ -12,13 +12,14 @@ import intl from "react-intl-universal";
 import Auth from "../global/auth";
 import Routes from "../constants/routes";
 
-function Login() {
+function Signup() {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const [confirmPassword, setConfirmPassword] = useState<string>();
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
   const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
-  const formValid: boolean = Boolean(username && password);
+  const formValid: boolean = Boolean(username && password && confirmPassword && password === confirmPassword);
 
   const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -28,9 +29,9 @@ function Login() {
       return;
     }
 
-    const data = await Auth.login(username!, password!);
-    if (data?.session) {
-      navigate(Routes.Root);
+    const data = await Auth.signup(username!, password!);
+    if (data?.user) {
+      navigate(Routes.Login);
     } else {
       setButtonLoading(false);
       setSnackbarOpen(true);
@@ -40,7 +41,7 @@ function Login() {
   return (
     <div className="flex flex-col h-screen w-screen items-center-safe justify-center-safe">
       <Stack component="form" onSubmit={handleSubmit} className="w-lg space-y-4">
-        <Typography level="h3">{intl.get("LOGIN")}</Typography>
+        <Typography level="h3">{intl.get("SIGNUP")}</Typography>
 
         <FormControl>
           <FormLabel>{intl.get("EMAIL")}</FormLabel>
@@ -52,11 +53,20 @@ function Login() {
           <Input placeholder={intl.get("PASSWORD")} type="password" onChange={(e) => setPassword(e.target.value)} />
         </FormControl>
 
+        <FormControl>
+          <FormLabel>{intl.get("CONFIRM_PASSWORD")}</FormLabel>
+          <Input
+            placeholder={intl.get("CONFIRM_PASSWORD")}
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </FormControl>
+
         <Button type="submit" disabled={!formValid} loading={buttonLoading}>
-          {intl.get("LOGIN")}
+          {intl.get("SIGNUP")}
         </Button>
 
-        <NavLink to={Routes.Signup}>{intl.get("SIGNUP")}</NavLink>
+        <NavLink to={Routes.Login}>{intl.get("LOGIN")}</NavLink>
       </Stack>
 
       <Snackbar
@@ -71,10 +81,10 @@ function Login() {
         size="md"
         variant="soft"
       >
-        {intl.get("ERRORS.LOGIN")}
+        {intl.get("ERROR.SIGNUP")}
       </Snackbar>
     </div>
   );
 }
 
-export default Login;
+export default Signup;

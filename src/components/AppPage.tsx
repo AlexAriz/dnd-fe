@@ -5,6 +5,7 @@ import Button from "@mui/joy/Button";
 import { LANGUAGES } from "../constants/language";
 import useLanguage from "../hooks/useLanguage";
 import Auth from "../global/auth";
+import Routes from "../constants/routes";
 
 function AppPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function AppPage() {
       const session = await Auth.getSession();
 
       if (!session?.session) {
-        navigate("/login");
+        navigate(Routes.Login);
       }
     };
 

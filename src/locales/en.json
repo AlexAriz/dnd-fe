@@ -8,8 +8,13 @@
     "HOME": "Home"
   },
   "LOGIN": "Login",
+  "SIGNUP": "Signup",
   "EMAIL": "Email",
   "USERNAME": "Username",
   "PASSWORD": "Password",
-  "LOGIN_ERROR": "Email or password incorrect"
+  "CONFIRM_PASSWORD": "Confirm password",
+  "ERRORS": {
+    "LOGIN": "Email or password incorrect",
+    "SIGNUP": "There was an error during registration"
+  }
 }

@@ -3,18 +3,24 @@ import AppPage from "../components/AppPage";
 import Welcome from "../components/Welcome";
 import Dummy from "../components/Dummy";
 import Login from "../components/Login";
+import Signup from "../components/Signup";
+import Routes from "../constants/routes";
 
 export default createBrowserRouter([
   {
-    path: "/",
+    path: Routes.Root,
     Component: AppPage,
     children: [
       { index: true, Component: Welcome },
-      { path: "dummy", Component: Dummy },
+      { path: Routes.Dummy, Component: Dummy },
     ],
   },
   {
-    path: "login",
+    path: Routes.Login,
     Component: Login,
+  },
+  {
+    path: Routes.Signup,
+    Component: Signup,
   },
 ]);

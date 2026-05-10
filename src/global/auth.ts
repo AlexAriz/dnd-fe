@@ -36,6 +36,15 @@ class Auth {
       return response?.data;
     }
   }
+
+  static async signup(email: string, password: string) {
+    const response = await Auth.getClient()?.auth.signUp({ email, password });
+    if (response?.error) {
+      Logger.error("Error signing up", { ...response.error });
+    } else {
+      return response?.data;
+    }
+  }
 }
 
 export default Auth;

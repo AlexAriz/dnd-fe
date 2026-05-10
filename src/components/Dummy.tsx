@@ -2,6 +2,7 @@ import { Button, Typography } from "@mui/joy";
 import { useState } from "react";
 import intl from "react-intl-universal";
 import { Link } from "react-router";
+import Routes from "../constants/routes";
 
 function Dummy() {
   const [count, setCount] = useState<number>(0);
@@ -18,7 +19,7 @@ function Dummy() {
 
       <Button onClick={onClick}>{intl.get("DUMMY.CTA")}</Button>
 
-      <Link to="/">{intl.get("DUMMY.HOME")}</Link>
+      <Link to={Routes.Root}>{intl.get("DUMMY.HOME")}</Link>
     </>
   );
 }

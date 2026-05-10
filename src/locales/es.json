@@ -8,8 +8,13 @@
     "HOME": "Inicio"
   },
   "LOGIN": "Iniciar sesión",
+  "SIGNUP": "Registro",
   "EMAIL": "E-mail",
   "USERNAME": "Usuario",
   "PASSWORD": "Contraseña",
-  "LOGIN_ERROR": "Usuario o contraseña equivocados"
+  "CONFIRM_PASSWORD": "Confirmar contraseña",
+  "ERRORS": {
+    "LOGIN": "Usuario o contraseña equivocados",
+    "SIGNUP": "Ocurrió un error durante el registro"
+  }
 }
