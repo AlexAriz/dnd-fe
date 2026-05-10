@@ -6,22 +6,27 @@ import { LANGUAGES } from "../constants/language";
 import useLanguage from "../hooks/useLanguage";
 import Auth from "../global/auth";
 import Routes from "../constants/routes";
+import { useAppDispatch } from "../hooks/state";
+import { userActions } from "../state/currentUser";
 
 function AppPage() {
   const navigate = useNavigate();
   const { locale, changeLocale } = useLanguage();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const init = async () => {
-      const session = await Auth.getSession();
+      const data = await Auth.getSession();
 
-      if (!session?.session) {
+      if (!data?.user) {
         navigate(Routes.Login);
+      } else {
+        dispatch(userActions.setUser(data.user));
       }
     };
 
     init();
-  }, [navigate]);
+  }, [dispatch, navigate]);
 
   return (
     <>

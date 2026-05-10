@@ -11,9 +11,12 @@ import intl from "react-intl-universal";
 
 import Auth from "../global/auth";
 import Routes from "../constants/routes";
+import { useAppDispatch } from "../hooks/state";
+import { userActions } from "../state/currentUser";
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
@@ -30,6 +33,7 @@ function Login() {
 
     const data = await Auth.login(username!, password!);
     if (data?.session) {
+      dispatch(userActions.setUser(data.user));
       navigate(Routes.Root);
     } else {
       setButtonLoading(false);

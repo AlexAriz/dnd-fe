@@ -20,9 +20,9 @@ class Auth {
   }
 
   static async getSession() {
-    const response = await Auth.getClient()?.auth.getSession();
+    const response = await Auth.getClient()?.auth.getUser();
     if (response?.error) {
-      Logger.error("Error getting user session", { ...response.error });
+      Logger.error("Error getting user", { ...response.error });
     } else {
       return response?.data;
     }
