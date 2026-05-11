@@ -1,9 +1,9 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import Logger from "./logger";
-import { redirect } from "react-router";
 import Routes from "../constants/routes";
 import store from "../state/store";
 import { currentUserActions } from "../state/currentUser";
+import router from "./router";
 
 class Auth {
   private static client: SupabaseClient;
@@ -27,27 +27,28 @@ class Auth {
     const response = await Auth.getClient()?.auth.getUser();
     if (!response?.data.user) {
       Logger.error("Error getting user", { ...response?.error });
-      redirect(Routes.Login);
+      router.navigate(Routes.Login);
     } else {
-      store.dispatch(currentUserActions.setUser(response?.data.user));
+      store.dispatch(currentUserActions.setUser(response.data.user));
     }
   }
 
   static async login(email: string, password: string) {
     const response = await Auth.getClient()?.auth.signInWithPassword({ email, password });
-    if (response?.error) {
-      Logger.error("Error signing in", { ...response.error });
+    if (!response?.data.user) {
+      Logger.error("Error signing in", { ...response?.error });
     } else {
-      return response?.data;
+      store.dispatch(currentUserActions.setUser(response.data.user));
+      router.navigate(Routes.Root);
     }
   }
 
   static async signup(email: string, password: string) {
     const response = await Auth.getClient()?.auth.signUp({ email, password });
-    if (response?.error) {
-      Logger.error("Error signing up", { ...response.error });
+    if (!response?.data.user) {
+      Logger.error("Error signing up", { ...response?.error });
     } else {
-      return response?.data;
+      router.navigate(Routes.Login);
     }
   }
 }

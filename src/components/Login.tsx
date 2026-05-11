@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import Button from "@mui/joy/Button";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
@@ -11,12 +11,8 @@ import intl from "react-intl-universal";
 
 import Auth from "../global/auth";
 import Routes from "../constants/routes";
-import { useAppDispatch } from "../hooks/state";
-import { currentUserActions } from "../state/currentUser";
 
 function Login() {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
@@ -31,14 +27,9 @@ function Login() {
       return;
     }
 
-    const data = await Auth.login(username!, password!);
-    if (data?.session) {
-      dispatch(currentUserActions.setUser(data.user));
-      navigate(Routes.Root);
-    } else {
-      setButtonLoading(false);
-      setSnackbarOpen(true);
-    }
+    await Auth.login(username!, password!);
+    setButtonLoading(false);
+    setSnackbarOpen(true);
   };
 
   return (

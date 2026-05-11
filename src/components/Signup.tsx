@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import Button from "@mui/joy/Button";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
@@ -13,7 +13,6 @@ import Auth from "../global/auth";
 import Routes from "../constants/routes";
 
 function Signup() {
-  const navigate = useNavigate();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [confirmPassword, setConfirmPassword] = useState<string>();
@@ -29,13 +28,9 @@ function Signup() {
       return;
     }
 
-    const data = await Auth.signup(username!, password!);
-    if (data?.user) {
-      navigate(Routes.Login);
-    } else {
-      setButtonLoading(false);
-      setSnackbarOpen(true);
-    }
+    await Auth.signup(username!, password!);
+    setButtonLoading(false);
+    setSnackbarOpen(true);
   };
 
   return (
