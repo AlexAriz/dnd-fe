@@ -1,5 +1,9 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import Logger from "./logger";
+import { redirect } from "react-router";
+import Routes from "../constants/routes";
+import store from "../state/store";
+import { currentUserActions } from "../state/currentUser";
 
 class Auth {
   private static client: SupabaseClient;
@@ -19,12 +23,13 @@ class Auth {
     }
   }
 
-  static async getSession() {
+  static async verifySession() {
     const response = await Auth.getClient()?.auth.getUser();
-    if (response?.error) {
-      Logger.error("Error getting user", { ...response.error });
+    if (!response?.data.user) {
+      Logger.error("Error getting user", { ...response?.error });
+      redirect(Routes.Login);
     } else {
-      return response?.data;
+      store.dispatch(currentUserActions.setUser(response?.data.user));
     }
   }
 

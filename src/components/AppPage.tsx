@@ -1,42 +1,44 @@
-import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router";
 import Button from "@mui/joy/Button";
 
 import { LANGUAGES } from "../constants/language";
 import useLanguage from "../hooks/useLanguage";
 import Auth from "../global/auth";
-import Routes from "../constants/routes";
-import { useAppDispatch } from "../hooks/state";
-import { currentUserActions } from "../state/currentUser";
+import { CircularProgress } from "@mui/joy";
 
 function AppPage() {
-  const navigate = useNavigate();
   const { locale, changeLocale } = useLanguage();
-  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const init = async () => {
-      const data = await Auth.getSession();
-
-      if (!data?.user) {
-        navigate(Routes.Login);
-      } else {
-        dispatch(currentUserActions.setUser(data.user));
-      }
+      setLoading(true);
+      await Auth.verifySession();
+      setLoading(false);
     };
 
     init();
-  }, [dispatch, navigate]);
+  }, []);
 
   return (
     <>
-      {Object.values(LANGUAGES).map((language) => (
-        <Button key={language} variant={locale === language ? "solid" : "soft"} onClick={() => changeLocale(language)}>
-          {language}
-        </Button>
-      ))}
+      {loading ?
+        <CircularProgress />
+      : <>
+          {Object.values(LANGUAGES).map((language) => (
+            <Button
+              key={language}
+              variant={locale === language ? "solid" : "soft"}
+              onClick={() => changeLocale(language)}
+            >
+              {language}
+            </Button>
+          ))}
 
-      <Outlet />
+          <Outlet />
+        </>
+      }
     </>
   );
 }
