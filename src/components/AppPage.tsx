@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
-import Button from "@mui/joy/Button";
+import CircularProgress from "@mui/joy/CircularProgress";
 
-import { LANGUAGES } from "../constants/language";
-import useLanguage from "../hooks/useLanguage";
 import Auth from "../global/auth";
-import { CircularProgress } from "@mui/joy";
+import Header from "./Header";
+import Nav from "./Nav";
 
 function AppPage() {
-  const { locale, changeLocale } = useLanguage();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,24 +20,19 @@ function AppPage() {
   }, []);
 
   return (
-    <>
-      {loading ?
-        <CircularProgress />
-      : <>
-          {Object.values(LANGUAGES).map((language) => (
-            <Button
-              key={language}
-              variant={locale === language ? "solid" : "soft"}
-              onClick={() => changeLocale(language)}
-            >
-              {language}
-            </Button>
-          ))}
+    <div className="w-screen h-screen flex scroll-auto">
+      <Nav />
 
-          <Outlet />
-        </>
-      }
-    </>
+      <div className="grow flex flex-col">
+        <Header />
+
+        <main className="grow">
+          {loading ?
+            <CircularProgress />
+          : <Outlet />}
+        </main>
+      </div>
+    </div>
   );
 }
 

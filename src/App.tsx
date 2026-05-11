@@ -9,14 +9,15 @@ function App() {
   const { localeLoaded } = useLanguage();
 
   return (
-    <CssBaseline>
+    <>
+      <CssBaseline />
       {!localeLoaded ?
         <LinearProgress />
       : <>
           <RouterProvider router={router} />
         </>
       }
-    </CssBaseline>
+    </>
   );
 }
 
