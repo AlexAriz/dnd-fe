@@ -4,7 +4,6 @@ import CircularProgress from "@mui/joy/CircularProgress";
 
 import Auth from "../global/auth";
 import Header from "./Header";
-import Nav from "./Nav";
 
 function AppPage() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -21,17 +20,13 @@ function AppPage() {
 
   return (
     <div className="w-screen h-screen flex scroll-auto">
-      <Nav />
+      <Header />
 
-      <div className="grow flex flex-col">
-        <Header />
-
-        <main className="grow">
-          {loading ?
-            <CircularProgress />
-          : <Outlet />}
-        </main>
-      </div>
+      <main className="pt-14 w-screen px-3">
+        {loading ?
+          <CircularProgress />
+        : <Outlet />}
+      </main>
     </div>
   );
 }

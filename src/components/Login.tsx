@@ -51,7 +51,7 @@ function Login() {
           {intl.get("LOGIN")}
         </Button>
 
-        <NavLink to={Routes.Signup}>{intl.get("SIGNUP")}</NavLink>
+        <NavLink to={Routes.SIGNUP}>{intl.get("SIGNUP")}</NavLink>
       </Stack>
 
       <Snackbar

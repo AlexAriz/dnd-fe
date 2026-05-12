@@ -27,7 +27,7 @@ class Auth {
     const response = await Auth.getClient()?.auth.getUser();
     if (!response?.data.user) {
       Logger.error("Error getting user", { ...response?.error });
-      router.navigate(Routes.Login);
+      router.navigate(Routes.LOGIN);
     } else {
       store.dispatch(currentUserActions.setUser(response.data.user));
     }
@@ -39,7 +39,7 @@ class Auth {
       Logger.error("Error signing in", { ...response?.error });
     } else {
       store.dispatch(currentUserActions.setUser(response.data.user));
-      router.navigate(Routes.Root);
+      router.navigate(Routes.HOME);
     }
   }
 
@@ -48,7 +48,7 @@ class Auth {
     if (!response?.data.user) {
       Logger.error("Error signing up", { ...response?.error });
     } else {
-      router.navigate(Routes.Login);
+      router.navigate(Routes.LOGIN);
     }
   }
 }

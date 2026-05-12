@@ -1,11 +1,7 @@
 {
-  "DUMMY": {
-    "HEADER": "Hola mundo",
-    "MESSAGE": "Ya le diste click al botón {count} veces",
-    "CTA": "Dame click",
-    "WELCOME": "Bienvenido, ",
-    "DUMMY": "Dummy",
-    "HOME": "Inicio"
+  "MODULES": {
+    "HOME": "Inicio",
+    "TEST": "Prueba"
   },
   "LOGIN": "Iniciar sesión",
   "SIGNUP": "Registro",
@@ -13,6 +9,7 @@
   "USERNAME": "Usuario",
   "PASSWORD": "Contraseña",
   "CONFIRM_PASSWORD": "Confirmar contraseña",
+  "WELCOME": "Bienvenido",
   "ERRORS": {
     "LOGIN": "Usuario o contraseña equivocados",
     "SIGNUP": "Ocurrió un error durante el registro"

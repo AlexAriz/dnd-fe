@@ -1,8 +1,11 @@
 import LanguagePicker from "./LanguagePicker";
+import Nav from "./Nav";
 
 function Header() {
   return (
-    <header className="min-h-14 flex justify-end p-3 border-b">
+    <header className="h-14 w-screen fixed top-0 right-0 flex justify-between p-3 border-b">
+      <Nav />
+
       <LanguagePicker />
     </header>
   );
