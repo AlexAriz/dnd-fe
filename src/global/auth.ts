@@ -33,6 +33,16 @@ class Auth {
     }
   }
 
+  static async logout() {
+    const response = await Auth.getClient()?.auth.signOut();
+    if (response?.error) {
+      Logger.error("Error logging out", { ...response.error });
+    } else {
+      store.dispatch(currentUserActions.clear());
+      router.navigate(Routes.LOGIN);
+    }
+  }
+
   static async login(email: string, password: string) {
     const response = await Auth.getClient()?.auth.signInWithPassword({ email, password });
     if (!response?.data.user) {

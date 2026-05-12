@@ -11,6 +11,7 @@ const currentUserSlice = createSlice({
   reducers: {
     setUser: (state, { payload: supaUser }: PayloadAction<SupaUser>) =>
       currentUserAdapter.addOne(state, { id: supaUser.id, email: supaUser.email }),
+    clear: currentUserAdapter.removeAll,
   },
 });
 
