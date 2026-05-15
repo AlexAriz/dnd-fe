@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
-import Button from "@mui/joy/Button";
-import FormControl from "@mui/joy/FormControl";
-import FormLabel from "@mui/joy/FormLabel";
-import Input from "@mui/joy/Input";
-import Snackbar from "@mui/joy/Snackbar";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Snackbar from "@mui/material/Snackbar";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Alert from "@mui/material/Alert";
 import intl from "react-intl-universal";
 
 import Auth from "../global/auth";
@@ -36,47 +36,42 @@ function Signup() {
   return (
     <div className="flex flex-col h-screen w-screen items-center-safe justify-center-safe">
       <Stack component="form" onSubmit={handleSubmit} className="w-lg space-y-4">
-        <Typography level="h3">{intl.get("SIGNUP")}</Typography>
+        <Typography variant="h3">{intl.get("SIGNUP")}</Typography>
 
-        <FormControl>
-          <FormLabel>{intl.get("EMAIL")}</FormLabel>
-          <Input placeholder={intl.get("USERNAME")} type="email" onChange={(e) => setUsername(e.target.value)} />
-        </FormControl>
+        <TextField
+          label={intl.get("USERNAME")}
+          placeholder={intl.get("USERNAME")}
+          type="email"
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-        <FormControl>
-          <FormLabel>{intl.get("PASSWORD")}</FormLabel>
-          <Input placeholder={intl.get("PASSWORD")} type="password" onChange={(e) => setPassword(e.target.value)} />
-        </FormControl>
+        <TextField
+          label={intl.get("PASSWORD")}
+          placeholder={intl.get("PASSWORD")}
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <FormControl>
-          <FormLabel>{intl.get("CONFIRM_PASSWORD")}</FormLabel>
-          <Input
-            placeholder={intl.get("CONFIRM_PASSWORD")}
-            type="password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </FormControl>
+        <TextField
+          label={intl.get("CONFIRM_PASSWORD")}
+          placeholder={intl.get("CONFIRM_PASSWORD")}
+          type="password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
 
-        <Button type="submit" disabled={!formValid} loading={buttonLoading}>
+        <Button type="submit" variant="contained" disabled={!formValid} loading={buttonLoading}>
           {intl.get("SIGNUP")}
         </Button>
 
-        <NavLink to={Routes.LOGIN}>{intl.get("LOGIN")}</NavLink>
+        <Link component={NavLink} to={Routes.LOGIN}>
+          {intl.get("LOGIN")}
+        </Link>
       </Stack>
 
-      <Snackbar
-        autoHideDuration={5000}
-        open={snackbarOpen}
-        onClose={() => setSnackbarOpen(false)}
-        anchorOrigin={{
-          horizontal: "left",
-          vertical: "bottom",
-        }}
-        color="danger"
-        size="md"
-        variant="soft"
-      >
-        {intl.get("ERROR.SIGNUP")}
+      <Snackbar autoHideDuration={5000} open={snackbarOpen} onClose={() => setSnackbarOpen(false)}>
+        <Alert onClose={() => setSnackbarOpen(false)} severity="error" variant="filled">
+          {intl.get("ERROR.SIGNUP")}
+        </Alert>
       </Snackbar>
     </div>
   );
