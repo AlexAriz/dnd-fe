@@ -10,6 +10,7 @@
   "PASSWORD": "Password",
   "CONFIRM_PASSWORD": "Confirm password",
   "WELCOME": "Welcome",
+  "LANGUAGE": "Language",
   "ERRORS": {
     "LOGIN": "Email or password incorrect",
     "SIGNUP": "There was an error during registration"

@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router";
-import CssBaseline from "@mui/joy/CssBaseline";
-import LinearProgress from "@mui/joy/LinearProgress";
+import CssBaseline from "@mui/material/CssBaseline";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import useLanguage from "./hooks/useLanguage";
 import router from "./global/router";
@@ -12,7 +12,7 @@ function App() {
     <>
       <CssBaseline />
       {!localeLoaded ?
-        <LinearProgress />
+        <CircularProgress />
       : <>
           <RouterProvider router={router} />
         </>

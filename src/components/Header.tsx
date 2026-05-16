@@ -1,13 +1,25 @@
+import Typography from "@mui/material/Typography";
 import LanguagePicker from "./LanguagePicker";
+import Logout from "./Logout";
 import Nav from "./Nav";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 
 function Header() {
   return (
-    <header className="h-14 w-screen fixed top-0 right-0 flex justify-between p-3 border-b">
-      <Nav />
+    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <Toolbar>
+        <Nav />
 
-      <LanguagePicker />
-    </header>
+        <Typography variant="h6" className="grow">
+          Brain
+        </Typography>
+
+        <Logout />
+
+        <LanguagePicker />
+      </Toolbar>
+    </AppBar>
   );
 }
 

@@ -1,6 +1,6 @@
 import LogoutIcon from "@mui/icons-material/Logout";
-import { IconButton } from "@mui/joy";
 import Auth from "../global/auth";
+import IconButton from "@mui/material/IconButton";
 
 function Logout() {
   const handleLogout = () => {
