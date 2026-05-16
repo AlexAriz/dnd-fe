@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import intl from "react-intl-universal";
-import { LANGUAGES, LOCALES } from "../constants/language";
-import type { Languages } from "../types/language";
+import { LANGUAGES, LOCALES } from "Constants/language";
+import type { Languages } from "Types/language";
 
 const useLanguage = () => {
   const [locale, setLocale] = useState<Languages>(LANGUAGES.EN);

@@ -1,9 +1,9 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import Logger from "./logger";
-import Routes from "../constants/routes";
-import store from "../state/store";
-import { currentUserActions } from "../state/currentUser";
-import router from "./router";
+import Logger from "Global/logger";
+import Routes from "Constants/routes";
+import store from "State/store";
+import { currentUserActions } from "State/currentUser";
+import router from "Global/router";
 
 class Auth {
   private static client: SupabaseClient;

@@ -1,8 +1,8 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
-import { LANGUAGES } from "../constants/language";
-import useLanguage from "../hooks/useLanguage";
-import type { Languages } from "../types/language";
+import { LANGUAGES } from "Constants/language";
+import useLanguage from "Hooks/useLanguage";
+import type { Languages } from "Types/language";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import intl from "react-intl-universal";

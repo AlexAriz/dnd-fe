@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import currentUser from "./currentUser";
+import currentUser from "State/currentUser";
 
 const store = configureStore({
   reducer: {

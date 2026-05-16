@@ -8,7 +8,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppRoutes } from "../constants/routes";
+import { AppRoutes } from "Constants/routes";
 import Toolbar from "@mui/material/Toolbar";
 
 function Nav() {

@@ -1,6 +1,6 @@
-import en from "../locales/en.json";
-import es from "../locales/es.json";
-import type { Languages } from "../types/language";
+import en from "Locales/en.json";
+import es from "Locales/es.json";
+import type { Languages } from "Types/language";
 
 export const LANGUAGES: Readonly<Record<string, Languages>> = {
   EN: "en",

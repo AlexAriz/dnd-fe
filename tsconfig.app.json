@@ -2,10 +2,38 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "es2023",
-    "lib": ["ES2023", "DOM"],
+    "lib": [
+      "ES2023",
+      "DOM"
+    ],
     "module": "esnext",
-    "types": ["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "skipLibCheck": true,
+    "paths": {
+      "Components/*": [
+        "./src/components/*"
+      ],
+      "Constants/*": [
+        "./src/constants/*"
+      ],
+      "Global/*": [
+        "./src/global/*"
+      ],
+      "Hooks/*": [
+        "./src/hooks/*"
+      ],
+      "Locales/*": [
+        "./src/locales/*"
+      ],
+      "State/*": [
+        "./src/state/*"
+      ],
+      "Types/*": [
+        "./src/types/*"
+      ],
+    },
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -20,5 +48,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

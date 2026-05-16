@@ -2,8 +2,8 @@ import { RouterProvider } from "react-router";
 import CssBaseline from "@mui/material/CssBaseline";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import useLanguage from "./hooks/useLanguage";
-import router from "./global/router";
+import useLanguage from "Hooks/useLanguage";
+import router from "Global/router";
 
 function App() {
   const { localeLoaded } = useLanguage();

@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router";
-import AppPage from "../components/AppPage";
-import Welcome from "../components/Welcome";
-import Test from "../components/Test";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
-import Routes from "../constants/routes";
+import AppPage from "Components/AppPage";
+import Welcome from "Components/Welcome";
+import Test from "Components/Test";
+import Login from "Components/Login";
+import Signup from "Components/Signup";
+import Routes from "Constants/routes";
 
 export default createBrowserRouter([
   {

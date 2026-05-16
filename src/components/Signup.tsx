@@ -9,8 +9,8 @@ import Link from "@mui/material/Link";
 import Alert from "@mui/material/Alert";
 import intl from "react-intl-universal";
 
-import Auth from "../global/auth";
-import Routes from "../constants/routes";
+import Auth from "Global/auth";
+import Routes from "Constants/routes";
 
 function Signup() {
   const [username, setUsername] = useState<string>();

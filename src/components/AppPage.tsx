@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import Auth from "../global/auth";
-import Header from "./Header";
+import Auth from "Global/auth";
+import Header from "Components/Header";
 
 function AppPage() {
   const [loading, setLoading] = useState<boolean>(false);

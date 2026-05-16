@@ -1,5 +1,5 @@
 import LogoutIcon from "@mui/icons-material/Logout";
-import Auth from "../global/auth";
+import Auth from "Global/auth";
 import IconButton from "@mui/material/IconButton";
 
 function Logout() {

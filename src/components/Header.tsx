@@ -1,10 +1,10 @@
 import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import LanguagePicker from "./LanguagePicker";
-import Logout from "./Logout";
-import Nav from "./Nav";
-import ThemePicker from "./ThemePicker";
+import LanguagePicker from "Components/LanguagePicker";
+import Logout from "Components/Logout";
+import Nav from "Components/Nav";
+import ThemePicker from "Components/ThemePicker";
 
 function Header() {
   return (
