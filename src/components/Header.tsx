@@ -1,10 +1,10 @@
-import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import LanguagePicker from "Components/LanguagePicker";
 import Logout from "Components/Logout";
 import Nav from "Components/Nav";
 import ThemePicker from "Components/ThemePicker";
+import HeaderTitle from "./HeaderTitle";
 
 function Header() {
   return (
@@ -12,9 +12,7 @@ function Header() {
       <Toolbar>
         <Nav />
 
-        <Typography variant="h6" className="grow">
-          Brain
-        </Typography>
+        <HeaderTitle />
 
         <Logout />
 
