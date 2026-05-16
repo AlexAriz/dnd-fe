@@ -19,10 +19,10 @@ function AppPage() {
   }, []);
 
   return (
-    <div className="w-screen h-screen scroll-auto">
+    <div className="w-lvw h-lvh scroll-auto">
       <Header />
 
-      <main className="pt-16 w-screen px-3">
+      <main className="pt-16 w-lvw px-3">
         {loading ?
           <CircularProgress />
         : <Outlet />}
