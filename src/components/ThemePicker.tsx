@@ -1,40 +1,27 @@
 import { useColorScheme } from "@mui/material/styles";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select, { type SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import type { Mode } from "Types/theme";
 import { THEMES } from "Constants/themes";
-import { useIntl } from "react-intl";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ToggleButton from "@mui/material/ToggleButton";
 
 function ThemePicker() {
   const { mode, setMode } = useColorScheme();
-  const intl = useIntl();
   if (!mode) {
     return null;
   }
 
-  const toggleTheme = (event: SelectChangeEvent) => {
-    setMode(event.target.value as Mode);
+  const toggleTheme = (_event: React.MouseEvent<HTMLElement>, newMode: Mode) => {
+    setMode(newMode);
   };
 
   return (
-    <FormControl size="small">
-      <InputLabel id="theme-picker-label">{intl.formatMessage({ id: "THEME" })}</InputLabel>
-      <Select
-        labelId="theme-picker-label"
-        label={intl.formatMessage({ id: "THEME" })}
-        value={mode}
-        onChange={toggleTheme}
-      >
-        {Object.values(THEMES).map(({ VALUE, NAME, Icon }) => (
-          <MenuItem value={VALUE}>
-            <Icon />
-            {intl.formatMessage({ id: `THEME_${NAME}` })}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <ToggleButtonGroup value={mode} exclusive onChange={toggleTheme}>
+      {Object.values(THEMES).map(({ value, Icon }) => (
+        <ToggleButton key={value} value={value}>
+          <Icon />
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
   );
 }
 

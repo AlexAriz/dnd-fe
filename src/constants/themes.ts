@@ -5,18 +5,15 @@ import type { Theme } from "Types/theme";
 
 export const THEMES: Readonly<Record<string, Theme>> = {
   LIGHT: {
-    NAME: "LIGHT",
-    VALUE: "light",
+    value: "light",
     Icon: LightModeIcon,
   },
   DARK: {
-    NAME: "DARK",
-    VALUE: "dark",
+    value: "dark",
     Icon: DarkModeIcon,
   },
   SYSTEM: {
-    NAME: "SYSTEM",
-    VALUE: "system",
+    value: "system",
     Icon: BuildCircleIcon,
   },
 };

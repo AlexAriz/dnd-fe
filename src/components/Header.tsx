@@ -1,10 +1,8 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import LanguagePicker from "Components/LanguagePicker";
-import Logout from "Components/Logout";
 import Nav from "Components/Nav";
-import ThemePicker from "Components/ThemePicker";
 import HeaderTitle from "./HeaderTitle";
+import UserMenu from "./UserMenu";
 
 function Header() {
   return (
@@ -14,11 +12,7 @@ function Header() {
 
         <HeaderTitle />
 
-        <Logout />
-
-        <ThemePicker />
-
-        <LanguagePicker />
+        <UserMenu />
       </Toolbar>
     </AppBar>
   );
