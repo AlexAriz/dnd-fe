@@ -23,7 +23,7 @@ function UserMenu() {
         <Toolbar />
         <Box className="w-64" component="nav">
           <List>
-            <ListItem disablePadding>
+            <ListItem disablePadding onClick={() => setIsOpen(false)}>
               <Logout />
             </ListItem>
 
