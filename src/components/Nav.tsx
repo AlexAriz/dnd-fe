@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import intl from "react-intl-universal";
 import IconButton from "@mui/material/IconButton";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -10,8 +9,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppRoutes } from "Constants/routes";
 import Toolbar from "@mui/material/Toolbar";
+import { useIntl } from "react-intl";
 
 function Nav() {
+  const intl = useIntl();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -27,7 +28,7 @@ function Nav() {
             {Object.entries(AppRoutes).map(([route, path]) => (
               <ListItem disablePadding onClick={() => setIsOpen(false)} key={path}>
                 <ListItemButton component={Link} to={path}>
-                  {intl.get(`MODULES.${route}`)}
+                  {intl.formatMessage({ id: `MODULE_${route}` })}
                 </ListItemButton>
               </ListItem>
             ))}

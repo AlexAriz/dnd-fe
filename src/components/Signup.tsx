@@ -7,12 +7,13 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Alert from "@mui/material/Alert";
-import intl from "react-intl-universal";
 
 import Auth from "Global/auth";
 import Routes from "Constants/routes";
+import { useIntl } from "react-intl";
 
 function Signup() {
+  const intl = useIntl();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [confirmPassword, setConfirmPassword] = useState<string>();
@@ -36,41 +37,41 @@ function Signup() {
   return (
     <div className="flex flex-col h-lvh w-lvw items-center-safe justify-center-safe">
       <Stack component="form" onSubmit={handleSubmit} className="w-1/2 md:w-lg space-y-4">
-        <Typography variant="h3">{intl.get("SIGNUP")}</Typography>
+        <Typography variant="h3">{intl.formatMessage({ id: "SIGNUP" })}</Typography>
 
         <TextField
-          label={intl.get("USERNAME")}
-          placeholder={intl.get("USERNAME")}
+          label={intl.formatMessage({ id: "USERNAME" })}
+          placeholder={intl.formatMessage({ id: "USERNAME" })}
           type="email"
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <TextField
-          label={intl.get("PASSWORD")}
-          placeholder={intl.get("PASSWORD")}
+          label={intl.formatMessage({ id: "PASSWORD" })}
+          placeholder={intl.formatMessage({ id: "PASSWORD" })}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <TextField
-          label={intl.get("CONFIRM_PASSWORD")}
-          placeholder={intl.get("CONFIRM_PASSWORD")}
+          label={intl.formatMessage({ id: "CONFIRM_PASSWORD" })}
+          placeholder={intl.formatMessage({ id: "CONFIRM_PASSWORD" })}
           type="password"
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
         <Button type="submit" variant="contained" disabled={!formValid} loading={buttonLoading}>
-          {intl.get("SIGNUP")}
+          {intl.formatMessage({ id: "SIGNUP" })}
         </Button>
 
         <Link component={NavLink} to={Routes.LOGIN}>
-          {intl.get("LOGIN")}
+          {intl.formatMessage({ id: "LOGIN" })}
         </Link>
       </Stack>
 
       <Snackbar autoHideDuration={5000} open={snackbarOpen} onClose={() => setSnackbarOpen(false)}>
         <Alert onClose={() => setSnackbarOpen(false)} severity="error" variant="filled">
-          {intl.get("ERROR.SIGNUP")}
+          {intl.formatMessage({ id: "ERROR_SIGNUP" })}
         </Alert>
       </Snackbar>
     </div>

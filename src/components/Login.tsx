@@ -7,12 +7,13 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Alert from "@mui/material/Alert";
-import intl from "react-intl-universal";
 
 import Auth from "Global/auth";
 import Routes from "Constants/routes";
+import { useIntl } from "react-intl";
 
 function Login() {
+  const intl = useIntl();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
@@ -35,34 +36,34 @@ function Login() {
   return (
     <div className="flex flex-col h-lvh w-lvw items-center-safe justify-center-safe">
       <Stack component="form" onSubmit={handleSubmit} className="w-1/2 md:w-lg space-y-4">
-        <Typography variant="h3">{intl.get("LOGIN")}</Typography>
+        <Typography variant="h3">{intl.formatMessage({ id: "LOGIN" })}</Typography>
 
         <TextField
-          label={intl.get("EMAIL")}
-          placeholder={intl.get("USERNAME")}
+          label={intl.formatMessage({ id: "EMAIL" })}
+          placeholder={intl.formatMessage({ id: "USERNAME" })}
           type="email"
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <TextField
-          label={intl.get("PASSWORD")}
-          placeholder={intl.get("PASSWORD")}
+          label={intl.formatMessage({ id: "PASSWORD" })}
+          placeholder={intl.formatMessage({ id: "PASSWORD" })}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <Button type="submit" variant="contained" disabled={!formValid} loading={buttonLoading}>
-          {intl.get("LOGIN")}
+          {intl.formatMessage({ id: "LOGIN" })}
         </Button>
 
         <Link component={NavLink} to={Routes.SIGNUP}>
-          {intl.get("SIGNUP")}
+          {intl.formatMessage({ id: "SIGNUP" })}
         </Link>
       </Stack>
 
       <Snackbar autoHideDuration={5000} open={snackbarOpen} onClose={() => setSnackbarOpen(false)}>
         <Alert onClose={() => setSnackbarOpen(false)} severity="error" variant="filled">
-          {intl.get("ERRORS.LOGIN")}
+          {intl.formatMessage({ id: "ERROR_LOGIN" })}
         </Alert>
       </Snackbar>
     </div>

@@ -1,8 +1,10 @@
 import Typography from "@mui/material/Typography";
-import intl from "react-intl-universal";
+import { useIntl } from "react-intl";
 
 function Welcome() {
-  return <Typography variant="h1">{intl.get("MODULES.HOME")}</Typography>;
+  const intl = useIntl();
+
+  return <Typography variant="h1">{intl.formatMessage({ id: "MODULE_HOME" })}</Typography>;
 }
 
 export default Welcome;

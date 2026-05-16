@@ -1,23 +1,20 @@
 import { RouterProvider } from "react-router";
 import CssBaseline from "@mui/material/CssBaseline";
-import CircularProgress from "@mui/material/CircularProgress";
 
-import useLanguage from "Hooks/useLanguage";
 import router from "Global/router";
+import { IntlProvider } from "react-intl";
+import { useAppSelector } from "Hooks/state";
+import { languageSelectors } from "State/language";
 
 function App() {
-  const { localeLoaded } = useLanguage();
+  const language = useAppSelector(languageSelectors.selectLanguage);
+  const messages = useAppSelector(languageSelectors.selectMessages);
 
   return (
-    <>
+    <IntlProvider locale={language} messages={messages}>
       <CssBaseline />
-      {!localeLoaded ?
-        <CircularProgress />
-      : <>
-          <RouterProvider router={router} />
-        </>
-      }
-    </>
+      <RouterProvider router={router} />
+    </IntlProvider>
   );
 }
 
