@@ -35,7 +35,7 @@ function Signup() {
 
   return (
     <div className="flex flex-col h-lvh w-lvw items-center-safe justify-center-safe">
-      <Stack component="form" onSubmit={handleSubmit} className="w-lg space-y-4">
+      <Stack component="form" onSubmit={handleSubmit} className="w-1/2 md:w-lg space-y-4">
         <Typography variant="h3">{intl.get("SIGNUP")}</Typography>
 
         <TextField
