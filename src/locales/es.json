@@ -1,18 +1,24 @@
 {
+  "CONFIRM_PASSWORD": "Confirmar contraseña",
+  "EMAIL": "E-mail",
+  "ERRORS": {
+    "LOGIN": "Usuario o contraseña equivocados",
+    "SIGNUP": "Ocurrió un error durante el registro"
+  },
+  "LANGUAGE": "Idioma",
+  "LOGIN": "Iniciar sesión",
   "MODULES": {
     "HOME": "Inicio",
     "TEST": "Prueba"
   },
-  "LOGIN": "Iniciar sesión",
-  "SIGNUP": "Registro",
-  "EMAIL": "E-mail",
-  "USERNAME": "Usuario",
   "PASSWORD": "Contraseña",
-  "CONFIRM_PASSWORD": "Confirmar contraseña",
-  "WELCOME": "Bienvenido",
-  "LANGUAGE": "Idioma",
-  "ERRORS": {
-    "LOGIN": "Usuario o contraseña equivocados",
-    "SIGNUP": "Ocurrió un error durante el registro"
-  }
+  "SIGNUP": "Registro",
+  "THEME": "Tema",
+  "THEMES": {
+    "DARK": "Oscuro",
+    "LIGHT": "Claro",
+    "SYSTEM": "Sistema"
+  },
+  "USERNAME": "Usuario",
+  "WELCOME": "Bienvenido"
 }

@@ -1,9 +1,10 @@
 import Typography from "@mui/material/Typography";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import LanguagePicker from "./LanguagePicker";
 import Logout from "./Logout";
 import Nav from "./Nav";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import ThemePicker from "./ThemePicker";
 
 function Header() {
   return (
@@ -16,6 +17,8 @@ function Header() {
         </Typography>
 
         <Logout />
+
+        <ThemePicker />
 
         <LanguagePicker />
       </Toolbar>

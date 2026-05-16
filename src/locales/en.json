@@ -1,18 +1,24 @@
 {
+  "CONFIRM_PASSWORD": "Confirm password",
+  "EMAIL": "Email",
+  "ERRORS": {
+    "LOGIN": "Email or password incorrect",
+    "SIGNUP": "There was an error during registration"
+  },
+  "LANGUAGE": "Language",
+  "LOGIN": "Login",
   "MODULES": {
     "HOME": "Home",
     "TEST": "Test"
   },
-  "LOGIN": "Login",
-  "SIGNUP": "Signup",
-  "EMAIL": "Email",
-  "USERNAME": "Username",
   "PASSWORD": "Password",
-  "CONFIRM_PASSWORD": "Confirm password",
-  "WELCOME": "Welcome",
-  "LANGUAGE": "Language",
-  "ERRORS": {
-    "LOGIN": "Email or password incorrect",
-    "SIGNUP": "There was an error during registration"
-  }
+  "SIGNUP": "Signup",
+  "THEME": "Theme",
+  "THEMES": {
+    "DARK": "Dark",
+    "LIGHT": "Light",
+    "SYSTEM": "System"
+  },
+  "USERNAME": "Username",
+  "WELCOME": "Welcome"
 }
