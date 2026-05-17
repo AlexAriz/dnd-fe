@@ -13,13 +13,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      Components: resolve(__dirname, "./src/components"),
-      Constants: resolve(__dirname, "./src/constants"),
-      Global: resolve(__dirname, "./src/global"),
-      Hooks: resolve(__dirname, "./src/hooks"),
-      Locales: resolve(__dirname, "./src/locales"),
-      State: resolve(__dirname, "./src/state"),
-      Types: resolve(__dirname, "./src/types"),
+      Components: resolve(__dirname, "./src/core/components"),
+      Constants: resolve(__dirname, "./src/core/constants"),
+      Features: resolve(__dirname, "./src/features"),
+      Hooks: resolve(__dirname, "./src/core/hooks"),
+      State: resolve(__dirname, "./src/core/store"),
+      Types: resolve(__dirname, "./src/core/types"),
     },
   },
 });

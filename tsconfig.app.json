@@ -13,25 +13,22 @@
     "skipLibCheck": true,
     "paths": {
       "Components/*": [
-        "./src/components/*"
+        "./src/core/components/*"
       ],
       "Constants/*": [
-        "./src/constants/*"
+        "./src/core/constants/*"
       ],
-      "Global/*": [
-        "./src/global/*"
+      "Features/*": [
+        "./src/features/*"
       ],
       "Hooks/*": [
-        "./src/hooks/*"
-      ],
-      "Locales/*": [
-        "./src/locales/*"
+        "./src/core/hooks/*"
       ],
       "State/*": [
-        "./src/state/*"
+        "./src/core/store/*"
       ],
       "Types/*": [
-        "./src/types/*"
+        "./src/core/types/*"
       ],
     },
     /* Bundler mode */
