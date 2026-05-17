@@ -1,14 +1,14 @@
 import Routes from "../../core/constants/routes";
 import type { RouteObject } from "react-router";
 import AppPage from "../../core/layouts/AppPage";
-import Welcome from "./views/Welcome";
+import Home from "./views/Home";
 
-const WelcomeRotues: RouteObject[] = [
+const HomeRotues: RouteObject[] = [
   {
     path: Routes.HOME,
     Component: AppPage,
-    children: [{ index: true, Component: Welcome }],
+    children: [{ index: true, Component: Home }],
   },
 ];
 
-export default WelcomeRotues;
+export default HomeRotues;
