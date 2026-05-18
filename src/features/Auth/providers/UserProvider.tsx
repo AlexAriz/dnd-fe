@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
-import CircularProgress from "@mui/material/CircularProgress";
-
 import { useAppDispatch } from "Hooks/state";
 import { verifySession } from "Features/Auth/api/Auth";
 import { currentUserActions } from "Features/Auth/store/currentUser";
+import LoadingPage from "Layouts/LoadingPage";
 
 function UserProvider({ children }: React.PropsWithChildren) {
   const dispatch = useAppDispatch();
@@ -23,7 +22,7 @@ function UserProvider({ children }: React.PropsWithChildren) {
     init();
   }, [dispatch]);
 
-  return loading ? <CircularProgress /> : children;
+  return loading ? <LoadingPage /> : children;
 }
 
 export default UserProvider;
