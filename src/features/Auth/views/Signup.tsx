@@ -5,15 +5,14 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-import { signup } from "../store/currentUser";
 import Routes from "../../../core/constants/routes";
 import { useIntl } from "react-intl";
 import Toast from "../../../core/components/Toast";
-import { useAppDispatch } from "Hooks/state";
+import { signup } from "../api/Auth";
+import router from "../../../router";
 
 function Signup() {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [confirmPassword, setConfirmPassword] = useState<string>();
@@ -29,7 +28,10 @@ function Signup() {
       return;
     }
 
-    await dispatch(signup({ email: username!, password: password! }));
+    const success = await signup(username!, password!);
+    if (success) {
+      router.navigate(Routes.LOGIN);
+    }
     setButtonLoading(false);
     setSnackbarOpen(true);
   };

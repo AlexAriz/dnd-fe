@@ -5,11 +5,13 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 
-import { login } from "../store/currentUser";
 import Routes from "../../../core/constants/routes";
 import { useIntl } from "react-intl";
 import Toast from "../../../core/components/Toast";
+import { login } from "../api/Auth";
 import { useAppDispatch } from "Hooks/state";
+import { currentUserActions } from "../store/currentUser";
+import router from "../../../router";
 
 function Login() {
   const intl = useIntl();
@@ -28,7 +30,11 @@ function Login() {
       return;
     }
 
-    await dispatch(login({ email: username!, password: password! }));
+    const user = await login(username!, password!);
+    if (user) {
+      dispatch(currentUserActions.setUser(user));
+      router.navigate(Routes.HOME);
+    }
     setButtonLoading(false);
     setSnackbarOpen(true);
   };
