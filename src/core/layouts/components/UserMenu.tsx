@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import IconButton from "@mui/material/IconButton";
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -22,19 +21,18 @@ function UserMenu() {
       </IconButton>
 
       <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)} color="neutral">
-        <Toolbar />
-        <Box className="w-64" component="nav">
+        <Box className="w-64">
           <List>
-            <ListItem disablePadding onClick={() => setIsOpen(false)}>
-              <Logout />
-            </ListItem>
-
-            <ListItem disablePadding>
+            <ListItem className="justify-between">
               <ThemePicker />
             </ListItem>
 
-            <ListItem disablePadding>
+            <ListItem className="justify-between">
               <LanguagePicker />
+            </ListItem>
+
+            <ListItem onClick={() => setIsOpen(false)} className="justify-between">
+              <Logout />
             </ListItem>
           </List>
         </Box>

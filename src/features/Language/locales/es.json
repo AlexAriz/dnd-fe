@@ -3,11 +3,14 @@
   "EMAIL": "E-mail",
   "ERROR_LOGIN": "Usuario o contraseña equivocados",
   "ERROR_SIGNUP": "Ocurrió un error durante el registro",
+  "HOME": "Inicio",
+  "LANGUAGE": "Idioma",
   "LOGIN": "Iniciar sesión",
+  "LOGOUT": "Cerrar sesión",
   "MODULE_HOME": "Inicio",
   "MODULE_TEST": "Prueba",
   "PASSWORD": "Contraseña",
   "SIGNUP": "Registro",
-  "USERNAME": "Usuario",
-  "HOME": "Inicio"
+  "THEME": "Tema",
+  "USERNAME": "Usuario"
 }

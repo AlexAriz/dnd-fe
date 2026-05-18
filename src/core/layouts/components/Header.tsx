@@ -13,7 +13,7 @@ function Header() {
   const { id } = usePath();
 
   return (
-    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    <AppBar position="fixed">
       <Toolbar>
         <Nav />
 

@@ -3,11 +3,14 @@
   "EMAIL": "Email",
   "ERROR_LOGIN": "Email or password incorrect",
   "ERROR_SIGNUP": "There was an error during registration",
+  "HOME": "Home",
+  "LANGUAGE": "Language",
   "LOGIN": "Login",
+  "LOGOUT": "Logout",
   "MODULE_HOME": "Home",
   "MODULE_TEST": "Test",
   "PASSWORD": "Password",
   "SIGNUP": "Signup",
-  "USERNAME": "Username",
-  "HOME": "Home"
+  "THEME": "Theme",
+  "USERNAME": "Username"
 }

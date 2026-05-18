@@ -8,7 +8,6 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { AppRoutes } from "Constants/routes";
@@ -24,7 +23,6 @@ function Nav() {
       </IconButton>
 
       <Drawer open={isOpen} onClose={() => setIsOpen(false)} color="neutral">
-        <Toolbar />
         <Box className="w-64" component="nav">
           <List>
             {Object.entries(AppRoutes).map(([route, path]) => (
