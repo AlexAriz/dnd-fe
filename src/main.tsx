@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import Logger from "./core/providers/Logger";
 
 import StateProvider from "./core/providers/StateProvider";
-import StylesProvider from "./core/providers/StylesProvider";
+import StylesProvider from "Features/Theme/providers/StylesProvider";
 import LanguageProvider from "Features/Language/providers/LanguageProvider";
 import RoutesProvider from "./core/providers/RoutesProvider";
 
