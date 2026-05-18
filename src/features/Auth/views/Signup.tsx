@@ -1,44 +1,30 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-
-import Routes from "../../../core/constants/routes";
 import { useIntl } from "react-intl";
-import Toast from "../../../core/components/Toast";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+
+import { PublicRoutes } from "Constants/routes";
 import { signup } from "../api/Auth";
 import router from "../../../router";
+import AuthForm from "../components/AuthForm";
 
 function Signup() {
   const intl = useIntl();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [confirmPassword, setConfirmPassword] = useState<string>();
-  const [buttonLoading, setButtonLoading] = useState<boolean>(false);
-  const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
   const formValid: boolean = Boolean(username && password && confirmPassword && password === confirmPassword);
 
-  const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
-    setButtonLoading(true);
-
-    if (!formValid) {
-      return;
-    }
-
+  const handleSubmit = async () => {
     const success = await signup(username!, password!);
     if (success) {
-      router.navigate(Routes.LOGIN);
+      router.navigate(PublicRoutes.LOGIN);
     }
-    setButtonLoading(false);
-    setSnackbarOpen(true);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <AuthForm onSubmit={handleSubmit} isValid={formValid} flow="signup">
         <Typography variant="h3">{intl.formatMessage({ id: "SIGNUP" })}</Typography>
 
         <TextField
@@ -61,19 +47,7 @@ function Signup() {
           type="password"
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-
-        <Button type="submit" variant="contained" disabled={!formValid} loading={buttonLoading}>
-          {intl.formatMessage({ id: "SIGNUP" })}
-        </Button>
-
-        <Link component={NavLink} to={Routes.LOGIN}>
-          {intl.formatMessage({ id: "LOGIN" })}
-        </Link>
-      </form>
-
-      <Toast isOpen={snackbarOpen} onClose={() => setSnackbarOpen(false)} severity="error">
-        {intl.formatMessage({ id: "ERROR_SIGNUP" })}
-      </Toast>
+      </AuthForm>
     </>
   );
 }
