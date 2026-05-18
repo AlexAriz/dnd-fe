@@ -11,9 +11,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { AppRoutes } from "Constants/routes";
+import usePath from "Hooks/usePath";
 
 function Nav() {
   const intl = useIntl();
+  const { currentPath } = usePath();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -27,7 +29,7 @@ function Nav() {
           <List>
             {Object.entries(AppRoutes).map(([route, path]) => (
               <ListItem disablePadding onClick={() => setIsOpen(false)} key={path}>
-                <ListItemButton component={Link} to={path}>
+                <ListItemButton component={Link} to={path} selected={currentPath === path}>
                   {intl.formatMessage({ id: `MODULE_${route}` })}
                 </ListItemButton>
               </ListItem>

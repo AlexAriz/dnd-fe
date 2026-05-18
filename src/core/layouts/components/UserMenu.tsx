@@ -31,7 +31,7 @@ function UserMenu() {
               <LanguagePicker />
             </ListItem>
 
-            <ListItem onClick={() => setIsOpen(false)} className="justify-between">
+            <ListItem className="justify-between">
               <Logout />
             </ListItem>
           </List>
