@@ -26,25 +26,23 @@ function Login() {
   };
 
   return (
-    <>
-      <AuthForm onSubmit={handleSubmit} isValid={formValid} flow="login">
-        <Typography variant="h3">{intl.formatMessage({ id: "LOGIN" })}</Typography>
+    <AuthForm onSubmit={handleSubmit} isValid={formValid} flow="login">
+      <Typography variant="h3">{intl.formatMessage({ id: "LOGIN" })}</Typography>
 
-        <TextField
-          label={intl.formatMessage({ id: "EMAIL" })}
-          placeholder={intl.formatMessage({ id: "USERNAME" })}
-          type="email"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+      <TextField
+        label={intl.formatMessage({ id: "EMAIL" })}
+        placeholder={intl.formatMessage({ id: "USERNAME" })}
+        type="email"
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
-        <TextField
-          label={intl.formatMessage({ id: "PASSWORD" })}
-          placeholder={intl.formatMessage({ id: "PASSWORD" })}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </AuthForm>
-    </>
+      <TextField
+        label={intl.formatMessage({ id: "PASSWORD" })}
+        placeholder={intl.formatMessage({ id: "PASSWORD" })}
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+    </AuthForm>
   );
 }
 

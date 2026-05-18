@@ -23,32 +23,30 @@ function Signup() {
   };
 
   return (
-    <>
-      <AuthForm onSubmit={handleSubmit} isValid={formValid} flow="signup">
-        <Typography variant="h3">{intl.formatMessage({ id: "SIGNUP" })}</Typography>
+    <AuthForm onSubmit={handleSubmit} isValid={formValid} flow="signup">
+      <Typography variant="h3">{intl.formatMessage({ id: "SIGNUP" })}</Typography>
 
-        <TextField
-          label={intl.formatMessage({ id: "USERNAME" })}
-          placeholder={intl.formatMessage({ id: "USERNAME" })}
-          type="email"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+      <TextField
+        label={intl.formatMessage({ id: "USERNAME" })}
+        placeholder={intl.formatMessage({ id: "USERNAME" })}
+        type="email"
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
-        <TextField
-          label={intl.formatMessage({ id: "PASSWORD" })}
-          placeholder={intl.formatMessage({ id: "PASSWORD" })}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <TextField
+        label={intl.formatMessage({ id: "PASSWORD" })}
+        placeholder={intl.formatMessage({ id: "PASSWORD" })}
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-        <TextField
-          label={intl.formatMessage({ id: "CONFIRM_PASSWORD" })}
-          placeholder={intl.formatMessage({ id: "CONFIRM_PASSWORD" })}
-          type="password"
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </AuthForm>
-    </>
+      <TextField
+        label={intl.formatMessage({ id: "CONFIRM_PASSWORD" })}
+        placeholder={intl.formatMessage({ id: "CONFIRM_PASSWORD" })}
+        type="password"
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+    </AuthForm>
   );
 }
 

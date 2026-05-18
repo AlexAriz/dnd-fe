@@ -1,39 +1,18 @@
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
+import Paper from "@mui/material/Paper";
 import Toast from "Components/Toast";
-import { PublicRoutes } from "Constants/routes";
 import { useState } from "react";
 import { useIntl } from "react-intl";
 import { NavLink } from "react-router";
+import type { Flow } from "../types/flows";
+import flowMap from "../constants/flows";
 
-type Flow = "login" | "signup";
 interface AuthFormProps extends React.PropsWithChildren {
   onSubmit: () => Promise<void>;
   isValid: boolean;
   flow: Flow;
 }
-
-interface FlowMap {
-  submitButton: string;
-  linkText: string;
-  linkRoute: (typeof PublicRoutes)[keyof typeof PublicRoutes];
-  errorMessage: string;
-}
-const flowMap: Record<Flow, FlowMap> = {
-  login: {
-    submitButton: "LOGIN",
-    linkText: "SIGNUP",
-    linkRoute: PublicRoutes.SIGNUP,
-    errorMessage: "ERROR_LOGIN",
-  },
-  signup: {
-    submitButton: "SIGNUP",
-    linkText: "LOGIN",
-    linkRoute: PublicRoutes.LOGIN,
-    errorMessage: "ERROR_SIGNUP",
-  },
-};
 
 function AuthForm({ children, onSubmit, isValid, flow }: AuthFormProps) {
   const intl = useIntl();
@@ -53,7 +32,12 @@ function AuthForm({ children, onSubmit, isValid, flow }: AuthFormProps) {
   };
 
   return (
-    <Stack className="w-1/2 md:w-lg space-y-4" component="form" onSubmit={handleSubmit}>
+    <Paper
+      className="flex flex-col px-4 py-8 w-1/2 md:w-lg space-y-4"
+      component="form"
+      onSubmit={handleSubmit}
+      elevation={3}
+    >
       {children}
 
       <Button type="submit" variant="contained" disabled={!isValid} loading={buttonLoading}>
@@ -67,7 +51,7 @@ function AuthForm({ children, onSubmit, isValid, flow }: AuthFormProps) {
       <Toast isOpen={snackbarOpen} onClose={() => setSnackbarOpen(false)} severity="error">
         {intl.formatMessage({ id: flowMap[flow].errorMessage })}
       </Toast>
-    </Stack>
+    </Paper>
   );
 }
 
