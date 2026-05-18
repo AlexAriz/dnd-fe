@@ -1,8 +1,9 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "../constants/auth";
-import Logger from "../../../core/providers/Logger";
-import router from "../../../router";
+
+import Logger from "Libs/Logger";
+import router from "Libs/router";
 import Routes from "Constants/routes";
+import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "Features/Auth/constants/auth";
 
 const client: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 

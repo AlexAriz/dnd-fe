@@ -1,5 +1,5 @@
 import { PublicRoutes } from "Constants/routes";
-import type { Flow, FlowObject } from "../types/flows";
+import type { Flow, FlowObject } from "Features/Auth/types/flows";
 
 const flowMap: Readonly<Record<Flow, FlowObject>> = {
   login: {

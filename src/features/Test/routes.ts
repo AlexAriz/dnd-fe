@@ -1,7 +1,8 @@
-import Routes from "../../core/constants/routes";
 import type { RouteObject } from "react-router";
-import AppPage from "../../core/layouts/AppPage";
-import Test from "./views/Test";
+
+import Routes from "Constants/routes";
+import AppPage from "Layouts/AppPage";
+import Test from "Features/Test/views/Test";
 
 const TestRoutes: RouteObject[] = [
   {

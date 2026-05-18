@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 
-import Header from "./components/Header";
+import Header from "Layouts/components/Header";
 import UserProvider from "Features/Auth/providers/UserProvider";
 
 function AppPage() {

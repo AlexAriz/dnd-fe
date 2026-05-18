@@ -1,12 +1,14 @@
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Paper from "@mui/material/Paper";
-import Toast from "Components/Toast";
 import { useState } from "react";
 import { useIntl } from "react-intl";
 import { NavLink } from "react-router";
-import type { Flow } from "../types/flows";
-import flowMap from "../constants/flows";
+
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+
+import Toast from "Components/Toast";
+import type { Flow } from "Features/Auth/types/flows";
+import flowMap from "Features/Auth/constants/flows";
 
 interface AuthFormProps extends React.PropsWithChildren {
   onSubmit: () => Promise<void>;

@@ -1,9 +1,11 @@
+import { useIntl } from "react-intl";
+
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+
 import Nav from "./Nav";
 import UserMenu from "./UserMenu";
-import Typography from "@mui/material/Typography";
-import { useIntl } from "react-intl";
 import usePath from "Hooks/usePath";
 
 function Header() {

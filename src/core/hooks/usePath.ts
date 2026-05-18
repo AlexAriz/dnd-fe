@@ -1,5 +1,6 @@
-import { AppRoutes } from "../constants/routes";
 import { useMatch } from "react-router";
+
+import { AppRoutes } from "Constants/routes";
 
 const usePath = () => {
   const isHome = useMatch(AppRoutes.HOME);

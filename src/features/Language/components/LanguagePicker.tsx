@@ -1,9 +1,10 @@
-import { LANGUAGES } from "../constants/language";
-import type { Languages } from "../types/language";
-import { useAppDispatch, useAppSelector } from "Hooks/state";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
-import { languageActions, languageSelectors } from "../store/language";
+
+import { useAppDispatch, useAppSelector } from "Hooks/state";
+import { LANGUAGES } from "Features/Language/constants/language";
+import type { Languages } from "Features/Language/types/language";
+import { languageActions, languageSelectors } from "Features/Language/store/language";
 
 function LanguagePicker() {
   const dispatch = useAppDispatch();

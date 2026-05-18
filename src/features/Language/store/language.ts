@@ -1,9 +1,10 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import en from "../locales/en.json";
-import es from "../locales/es.json";
 import type { ResolvedIntlConfig } from "react-intl";
-import type { Languages } from "../types/language";
+
 import type { RootState } from "Types/state";
+import type { Languages } from "Features/Language/types/language";
+import en from "Features/Language/locales/en.json";
+import es from "Features/Language/locales/es.json";
 
 interface LanguageState {
   language: Languages;

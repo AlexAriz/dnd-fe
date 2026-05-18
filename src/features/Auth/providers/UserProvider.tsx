@@ -1,8 +1,10 @@
-import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
-import { verifySession } from "../api/Auth";
+
+import CircularProgress from "@mui/material/CircularProgress";
+
 import { useAppDispatch } from "Hooks/state";
-import { currentUserActions } from "../store/currentUser";
+import { verifySession } from "Features/Auth/api/Auth";
+import { currentUserActions } from "Features/Auth/store/currentUser";
 
 function UserProvider({ children }: React.PropsWithChildren) {
   const dispatch = useAppDispatch();

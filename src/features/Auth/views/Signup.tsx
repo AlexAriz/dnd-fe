@@ -4,9 +4,9 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 import { PublicRoutes } from "Constants/routes";
-import { signup } from "../api/Auth";
-import router from "../../../router";
-import AuthForm from "../components/AuthForm";
+import router from "Libs/router";
+import { signup } from "Features/Auth/api/Auth";
+import AuthForm from "Features/Auth/components/AuthForm";
 
 function Signup() {
   const intl = useIntl();

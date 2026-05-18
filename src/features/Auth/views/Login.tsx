@@ -4,11 +4,11 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 import { AppRoutes } from "Constants/routes";
-import { login } from "../api/Auth";
 import { useAppDispatch } from "Hooks/state";
-import { currentUserActions } from "../store/currentUser";
-import router from "../../../router";
-import AuthForm from "../components/AuthForm";
+import router from "Libs/router";
+import { login } from "Features/Auth/api/Auth";
+import { currentUserActions } from "Features/Auth/store/currentUser";
+import AuthForm from "Features/Auth/components/AuthForm";
 
 function Login() {
   const intl = useIntl();

@@ -1,4 +1,4 @@
-import type { Languages } from "../types/language";
+import type { Languages } from "Features/Language/types/language";
 
 export const LANGUAGES: Readonly<Record<string, Languages>> = {
   EN: "en",

@@ -1,5 +1,5 @@
-import Typography from "@mui/material/Typography";
 import { useIntl } from "react-intl";
+import Typography from "@mui/material/Typography";
 
 function Test() {
   const intl = useIntl();

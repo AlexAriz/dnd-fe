@@ -24,6 +24,15 @@
       "Hooks/*": [
         "./src/core/hooks/*"
       ],
+      "Layouts/*": [
+        "./src/core/layouts/*"
+      ],
+      "Libs/*": [
+        "./src/core/libs/*"
+      ],
+      "Providers/*": [
+        "./src/core/providers/*"
+      ],
       "State/*": [
         "./src/core/store/*"
       ],

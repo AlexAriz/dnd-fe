@@ -1,6 +1,7 @@
 import { IntlProvider } from "react-intl";
-import { languageSelectors } from "../store/language";
+
 import { useAppSelector } from "Hooks/state";
+import { languageSelectors } from "Features/Language/store/language";
 
 function LanguageProvider({ children }: React.PropsWithChildren) {
   const language = useAppSelector(languageSelectors.selectLanguage);

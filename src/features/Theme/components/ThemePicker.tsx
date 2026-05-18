@@ -1,8 +1,9 @@
 import { useColorScheme } from "@mui/material/styles";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
-import type { Mode } from "../types/theme";
-import { THEMES } from "../constants/themes";
+
+import type { Mode } from "Features/Theme/types/theme";
+import { THEMES } from "Features/Theme/constants/themes";
 
 function ThemePicker() {
   const { mode, setMode } = useColorScheme();
