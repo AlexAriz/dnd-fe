@@ -16,7 +16,7 @@ function AppPage() {
     };
 
     init();
-  });
+  }, []);
 
   return loading ?
       <LoadingPage />
