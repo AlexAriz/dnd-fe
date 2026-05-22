@@ -5,8 +5,8 @@ import TextField from "@mui/material/TextField";
 
 import { PublicRoutes } from "Constants/routes";
 import router from "Libs/router";
-import { signup } from "Features/Auth/api/Auth";
-import AuthForm from "Features/Auth/components/AuthForm";
+import { signup } from "Libs/Auth";
+import AuthForm from "Layouts/PublicPage/components/AuthForm";
 
 function Signup() {
   const intl = useIntl();

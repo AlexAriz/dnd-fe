@@ -8,7 +8,7 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss()],
   server: {
-    host: "local.brain-fe.com",
+    host: true,
     port: 5173,
   },
   resolve: {

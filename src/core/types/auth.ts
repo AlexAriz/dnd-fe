@@ -1,8 +1,8 @@
 import type { PublicRoutes } from "Constants/routes";
 
-export type Flow = "login" | "signup";
+export type AuthFlow = "login" | "signup";
 
-export interface FlowObject {
+export interface AuthFlowObject {
   submitButton: string;
   linkText: string;
   linkRoute: (typeof PublicRoutes)[keyof typeof PublicRoutes];

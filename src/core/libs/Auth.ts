@@ -3,7 +3,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import Logger from "Libs/Logger";
 import router from "Libs/router";
 import Routes from "Constants/routes";
-import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "Features/Auth/constants/auth";
+import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "Constants/auth";
 
 const client: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
@@ -16,7 +16,7 @@ export const verifySession = async () => {
     Logger.warn("Session expired");
     router.navigate(Routes.LOGIN);
   } else {
-    return response.data.session.user;
+    return response.data.session;
   }
 };
 

@@ -4,15 +4,12 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 import { AppRoutes } from "Constants/routes";
-import { useAppDispatch } from "Hooks/state";
 import router from "Libs/router";
-import { login } from "Features/Auth/api/Auth";
-import { currentUserActions } from "Features/Auth/store/currentUser";
-import AuthForm from "Features/Auth/components/AuthForm";
+import { login } from "Libs/Auth";
+import AuthForm from "Layouts/PublicPage/components/AuthForm";
 
 function Login() {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const formValid: boolean = Boolean(username && password);
@@ -20,7 +17,6 @@ function Login() {
   const handleSubmit = async () => {
     const user = await login(username!, password!);
     if (user) {
-      dispatch(currentUserActions.setUser(user));
       router.navigate(AppRoutes.HOME);
     }
   };

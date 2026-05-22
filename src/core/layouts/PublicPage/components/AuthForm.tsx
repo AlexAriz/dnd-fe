@@ -7,13 +7,13 @@ import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 
 import Toast from "Components/Toast";
-import type { Flow } from "Features/Auth/types/flows";
-import flowMap from "Features/Auth/constants/flows";
+import type { AuthFlow } from "Types/auth";
+import { AUTH_FLOW_MAP } from "Constants/auth";
 
 interface AuthFormProps extends React.PropsWithChildren {
   onSubmit: () => Promise<void>;
   isValid: boolean;
-  flow: Flow;
+  flow: AuthFlow;
 }
 
 function AuthForm({ children, onSubmit, isValid, flow }: AuthFormProps) {
@@ -43,15 +43,15 @@ function AuthForm({ children, onSubmit, isValid, flow }: AuthFormProps) {
       {children}
 
       <Button type="submit" variant="contained" disabled={!isValid} loading={buttonLoading}>
-        {intl.formatMessage({ id: flowMap[flow].submitButton })}
+        {intl.formatMessage({ id: AUTH_FLOW_MAP[flow].submitButton })}
       </Button>
 
-      <Link component={NavLink} to={flowMap[flow].linkRoute}>
-        {intl.formatMessage({ id: flowMap[flow].linkText })}
+      <Link component={NavLink} to={AUTH_FLOW_MAP[flow].linkRoute}>
+        {intl.formatMessage({ id: AUTH_FLOW_MAP[flow].linkText })}
       </Link>
 
       <Toast isOpen={snackbarOpen} onClose={() => setSnackbarOpen(false)} severity="error">
-        {intl.formatMessage({ id: flowMap[flow].errorMessage })}
+        {intl.formatMessage({ id: AUTH_FLOW_MAP[flow].errorMessage })}
       </Toast>
     </Paper>
   );

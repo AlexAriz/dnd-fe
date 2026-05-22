@@ -8,7 +8,7 @@ import ListItem from "@mui/material/ListItem";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import LanguagePicker from "Features/Language/components/LanguagePicker";
-import Logout from "Features/Auth/components/Logout";
+import Logout from "Layouts/AppPage/components/Logout";
 import ThemePicker from "Features/Theme/components/ThemePicker";
 
 function UserMenu() {

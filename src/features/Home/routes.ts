@@ -1,7 +1,7 @@
 import type { RouteObject } from "react-router";
 
 import Routes from "Constants/routes";
-import AppPage from "Layouts/AppPage";
+import AppPage from "Layouts/AppPage/AppPage";
 import Home from "Features/Home/views/Home";
 
 const HomeRotues: RouteObject[] = [

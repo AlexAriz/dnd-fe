@@ -1,7 +1,10 @@
 import { PublicRoutes } from "Constants/routes";
-import type { Flow, FlowObject } from "Features/Auth/types/flows";
+import type { AuthFlow, AuthFlowObject } from "Types/auth";
 
-const flowMap: Readonly<Record<Flow, FlowObject>> = {
+export const SUPABASE_URL: string = import.meta.env.VITE_SUPABASE_URL;
+export const SUPABASE_PUBLISHABLE_KEY: string = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+export const AUTH_FLOW_MAP: Readonly<Record<AuthFlow, AuthFlowObject>> = {
   login: {
     submitButton: "LOGIN",
     linkText: "SIGNUP",
@@ -15,5 +18,3 @@ const flowMap: Readonly<Record<Flow, FlowObject>> = {
     errorMessage: "ERROR_SIGNUP",
   },
 };
-
-export default flowMap;
