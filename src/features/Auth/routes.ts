@@ -1,9 +1,9 @@
 import type { RouteObject } from "react-router";
 
 import Routes from "Constants/routes";
-import PublicPage from "Layouts/PublicPage/PublicPage";
-import Login from "Layouts/PublicPage/components/Login";
-import Signup from "Layouts/PublicPage/components/Signup";
+import PublicPage from "Layouts/PublicPage";
+import Login from "Features/Auth/views/Login";
+import Signup from "Features/Auth/views/Signup";
 
 const AuthRoutes: RouteObject[] = [
   {

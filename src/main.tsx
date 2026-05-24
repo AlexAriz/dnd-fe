@@ -7,6 +7,7 @@ import StateProvider from "Providers/StateProvider";
 import StylesProvider from "Features/Theme/providers/StylesProvider";
 import LanguageProvider from "Features/Language/providers/LanguageProvider";
 import RoutesProvider from "Providers/RoutesProvider";
+import AuthProvider from "Providers/AuthProvider";
 
 Logger.init();
 createRoot(document.getElementById("root")!).render(
@@ -14,7 +15,9 @@ createRoot(document.getElementById("root")!).render(
     <StateProvider>
       <StylesProvider>
         <LanguageProvider>
-          <RoutesProvider />
+          <AuthProvider>
+            <RoutesProvider />
+          </AuthProvider>
         </LanguageProvider>
       </StylesProvider>
     </StateProvider>

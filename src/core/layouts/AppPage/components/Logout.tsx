@@ -17,7 +17,6 @@ function Logout() {
     setLoading(true);
     const success = await logout();
     if (success) {
-      // TODO: reset the redux store
       router.navigate(Routes.LOGIN);
     }
     setLoading(false);
