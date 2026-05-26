@@ -19,14 +19,18 @@ export const registerAuthListener = (dispatch: AppDispatch) => {
   });
 };
 
-export const verifySession = async () => {
+export const verifySession = async (dispatch: AppDispatch) => {
   const response = await client.auth.getSession();
   if (response.error) {
     Logger.error("Error getting user", { ...response.error });
+    dispatch(authActions.clearToken());
     router.navigate(Routes.LOGIN);
   } else if (!response.data.session) {
     Logger.warn("Session expired");
+    dispatch(authActions.clearToken());
     router.navigate(Routes.LOGIN);
+  } else {
+    dispatch(authActions.setToken(response.data.session.access_token));
   }
 };
 

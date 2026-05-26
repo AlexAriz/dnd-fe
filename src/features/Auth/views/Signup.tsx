@@ -10,13 +10,13 @@ import AuthForm from "Features/Auth/components/AuthForm";
 
 function Signup() {
   const intl = useIntl();
-  const [username, setUsername] = useState<string>();
+  const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [confirmPassword, setConfirmPassword] = useState<string>();
-  const formValid: boolean = Boolean(username && password && confirmPassword && password === confirmPassword);
+  const formValid: boolean = Boolean(email && password && confirmPassword && password === confirmPassword);
 
   const handleSubmit = async () => {
-    const success = await signup(username!, password!);
+    const success = await signup(email!, password!);
     if (success) {
       router.navigate(PublicRoutes.LOGIN);
     }
@@ -27,10 +27,10 @@ function Signup() {
       <Typography variant="h3">{intl.formatMessage({ id: "SIGNUP" })}</Typography>
 
       <TextField
-        label={intl.formatMessage({ id: "USERNAME" })}
-        placeholder={intl.formatMessage({ id: "USERNAME" })}
+        label={intl.formatMessage({ id: "EMAIL" })}
+        placeholder={intl.formatMessage({ id: "EMAIL" })}
         type="email"
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <TextField
