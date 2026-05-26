@@ -1,4 +1,5 @@
 {
+  "COMPLETE_PROFILE": "Completar perfil",
   "CONFIRM_PASSWORD": "Confirmar contraseña",
   "EMAIL": "E-mail",
   "ERROR_LOGIN": "Usuario o contraseña equivocados",
@@ -8,8 +9,10 @@
   "LOGIN": "Iniciar sesión",
   "LOGOUT": "Cerrar sesión",
   "MODULE_HOME": "Inicio",
+  "MODULE_PROFILE": "Perfil",
   "MODULE_TEST": "Prueba",
   "PASSWORD": "Contraseña",
+  "SAVE": "Guardar",
   "SIGNUP": "Registro",
   "THEME": "Tema",
   "USERNAME": "Usuario"

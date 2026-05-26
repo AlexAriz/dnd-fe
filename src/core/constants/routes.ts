@@ -1,6 +1,7 @@
 export const AppRoutes = {
   HOME: "/",
   TEST: "/test",
+  PROFILE: "/profile",
 } as const;
 
 export const PublicRoutes = {

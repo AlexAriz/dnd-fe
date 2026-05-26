@@ -20,6 +20,7 @@ const authSlice = createSlice({
   },
   selectors: {
     selectToken: (state) => state.accessToken,
+    selctIsAuthReady: (state) => Boolean(state.accessToken),
   },
 });
 

@@ -10,12 +10,12 @@ import AuthForm from "Features/Auth/components/AuthForm";
 
 function Login() {
   const intl = useIntl();
-  const [username, setUsername] = useState<string>();
+  const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
-  const formValid: boolean = Boolean(username && password);
+  const formValid: boolean = Boolean(email && password);
 
   const handleSubmit = async () => {
-    const user = await login(username!, password!);
+    const user = await login(email!, password!);
     if (user) {
       router.navigate(AppRoutes.HOME);
     }
@@ -27,9 +27,9 @@ function Login() {
 
       <TextField
         label={intl.formatMessage({ id: "EMAIL" })}
-        placeholder={intl.formatMessage({ id: "USERNAME" })}
+        placeholder={intl.formatMessage({ id: "EMAIL" })}
         type="email"
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <TextField

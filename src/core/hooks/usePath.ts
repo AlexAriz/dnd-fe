@@ -6,6 +6,7 @@ import type { PathMap } from "Types/paths";
 const usePath = (): PathMap => {
   const isHome = useMatch(AppRoutes.HOME);
   const isTest = useMatch(AppRoutes.TEST);
+  const isProfile = useMatch(AppRoutes.PROFILE);
 
   switch (true) {
     case !!isHome:
@@ -17,6 +18,11 @@ const usePath = (): PathMap => {
       return {
         id: "MODULE_TEST",
         currentPath: AppRoutes.TEST,
+      };
+    case !!isProfile:
+      return {
+        id: "MODULE_PROFILE",
+        currentPath: AppRoutes.PROFILE,
       };
     default:
       return {

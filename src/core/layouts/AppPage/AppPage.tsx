@@ -1,22 +1,32 @@
-import { Outlet } from "react-router";
+import { Outlet, useMatch, useNavigate } from "react-router";
 
 import Header from "Layouts/AppPage/components/Header";
-import { useEffect, useState } from "react";
+import LoadingPage from "Layouts/AppPage/components/LoadingPage";
+import { useEffect } from "react";
 import { verifySession } from "Libs/Auth";
-import LoadingPage from "./components/LoadingPage";
+import { useGetProfileQuery } from "Features/Profile/store/profile";
+import { useAppDispatch } from "Hooks/state";
+import { AppRoutes } from "Constants/routes";
+import { useSelector } from "react-redux";
+import { authSelectors } from "Features/Auth/store/auth";
 
 function AppPage() {
-  const [loading, setLoading] = useState<boolean>(true);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const isProfile = useMatch(AppRoutes.PROFILE);
+  const isAuthReady = useSelector(authSelectors.selctIsAuthReady);
+  const { data: profile, isLoading, isFetching } = useGetProfileQuery(undefined, { skip: !isAuthReady });
+  const loading: boolean = !isAuthReady || isLoading;
 
   useEffect(() => {
-    const init = async () => {
-      setLoading(true);
-      await verifySession();
-      setLoading(false);
-    };
+    verifySession(dispatch);
+  }, [dispatch]);
 
-    init();
-  }, []);
+  useEffect(() => {
+    if (!isFetching && !isProfile && !profile) {
+      navigate(AppRoutes.PROFILE);
+    }
+  }, [isFetching, isProfile, navigate, profile]);
 
   return loading ?
       <LoadingPage />
