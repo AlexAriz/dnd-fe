@@ -2,7 +2,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 
 import Nav from "./Nav";
-import UserMenu from "./UserMenu";
+import SettingsMenu from "./SettingsMenu";
 import { useGetProfileState } from "Features/Profile/store/profile";
 import Typography from "@mui/material/Typography";
 
@@ -18,7 +18,7 @@ function Header() {
           {profile?.username}
         </Typography>
 
-        <UserMenu />
+        <SettingsMenu />
       </Toolbar>
     </AppBar>
   );
