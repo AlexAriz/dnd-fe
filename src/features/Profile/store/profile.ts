@@ -25,3 +25,4 @@ export const profileApi = createApi({
 });
 
 export const { useGetProfileQuery, usePostProfileMutation } = profileApi;
+export const useGetProfileState = profileApi.endpoints.getProfile.useQueryState;

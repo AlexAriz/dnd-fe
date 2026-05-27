@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
-import { profileApi, usePostProfileMutation } from "../store/profile";
+import { useGetProfileState, usePostProfileMutation } from "../store/profile";
 import { AppRoutes } from "Constants/routes";
 import { useNavigate } from "react-router";
 
@@ -13,7 +13,7 @@ function CompleteProfile() {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>();
   const [postProfile, { isSuccess, isLoading }] = usePostProfileMutation();
-  const { data: profile } = profileApi.endpoints.getProfile.useQueryState();
+  const { data: profile } = useGetProfileState();
 
   const onSubmit: React.SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
