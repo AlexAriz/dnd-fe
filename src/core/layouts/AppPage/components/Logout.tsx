@@ -4,7 +4,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-import Routes from "Constants/routes";
+import { PublicRoutes } from "Constants/routes";
 import router from "Libs/router";
 import { logout } from "Libs/Auth";
 import { useState } from "react";
@@ -17,7 +17,7 @@ function Logout() {
     setLoading(true);
     const success = await logout();
     if (success) {
-      router.navigate(Routes.LOGIN);
+      router.navigate(PublicRoutes.LOGIN);
     }
     setLoading(false);
   };

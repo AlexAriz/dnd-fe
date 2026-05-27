@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import HomeRotues from "Features/Home/routes";
-import TestRoutes from "Features/Test/routes";
 import ProfileRoutes from "Features/Profile/routes";
 import AuthRoutes from "Features/Auth/routes";
 
-export default createBrowserRouter([...HomeRotues, ...TestRoutes, ...ProfileRoutes, ...AuthRoutes]);
+export default createBrowserRouter([...HomeRotues, ...ProfileRoutes, ...AuthRoutes]);

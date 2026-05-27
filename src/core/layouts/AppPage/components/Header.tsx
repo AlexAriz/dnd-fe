@@ -1,16 +1,13 @@
-import { useIntl } from "react-intl";
-
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 
 import Nav from "./Nav";
 import UserMenu from "./UserMenu";
-import usePath from "Hooks/usePath";
+import { useGetProfileState } from "Features/Profile/store/profile";
+import Typography from "@mui/material/Typography";
 
 function Header() {
-  const intl = useIntl();
-  const { id } = usePath();
+  const { data: profile } = useGetProfileState();
 
   return (
     <AppBar position="fixed">
@@ -18,7 +15,7 @@ function Header() {
         <Nav />
 
         <Typography variant="h6" className="grow">
-          {intl.formatMessage({ id })}
+          {profile?.username}
         </Typography>
 
         <UserMenu />

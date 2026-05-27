@@ -14,6 +14,7 @@ function CompleteProfile() {
   const [username, setUsername] = useState<string>();
   const [postProfile, { isSuccess, isLoading }] = usePostProfileMutation();
   const { data: profile } = useGetProfileState();
+  const hasProfile: boolean = !!profile;
 
   const onSubmit: React.SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -22,14 +23,14 @@ function CompleteProfile() {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess || hasProfile) {
       navigate(AppRoutes.HOME);
     }
-  }, [isSuccess, navigate]);
+  }, [hasProfile, isSuccess, navigate]);
 
   return (
     <>
-      <Typography variant="h1">Complete Profile</Typography>
+      <Typography variant="h1">{intl.formatMessage({ id: "MODULE_PROFILE" })}</Typography>
 
       <Stack className="flex flex-col px-4 py-8 w-1/2 md:w-lg space-y-4" component="form" onSubmit={onSubmit}>
         <TextField

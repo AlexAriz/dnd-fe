@@ -2,7 +2,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 import Logger from "Libs/Logger";
 import router from "Libs/router";
-import Routes from "Constants/routes";
+import { PublicRoutes } from "Constants/routes";
 import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "Constants/auth";
 import type { AppDispatch } from "Types/state";
 import { authActions } from "Features/Auth/store/auth";
@@ -24,11 +24,11 @@ export const verifySession = async (dispatch: AppDispatch) => {
   if (response.error) {
     Logger.error("Error getting user", { ...response.error });
     dispatch(authActions.clearToken());
-    router.navigate(Routes.LOGIN);
+    router.navigate(PublicRoutes.LOGIN);
   } else if (!response.data.session) {
     Logger.warn("Session expired");
     dispatch(authActions.clearToken());
-    router.navigate(Routes.LOGIN);
+    router.navigate(PublicRoutes.LOGIN);
   } else {
     dispatch(authActions.setToken(response.data.session.access_token));
   }

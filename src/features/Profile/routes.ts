@@ -1,12 +1,12 @@
 import type { RouteObject } from "react-router";
 
-import Routes from "Constants/routes";
+import { WelcomeRoutes } from "Constants/routes";
 import AppPage from "Layouts/AppPage/AppPage";
 import CompleteProfile from "Features/Profile/views/CompleteProfile";
 
 const HomeRotues: RouteObject[] = [
   {
-    path: Routes.PROFILE,
+    path: WelcomeRoutes.PROFILE,
     Component: AppPage,
     children: [{ index: true, Component: CompleteProfile }],
   },
