@@ -2,13 +2,13 @@ import type { RouteObject } from "react-router";
 
 import { AppRoutes } from "Constants/routes";
 import AppPage from "Layouts/AppPage/AppPage";
-import Spells from "Features/Spells/views/Spells";
+import SpellList from "Features/Spells/views/SpellList";
 
 const SpellsRotues: RouteObject[] = [
   {
     path: AppRoutes.SPELLS,
     Component: AppPage,
-    children: [{ index: true, Component: Spells }],
+    children: [{ index: true, Component: SpellList }],
   },
 ];
 
