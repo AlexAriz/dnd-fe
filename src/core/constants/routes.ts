@@ -4,6 +4,7 @@ export const WelcomeRoutes = {
 
 export const AppRoutes = {
   HOME: "/",
+  SPELLS: "/spells",
 } as const;
 
 export const PublicRoutes = {
