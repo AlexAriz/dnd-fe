@@ -8,6 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import CheckIcon from "@mui/icons-material/Check";
+import { Link } from "react-router";
+import SPELL_PATHS from "../constants/paths";
 
 function SpellList() {
   const intl = useIntl();
@@ -40,7 +42,12 @@ function SpellList() {
 
           <TableBody component="div">
             {spellSummaries.map((spellSummary) => (
-              <TableRow key={spellSummary.id} hover>
+              <TableRow
+                component={Link}
+                to={SPELL_PATHS.DETAILS.replace(":spellId", spellSummary.id) ?? ""}
+                key={spellSummary.id}
+                hover
+              >
                 <TableCell component="div" align="left">
                   {spellSummary.name}
                 </TableCell>

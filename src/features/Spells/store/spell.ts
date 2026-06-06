@@ -15,4 +15,4 @@ export const spellApi = createApi({
   }),
 });
 
-export const { useGetSpellsQuery } = spellApi;
+export const { useGetSpellsQuery, useGetSpellQuery } = spellApi;
