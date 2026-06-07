@@ -42,7 +42,9 @@ function Markdown({ children }: Options) {
         table: Table,
         thead: TableHead,
         tbody: TableBody,
-        tr: TableRow,
+        tr(props) {
+          return <TableRow hover {...props} />;
+        },
         th(props) {
           return <TableCell children={props.children} />;
         },
