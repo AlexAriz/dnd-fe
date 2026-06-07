@@ -4,6 +4,7 @@ export const WelcomeRoutes = {
 
 export const AppRoutes = {
   HOME: "/",
+  CHARACTERS: "/characters",
   SPELLS: "/spells",
 } as const;
 
