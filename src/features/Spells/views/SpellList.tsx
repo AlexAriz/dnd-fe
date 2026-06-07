@@ -52,7 +52,7 @@ function SpellList() {
                   {spellSummary.name}
                 </TableCell>
                 <TableCell component="div" align="center">
-                  {spellSummary.school}
+                  {spellSummary.magicSchool.name}
                 </TableCell>
                 <TableCell component="div" align="center">
                   {intl.formatMessage(

@@ -7,6 +7,9 @@ export interface SpellSummary {
   school: string;
   concentration: boolean;
   ritual: boolean;
+  magicSchool: {
+    name: string;
+  };
 }
 
 export interface SpellDetail {
@@ -19,4 +22,7 @@ export interface SpellDetail {
   concentration: boolean;
   ritual: boolean;
   markdown: string;
+  magicSchool: {
+    name: string;
+  };
 }
