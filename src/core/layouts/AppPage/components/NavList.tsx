@@ -7,14 +7,15 @@ import { Modules } from "Constants/routes";
 
 interface NavListProps {
   className?: string;
+  onNavigate?: () => void;
 }
-function NavList({ className }: NavListProps) {
+function NavList({ className, onNavigate }: NavListProps) {
   const intl = useIntl();
 
   return (
     <List className={className}>
       {Object.entries(Modules).map(([route, path]) => (
-        <ListItem disablePadding key={path}>
+        <ListItem disablePadding key={path} onClick={onNavigate}>
           <NavLink to={path} className="w-full">
             {({ isActive }) => (
               <ListItemButton selected={isActive}>{intl.formatMessage({ id: `MODULE_${route}` })}</ListItemButton>

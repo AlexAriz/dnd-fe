@@ -30,7 +30,7 @@ function Nav() {
         color="neutral"
       >
         <Box className="w-64" component="nav">
-          <NavList />
+          <NavList onNavigate={() => setIsOpen(false)} />
         </Box>
       </Drawer>
 
