@@ -1,12 +1,20 @@
-import { createBrowserRouter } from "react-router";
-import HomeRotues from "Features/Home/routes";
+import { createBrowserRouter, redirect } from "react-router";
 import ProfileRoutes from "Features/Profile/routes";
 import AuthRoutes from "Features/Auth/routes";
 import SpellsRotues from "Features/Spells/routes";
 import CharacterRoutes from "Features/Characters/routes";
+import { HiddenPaths, Modules } from "Constants/routes";
 
 export default createBrowserRouter([
-  ...HomeRotues,
+  {
+    path: HiddenPaths.ROOT,
+    children: [
+      {
+        index: true,
+        loader: () => redirect(Modules.CHARACTERS),
+      },
+    ],
+  },
   ...ProfileRoutes,
   ...CharacterRoutes,
   ...SpellsRotues,

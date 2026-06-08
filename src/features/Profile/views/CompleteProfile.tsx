@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import { useGetProfileState, usePostProfileMutation } from "../store/profile";
-import { AppRoutes } from "Constants/routes";
+import { HiddenPaths } from "Constants/routes";
 import { useNavigate } from "react-router";
 
 function CompleteProfile() {
@@ -24,7 +24,7 @@ function CompleteProfile() {
 
   useEffect(() => {
     if (isSuccess || hasProfile) {
-      navigate(AppRoutes.HOME);
+      navigate(HiddenPaths.ROOT);
     }
   }, [hasProfile, isSuccess, navigate]);
 

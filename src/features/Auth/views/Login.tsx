@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
-import { AppRoutes } from "Constants/routes";
+import { HiddenPaths } from "Constants/routes";
 import router from "Libs/router";
 import { login } from "Libs/Auth";
 import AuthForm from "Features/Auth/components/AuthForm";
@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = async () => {
     const user = await login(email!, password!);
     if (user) {
-      router.navigate(AppRoutes.HOME);
+      router.navigate(HiddenPaths.ROOT);
     }
   };
 

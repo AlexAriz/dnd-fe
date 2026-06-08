@@ -1,11 +1,12 @@
-export const WelcomeRoutes = {
+export const HiddenPaths = {
+  ROOT: "/",
   PROFILE: "/profile",
 } as const;
 
-export const AppRoutes = {
-  HOME: "/",
+export const Modules = {
   CHARACTERS: "/characters",
   SPELLS: "/spells",
+  FEATS: "/",
 } as const;
 
 export const PublicRoutes = {

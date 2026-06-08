@@ -7,13 +7,13 @@ import LoadingPage from "Layouts/AppPage/components/LoadingPage";
 import { verifySession } from "Libs/Auth";
 import { useGetProfileQuery } from "Features/Profile/store/profile";
 import { useAppDispatch } from "Hooks/state";
-import { WelcomeRoutes } from "Constants/routes";
+import { HiddenPaths } from "Constants/routes";
 import { authSelectors } from "Features/Auth/store/auth";
 
 function AppPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isProfile = !!useMatch(WelcomeRoutes.PROFILE);
+  const isProfile = !!useMatch(HiddenPaths.PROFILE);
   const isAuthReady = useSelector(authSelectors.selctIsAuthReady);
   const { isLoading, isFetching, isError } = useGetProfileQuery(undefined, { skip: !isAuthReady });
   const showLoader = !isAuthReady || isLoading;
@@ -24,7 +24,7 @@ function AppPage() {
 
   useEffect(() => {
     if (!showLoader && !isFetching && isError && !isProfile) {
-      navigate(WelcomeRoutes.PROFILE);
+      navigate(HiddenPaths.PROFILE);
     }
   }, [isError, isFetching, isProfile, showLoader, navigate]);
 
