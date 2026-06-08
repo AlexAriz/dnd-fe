@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import { useIntl } from "react-intl";
 import { Link } from "react-router";
+import CHARACTER_PATHS from "../constants/paths";
 
 interface CharacterCardProps {
   character: CharacterDetail;
@@ -14,7 +15,7 @@ function CharacterCard({ character }: CharacterCardProps) {
 
   return (
     <Card>
-      <CardActionArea component={Link} to="/">
+      <CardActionArea component={Link} to={CHARACTER_PATHS.DETAILS.replace(":characterId", character.id)}>
         <CardContent>
           <Typography variant="h6" gutterBottom>
             {character.name}

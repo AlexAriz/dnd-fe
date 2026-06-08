@@ -44,7 +44,7 @@ function SpellList() {
             {spellSummaries.map((spellSummary) => (
               <TableRow
                 component={Link}
-                to={SPELL_PATHS.DETAILS.replace(":spellId", spellSummary.id) ?? ""}
+                to={SPELL_PATHS.DETAILS.replace(":spellId", spellSummary.id)}
                 key={spellSummary.id}
                 hover
               >
