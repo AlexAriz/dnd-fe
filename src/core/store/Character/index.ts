@@ -1,8 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { appBaseQuery } from "Hooks/state";
-import type { CharacterDetail, CharacterSummary } from "../types/character";
+import type { CharacterDetail, CharacterSummary } from "./type";
 
-export const characterApi = createApi({
+const characterApi = createApi({
   reducerPath: "characterApi",
   baseQuery: appBaseQuery(),
   endpoints: (build) => ({
@@ -15,4 +15,5 @@ export const characterApi = createApi({
   }),
 });
 
+export default characterApi;
 export const { useGetCharactersQuery, useGetCharacterQuery } = characterApi;

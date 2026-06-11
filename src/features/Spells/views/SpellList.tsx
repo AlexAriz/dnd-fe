@@ -1,6 +1,6 @@
 import { useIntl } from "react-intl";
 import Typography from "@mui/material/Typography";
-import { useGetSpellsQuery } from "../store/spell";
+import { useGetSpellsQuery } from "State/Spell";
 import CircularProgress from "@mui/material/CircularProgress";
 import Table from "@mui/material/Table";
 import TableRow from "@mui/material/TableRow";

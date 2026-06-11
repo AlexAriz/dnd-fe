@@ -1,5 +1,5 @@
 import Card from "@mui/material/Card";
-import type { CharacterDetail } from "../types/character";
+import type { CharacterSummary } from "State/Character/type";
 import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
@@ -8,7 +8,7 @@ import { Link } from "react-router";
 import CHARACTER_PATHS from "../constants/paths";
 
 interface CharacterCardProps {
-  character: CharacterDetail;
+  character: CharacterSummary;
 }
 function CharacterCard({ character }: CharacterCardProps) {
   const intl = useIntl();

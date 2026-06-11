@@ -1,8 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import type { Profile } from "../types/profile";
+import type { Profile } from "./type";
 import { appBaseQuery } from "Hooks/state";
 
-export const profileApi = createApi({
+const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery: appBaseQuery(),
   tagTypes: ["Profile"],
@@ -24,5 +24,6 @@ export const profileApi = createApi({
   }),
 });
 
+export default profileApi;
 export const { useGetProfileQuery, usePostProfileMutation } = profileApi;
 export const useGetProfileState = profileApi.endpoints.getProfile.useQueryState;

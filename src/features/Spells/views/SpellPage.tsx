@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useGetSpellQuery } from "../store/spell";
+import { useGetSpellQuery } from "State/Spell";
 import Markdown from "Components/Markdown";
 
 function SpellPage() {

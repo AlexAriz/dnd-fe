@@ -5,10 +5,10 @@ import { Outlet, useMatch, useNavigate } from "react-router";
 import Header from "Layouts/AppPage/components/Header";
 import LoadingPage from "Layouts/AppPage/components/LoadingPage";
 import { verifySession } from "Libs/Auth";
-import { useGetProfileQuery } from "Features/Profile/store/profile";
+import { useGetProfileQuery } from "State/Profile";
 import { useAppDispatch } from "Hooks/state";
 import { HiddenPaths } from "Constants/routes";
-import { authSelectors } from "Features/Auth/store/auth";
+import { authSelectors } from "State/Auth";
 
 function AppPage() {
   const dispatch = useAppDispatch();

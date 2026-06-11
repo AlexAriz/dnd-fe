@@ -1,7 +1,7 @@
 import { useIntl } from "react-intl";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useGetCharactersQuery } from "../store/character";
+import { useGetCharactersQuery } from "State/Character";
 import CharacterCard from "../components/CharacterCard";
 import Grid from "@mui/material/Grid";
 

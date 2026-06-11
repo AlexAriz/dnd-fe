@@ -6,8 +6,8 @@ import Typography from "@mui/material/Typography";
 
 import { useAppDispatch, useAppSelector } from "Hooks/state";
 import { LANGUAGES } from "Features/Language/constants/language";
-import type { Languages } from "Features/Language/types/language";
-import { languageActions, languageSelectors } from "Features/Language/store/language";
+import type { Languages } from "State/Language/type";
+import { languageActions, languageSelectors } from "State/Language";
 
 function LanguagePicker() {
   const intl = useIntl();

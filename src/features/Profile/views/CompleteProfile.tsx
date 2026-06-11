@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
-import { useGetProfileState, usePostProfileMutation } from "../store/profile";
+import { useGetProfileState, usePostProfileMutation } from "State/Profile";
 import { HiddenPaths } from "Constants/routes";
 import { useNavigate } from "react-router";
 

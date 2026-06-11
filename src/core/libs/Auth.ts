@@ -5,7 +5,7 @@ import router from "Libs/router";
 import { PublicRoutes } from "Constants/routes";
 import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "Constants/auth";
 import type { AppDispatch } from "Types/state";
-import { authActions } from "Features/Auth/store/auth";
+import { authActions } from "State/Auth";
 
 const client: SupabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 

@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useGetCharacterQuery } from "../store/character";
+import { useGetCharacterQuery } from "State/Character";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 
