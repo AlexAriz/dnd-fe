@@ -1,3 +1,8 @@
+export const PublicRoutes = {
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+} as const;
+
 export const HiddenPaths = {
   ROOT: "/",
   PROFILE: "/profile",
@@ -9,7 +14,7 @@ export const Modules = {
   FEATS: "/",
 } as const;
 
-export const PublicRoutes = {
-  LOGIN: "/login",
-  SIGNUP: "/signup",
+export const CHARACTER_PATHS = {
+  CREATE: "new",
+  DETAILS: ":characterId",
 } as const;

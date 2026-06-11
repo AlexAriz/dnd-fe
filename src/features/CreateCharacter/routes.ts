@@ -1,13 +1,13 @@
-import { Modules } from "Constants/routes";
+import { CHARACTER_PATHS, Modules } from "Constants/routes";
 import AppPage from "Layouts/AppPage/AppPage";
 import type { RouteObject } from "react-router";
-import CharacterList from "./views/CharacterList";
+import NewCharacterPage from "./views/NewCharacterPage";
 
 const CharacterRoutes: RouteObject[] = [
   {
     path: Modules.CHARACTERS,
     Component: AppPage,
-    children: [{ index: true, Component: CharacterList }],
+    children: [{ path: CHARACTER_PATHS.CREATE, Component: NewCharacterPage }],
   },
 ];
 

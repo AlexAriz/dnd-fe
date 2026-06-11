@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import { useIntl } from "react-intl";
 import { Link } from "react-router";
-import CHARACTER_PATHS from "../constants/paths";
+import { CHARACTER_PATHS } from "Constants/routes";
 
 interface CharacterCardProps {
   character: CharacterSummary;
