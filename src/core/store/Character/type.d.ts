@@ -1,4 +1,5 @@
-import type { AvailableSkills, AvailableStats, SkillDetails, StatBonus, StatDetails } from "Types/character";
+import type { AvailableStats, StatDetails } from "State/Stats/type";
+import type { AvailableSkills, SkillDetails, StatBonus } from "Types/character";
 
 export interface CharacterSummary {
   id: string;

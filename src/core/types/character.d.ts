@@ -1,17 +1,4 @@
-export enum AvailableStats {
-  STR = "STR",
-  DEX = "DEX",
-  CON = "CON",
-  INT = "INT",
-  WIS = "WIS",
-  CHA = "CHA",
-}
-
-export interface StatDetails {
-  value: number;
-  proficiency: boolean;
-  expertise: boolean;
-}
+import type { AvailableStats } from "State/Stats/type";
 
 export interface StatBonus {
   name: string;

@@ -18,6 +18,8 @@
   "MODULE_FEATS": "Feats",
   "NAME": "Name",
   "NEW_CHARACTER": "New Character",
+  "NEW_CHARACTER_ABILITY_SCORE": "Ability Scores",
+  "NEW_CHARACTER_ABILITY_SCORE_MODIFIER": "Modifier: {modifier,number}",
   "NEW_CHARACTER_ARMOR_CLASS": "Armor Class",
   "NEW_CHARACTER_BASE": "Base",
   "NEW_CHARACTER_CLASS": "Class",

@@ -18,6 +18,8 @@
   "MODULE_FEATS": "Hazañas",
   "NAME": "Nombre",
   "NEW_CHARACTER": "Nuevo Personaje",
+  "NEW_CHARACTER_ABILITY_SCORE": "Ability Scores",
+  "NEW_CHARACTER_ABILITY_SCORE_MODIFIER": "Modificador: {modifier,number}",
   "NEW_CHARACTER_ARMOR_CLASS": "Armadura",
   "NEW_CHARACTER_BASE": "Base",
   "NEW_CHARACTER_CLASS": "Clase",

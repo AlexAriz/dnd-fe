@@ -24,6 +24,16 @@ function NewCharacterPage() {
           <CharacterBase />
         </AccordionDetails>
       </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          {intl.formatMessage({ id: "NEW_CHARACTER_ABILITY_SCORE" })}
+        </AccordionSummary>
+
+        <AccordionDetails>
+          <AbilityScores />
+        </AccordionDetails>
+      </Accordion>
     </>
   );
 }

@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { CreateCharacterPayload } from "State/Character/type";
+import type { AvailableStats } from "State/Stats/type";
+import type { RootState } from "Types/state";
 
 const initialState: CreateCharacterPayload = {
   name: "",
@@ -145,8 +147,22 @@ const newCharacterSlice = createSlice({
     setSpeed: create.reducer<number>((character, action) => {
       character.speed.walk = action.payload;
     }),
+    setStatScore: create.reducer<{ statId: AvailableStats; value: number }>((character, action) => {
+      character.stats[action.payload.statId].value = action.payload.value;
+    }),
   }),
+  selectors: {
+    selectStatModifiers: (character): Record<AvailableStats, number> => ({
+      STR: Math.floor((character.stats.STR.value - 10) / 2),
+      DEX: Math.floor((character.stats.DEX.value - 10) / 2),
+      CON: Math.floor((character.stats.CON.value - 10) / 2),
+      INT: Math.floor((character.stats.INT.value - 10) / 2),
+      WIS: Math.floor((character.stats.WIS.value - 10) / 2),
+      CHA: Math.floor((character.stats.CHA.value - 10) / 2),
+    }),
+  },
 });
 
 export default newCharacterSlice.reducer;
 export const newCharacterActions = newCharacterSlice.actions;
+export const newCharacterSelectors = newCharacterSlice.getSelectors<RootState>((state) => state.newCharacter);
