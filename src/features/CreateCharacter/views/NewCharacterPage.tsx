@@ -1,6 +1,5 @@
 import Typography from "@mui/material/Typography";
 import { useIntl } from "react-intl";
-import SkillsSection from "../components/SkillsSection";
 import AbilityScores from "../components/AbilityScores";
 import CharacterBase from "../components/CharacterBase";
 import Accordion from "@mui/material/Accordion";
