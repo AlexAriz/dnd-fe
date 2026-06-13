@@ -175,12 +175,21 @@ const newCharacterSlice = createSlice({
         };
       }
     }),
+    resetCharacter: () => initialState,
   }),
   selectors: {
+    selectCharacter: (character): CreateCharacterPayload => character,
     selectStatModifier: (character, statId: AvailableStats) => Math.floor((character.stats[statId].value - 10) / 2),
     selectStatBonuses: (character): StatBonus[] => character.statBonuses,
     selectSkills: (character): CreateCharacterPayload["skills"] => {
       return character.skills;
+    },
+    selectCanSubmit: (character): boolean => {
+      if (!character.name || !character.characterClass.classId) {
+        return false;
+      }
+
+      return true;
     },
   },
 });
