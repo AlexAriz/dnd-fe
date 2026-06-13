@@ -1,6 +1,7 @@
 import Typography from "@mui/material/Typography";
 import { useIntl } from "react-intl";
 import AbilityScores from "../components/AbilityScores";
+import SkillsSection from "../components/SkillsSection";
 import CharacterBase from "../components/CharacterBase";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -31,6 +32,16 @@ function NewCharacterPage() {
 
         <AccordionDetails>
           <AbilityScores />
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          {intl.formatMessage({ id: "NEW_CHARACTER_SKILLS" })}
+        </AccordionSummary>
+
+        <AccordionDetails>
+          <SkillsSection />
         </AccordionDetails>
       </Accordion>
     </>

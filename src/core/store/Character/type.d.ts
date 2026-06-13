@@ -1,5 +1,5 @@
+import type { AvailableSkills, SkillDetails } from "State/Skills/type";
 import type { AvailableStats, StatDetails } from "State/Stats/type";
-import type { AvailableSkills, SkillDetails, StatBonus } from "Types/character";
 
 export interface CharacterSummary {
   id: string;
@@ -10,6 +10,12 @@ export interface CharacterSummary {
     level: number;
     isStartingClass: boolean;
   }[];
+}
+
+export interface StatBonus {
+  name: string;
+  bonus: number;
+  statId: AvailableStats;
 }
 
 export interface CharacterDetail {

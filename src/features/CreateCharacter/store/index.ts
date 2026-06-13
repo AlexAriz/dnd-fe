@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { CreateCharacterPayload } from "State/Character/type";
+import type { CreateCharacterPayload, StatBonus } from "State/Character/type";
+import type { AvailableSkills } from "State/Skills/type";
 import type { AvailableStats } from "State/Stats/type";
-import type { StatBonus } from "Types/character";
 import type { RootState } from "Types/state";
 
 const initialState: CreateCharacterPayload = {
@@ -157,10 +157,31 @@ const newCharacterSlice = createSlice({
     removeStatBonus: create.reducer<number>((character, action) => {
       character.statBonuses = character.statBonuses.toSpliced(action.payload, 1);
     }),
+    toggleSkill: create.reducer<AvailableSkills>((character, action) => {
+      if (character.skills[action.payload].expertise) {
+        character.skills[action.payload] = {
+          proficiency: false,
+          expertise: false,
+        };
+      } else if (character.skills[action.payload].proficiency) {
+        character.skills[action.payload] = {
+          proficiency: true,
+          expertise: true,
+        };
+      } else {
+        character.skills[action.payload] = {
+          proficiency: true,
+          expertise: false,
+        };
+      }
+    }),
   }),
   selectors: {
     selectStatModifier: (character, statId: AvailableStats) => Math.floor((character.stats[statId].value - 10) / 2),
     selectStatBonuses: (character): StatBonus[] => character.statBonuses,
+    selectSkills: (character): CreateCharacterPayload["skills"] => {
+      return character.skills;
+    },
   },
 });
 

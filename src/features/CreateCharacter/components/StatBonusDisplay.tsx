@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
-import type { StatBonus } from "Types/character";
+import type { StatBonus } from "State/Character/type";
 import { useAppDispatch } from "Hooks/state";
 import { newCharacterActions } from "../store";
 
