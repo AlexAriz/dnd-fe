@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { CreateCharacterPayload } from "State/Character/type";
 import type { AvailableStats } from "State/Stats/type";
+import type { StatBonus } from "Types/character";
 import type { RootState } from "Types/state";
 
 const initialState: CreateCharacterPayload = {
@@ -150,16 +151,16 @@ const newCharacterSlice = createSlice({
     setStatScore: create.reducer<{ statId: AvailableStats; value: number }>((character, action) => {
       character.stats[action.payload.statId].value = action.payload.value;
     }),
+    addStatBonus: create.reducer<StatBonus>((character, action) => {
+      character.statBonuses.push(action.payload);
+    }),
+    removeStatBonus: create.reducer<number>((character, action) => {
+      character.statBonuses = character.statBonuses.toSpliced(action.payload, 1);
+    }),
   }),
   selectors: {
-    selectStatModifiers: (character): Record<AvailableStats, number> => ({
-      STR: Math.floor((character.stats.STR.value - 10) / 2),
-      DEX: Math.floor((character.stats.DEX.value - 10) / 2),
-      CON: Math.floor((character.stats.CON.value - 10) / 2),
-      INT: Math.floor((character.stats.INT.value - 10) / 2),
-      WIS: Math.floor((character.stats.WIS.value - 10) / 2),
-      CHA: Math.floor((character.stats.CHA.value - 10) / 2),
-    }),
+    selectStatModifier: (character, statId: AvailableStats) => Math.floor((character.stats[statId].value - 10) / 2),
+    selectStatBonuses: (character): StatBonus[] => character.statBonuses,
   },
 });
 

@@ -1,46 +1,40 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
-import NumberField from "Components/NumberField";
-import { useAppDispatch, useAppSelector } from "Hooks/state";
+import { useAppSelector } from "Hooks/state";
 import { useGetStatsQuery } from "State/Stats";
-import { newCharacterActions, newCharacterSelectors } from "../store";
+import { newCharacterSelectors } from "../store";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import StatInput from "./StatInput";
+import StatBonusInput from "./StatBonusInput";
+import StatBonusDisplay from "./StatBonusDisplay";
 import { useIntl } from "react-intl";
 
 function AbilityScores() {
   const intl = useIntl();
   const { data: stats, isLoading } = useGetStatsQuery();
-  const dispatch = useAppDispatch();
-  const statModifiers = useAppSelector(newCharacterSelectors.selectStatModifiers);
+  const statBonuses = useAppSelector(newCharacterSelectors.selectStatBonuses);
 
   if (isLoading || !stats) return <CircularProgress />;
 
   return (
-    <Grid container spacing={2} columns={3}>
-      {stats.map((stat) => (
-        <Grid size={1} key={stat.id}>
-          <NumberField
-            className="w-full"
-            label={stat.name}
-            min={1}
-            max={20}
-            step={1}
-            defaultValue={8}
-            onValueChange={(value) =>
-              dispatch(
-                newCharacterActions.setStatScore({
-                  statId: stat.id,
-                  value: value ?? 8,
-                }),
-              )
-            }
-            helperText={intl.formatMessage(
-              { id: "NEW_CHARACTER_ABILITY_SCORE_MODIFIER" },
-              { modifier: statModifiers[stat.id] },
-            )}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={2} columns={3}>
+        {stats.map((stat) => (
+          <StatInput key={stat.id} statSummary={stat} />
+        ))}
+      </Grid>
+
+      <Stack className="mt-4" spacing={2}>
+        <Typography>{intl.formatMessage({ id: "NEW_CHARACTER_BONUS" }, { count: 0 })}</Typography>
+
+        {statBonuses.map((statBonus, index) => (
+          <StatBonusDisplay key={`${statBonus.name}:${index}`} index={index} statBonus={statBonus} />
+        ))}
+
+        <StatBonusInput />
+      </Stack>
+    </>
   );
 }
 
