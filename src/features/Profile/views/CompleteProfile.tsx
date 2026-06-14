@@ -7,26 +7,37 @@ import { useIntl } from "react-intl";
 import { useGetProfileState, usePostProfileMutation } from "State/Profile";
 import { HiddenPaths } from "Constants/routes";
 import { useNavigate } from "react-router";
+import Toast from "Components/Toast";
 
 function CompleteProfile() {
   const intl = useIntl();
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>();
-  const [postProfile, { isSuccess, isLoading }] = usePostProfileMutation();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
+  const [postProfile] = usePostProfileMutation();
   const { data: profile } = useGetProfileState();
   const hasProfile: boolean = !!profile;
 
-  const onSubmit: React.SubmitEventHandler<HTMLFormElement> = (event) => {
+  const onSubmit: React.SubmitEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     if (!username) return;
-    postProfile(username);
+    try {
+      setLoading(true);
+      await postProfile(username);
+      navigate(HiddenPaths.ROOT);
+    } catch {
+      setSnackbarOpen(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    if (isSuccess || hasProfile) {
+    if (hasProfile) {
       navigate(HiddenPaths.ROOT);
     }
-  }, [hasProfile, isSuccess, navigate]);
+  }, [hasProfile, navigate]);
 
   return (
     <>
@@ -41,10 +52,14 @@ function CompleteProfile() {
           onChange={(e) => setUsername(e.target.value)}
         />
 
-        <Button type="submit" variant="contained" disabled={!username} loading={isLoading}>
+        <Button type="submit" variant="contained" disabled={!username} loading={loading}>
           {intl.formatMessage({ id: "SAVE" })}
         </Button>
       </Stack>
+
+      <Toast isOpen={snackbarOpen} onClose={() => setSnackbarOpen(false)} severity="error">
+        {intl.formatMessage({ id: "CREATE_PROFILE_ERROR" })}
+      </Toast>
     </>
   );
 }

@@ -3,6 +3,7 @@
   "CONCENTRATION": "Concentration",
   "CONFIRM_PASSWORD": "Confirm password",
   "CHARACTER_CLASS": "{name} | Level {level,number}",
+  "CREATE_PROFILE_ERROR": "There was an error creating the profile",
   "EMAIL": "Email",
   "ERROR_LOGIN": "Email or password incorrect",
   "ERROR_SIGNUP": "There was an error during registration",
