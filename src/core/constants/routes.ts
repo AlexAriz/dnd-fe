@@ -11,7 +11,6 @@ export const HiddenPaths = {
 export const Modules = {
   CHARACTERS: "/characters",
   SPELLS: "/spells",
-  FEATS: "/",
 } as const;
 
 export const CHARACTER_PATHS = {
