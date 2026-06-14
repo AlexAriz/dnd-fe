@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 import { PublicRoutes } from "Constants/routes";
 import router from "Libs/router";
-import { logout } from "Libs/Auth";
+import { logout } from "Libs/Supabase";
 import { useState } from "react";
 
 function Logout() {

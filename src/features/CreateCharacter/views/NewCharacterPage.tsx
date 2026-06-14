@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import { useIntl } from "react-intl";
 import AbilityScores from "../components/AbilityScores";
 import SkillsSection from "../components/SkillsSection";
@@ -12,9 +11,13 @@ import Fab from "@mui/material/Fab";
 import { useAppDispatch, useAppSelector } from "Hooks/state";
 import { newCharacterActions, newCharacterSelectors } from "../store";
 import { useCreateCharacterMutation } from "State/Character";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Modules } from "Constants/routes";
+import CharacterIdentity from "../components/CharacterIdentity";
+import { uploadFile } from "Libs/Supabase";
+import { useGetProfileState } from "State/Profile";
+import Toast from "Components/Toast";
 
 function NewCharacterPage() {
   const intl = useIntl();
@@ -22,23 +25,32 @@ function NewCharacterPage() {
   const navigate = useNavigate();
   const canSubmit = useAppSelector(newCharacterSelectors.selectCanSubmit);
   const character = useAppSelector(newCharacterSelectors.selectCharacter);
-  const [createCharacter, { isSuccess, isLoading }] = useCreateCharacterMutation();
+  const [createCharacter] = useCreateCharacterMutation();
+  const { data: profile } = useGetProfileState();
+  const [file, setFile] = useState<File>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
 
-  const onCreate = () => {
+  const onCreate = async () => {
     if (!canSubmit) return;
-    createCharacter(character);
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
+    try {
+      setLoading(true);
+      const newCharacter = await createCharacter(character).unwrap();
+      if (file) {
+        await uploadFile(file, `${profile?.id}/${newCharacter.id}/avatar`, "CharacterAvatars");
+      }
       dispatch(newCharacterActions.resetCharacter());
       navigate(Modules.CHARACTERS);
+    } catch {
+      setSnackbarOpen(true);
+    } finally {
+      setLoading(false);
     }
-  }, [dispatch, isSuccess, navigate]);
+  };
 
   return (
     <>
-      <Typography variant="h1">{intl.formatMessage({ id: "NEW_CHARACTER" })}</Typography>
+      <CharacterIdentity setFile={setFile} />
 
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -70,9 +82,13 @@ function NewCharacterPage() {
         </AccordionDetails>
       </Accordion>
 
-      <Fab color="primary" className="fixed bottom-3 right-3" disabled={!canSubmit || isLoading} onClick={onCreate}>
+      <Fab color="primary" className="fixed bottom-3 right-3" disabled={!canSubmit || loading} onClick={onCreate}>
         <AddIcon />
       </Fab>
+
+      <Toast isOpen={snackbarOpen} onClose={() => setSnackbarOpen(false)} severity="error">
+        {intl.formatMessage({ id: "NEW_CHARACTER_ERROR" })}
+      </Toast>
     </>
   );
 }

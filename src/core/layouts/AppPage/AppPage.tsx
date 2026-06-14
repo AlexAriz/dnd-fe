@@ -4,7 +4,7 @@ import { Outlet, useMatch, useNavigate } from "react-router";
 
 import Header from "Layouts/AppPage/components/Header";
 import LoadingPage from "Layouts/AppPage/components/LoadingPage";
-import { verifySession } from "Libs/Auth";
+import { verifySession } from "Libs/Supabase";
 import { useGetProfileQuery } from "State/Profile";
 import { useAppDispatch } from "Hooks/state";
 import { HiddenPaths } from "Constants/routes";

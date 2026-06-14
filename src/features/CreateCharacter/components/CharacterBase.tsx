@@ -1,5 +1,4 @@
 import { useGetClassesQuery } from "State/Classes";
-import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -18,14 +17,6 @@ function CharacterBase() {
 
   return (
     <Grid container spacing={2} columns={3}>
-      <Grid size={1}>
-        <TextField
-          className="w-full"
-          label={intl.formatMessage({ id: "NEW_CHARACTER_NAME" })}
-          onChange={(e) => dispatch(newCharacterActions.setName(e.target.value))}
-        />
-      </Grid>
-
       <Grid size={1}>
         <FormControl className="w-full">
           <InputLabel>{intl.formatMessage({ id: "NEW_CHARACTER_CLASS" })}</InputLabel>

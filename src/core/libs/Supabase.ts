@@ -59,3 +59,34 @@ export const signup = async (email: string, password: string) => {
   }
   return true;
 };
+
+export async function uploadFile(file: File, fileName: string, bucket: string) {
+  const uploadUrlResponse = await client.storage.from(bucket).createSignedUploadUrl(fileName, { upsert: true });
+  if (uploadUrlResponse.error) {
+    Logger.error("Error getting signed upload url", { ...uploadUrlResponse.error });
+    return;
+  }
+
+  const { token } = uploadUrlResponse.data;
+  const uploadResponse = await client.storage.from(bucket).uploadToSignedUrl(fileName, token, file, { upsert: true });
+  if (uploadResponse.error) {
+    Logger.error("Error uploading file", { ...uploadResponse.error });
+    return;
+  }
+}
+
+export async function getFileUrl(fileName: string, bucket: string) {
+  const { data, error } = await client.storage.from(bucket).createSignedUrl(fileName, 60, {
+    transform: {
+      width: 96,
+      height: 96,
+      resize: "contain",
+    },
+  });
+  if (error) {
+    Logger.error("Error getting signed url", { ...error });
+    return;
+  }
+
+  return data.signedUrl;
+}

@@ -25,6 +25,7 @@
   "NEW_CHARACTER_BASE": "Base",
   "NEW_CHARACTER_BONUS": "{count,plural,one {Bonus} other {Bonuses}}",
   "NEW_CHARACTER_CLASS": "Clase",
+  "NEW_CHARACTER_ERROR": "Ocurrió un error creando el personaje",
   "NEW_CHARACTER_HITPOINTS": "Puntos de vida",
   "NEW_CHARACTER_LEVEL": "Nivel",
   "NEW_CHARACTER_NAME": "Nombre",

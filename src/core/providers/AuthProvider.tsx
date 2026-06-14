@@ -1,5 +1,5 @@
 import { useAppDispatch } from "Hooks/state";
-import { registerAuthListener } from "Libs/Auth";
+import { registerAuthListener } from "Libs/Supabase";
 import { useEffect } from "react";
 
 function AuthProvider({ children }: React.PropsWithChildren) {

@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 
 import { PublicRoutes } from "Constants/routes";
 import router from "Libs/router";
-import { signup } from "Libs/Auth";
+import { signup } from "Libs/Supabase";
 import AuthForm from "Features/Auth/components/AuthForm";
 
 function Signup() {

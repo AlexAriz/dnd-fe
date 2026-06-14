@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 
 import { HiddenPaths } from "Constants/routes";
 import router from "Libs/router";
-import { login } from "Libs/Auth";
+import { login } from "Libs/Supabase";
 import AuthForm from "Features/Auth/components/AuthForm";
 
 function Login() {
