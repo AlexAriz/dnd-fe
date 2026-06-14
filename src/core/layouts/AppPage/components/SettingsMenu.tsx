@@ -7,7 +7,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-import LanguagePicker from "Features/Language/components/LanguagePicker";
 import Logout from "Layouts/AppPage/components/Logout";
 import ThemePicker from "Features/Theme/components/ThemePicker";
 
@@ -25,10 +24,6 @@ function SettingsMenu() {
           <List>
             <ListItem className="justify-between">
               <ThemePicker />
-            </ListItem>
-
-            <ListItem className="justify-between">
-              <LanguagePicker />
             </ListItem>
 
             <ListItem className="justify-between">

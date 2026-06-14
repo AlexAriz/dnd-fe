@@ -5,7 +5,7 @@ import Logger from "Libs/Logger";
 
 import StateProvider from "Providers/StateProvider";
 import StylesProvider from "Features/Theme/providers/StylesProvider";
-import LanguageProvider from "Features/Language/providers/LanguageProvider";
+import LanguageProvider from "Providers/LanguageProvider";
 import RoutesProvider from "Providers/RoutesProvider";
 import AuthProvider from "Providers/AuthProvider";
 
