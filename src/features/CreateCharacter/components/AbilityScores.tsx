@@ -26,7 +26,7 @@ function AbilityScores() {
       </Grid>
 
       <Stack className="mt-4" spacing={2}>
-        <Typography>{intl.formatMessage({ id: "NEW_CHARACTER_BONUS" }, { count: 0 })}</Typography>
+        <Typography>{intl.formatMessage({ id: "BONUS" }, { count: 0 })}</Typography>
 
         {statBonuses.map((statBonus, index) => (
           <StatBonusDisplay key={`${statBonus.name}:${index}`} index={index} statBonus={statBonus} />

@@ -46,10 +46,10 @@ function StatBonusInput() {
 
         <Grid size={1}>
           <FormControl className="w-full">
-            <InputLabel>{intl.formatMessage({ id: "NEW_CHARACTER_STAT" })}</InputLabel>
+            <InputLabel>{intl.formatMessage({ id: "STAT" })}</InputLabel>
             <Select
               value={bonusStatId}
-              label={intl.formatMessage({ id: "NEW_CHARACTER_STAT" })}
+              label={intl.formatMessage({ id: "STAT" })}
               onChange={(e) => setBonusStatId(e.target.value as AvailableStats)}
             >
               {stats.map((stat) => (
@@ -64,7 +64,7 @@ function StatBonusInput() {
         <Grid size={1}>
           <NumberField
             className="w-full"
-            label={intl.formatMessage({ id: "NEW_CHARACTER_BONUS" }, { count: 1 })}
+            label={intl.formatMessage({ id: "BONUS" }, { count: 1 })}
             min={1}
             max={20}
             step={1}
@@ -75,7 +75,7 @@ function StatBonusInput() {
       </Grid>
 
       <Button variant="outlined" disabled={!canAddBonus} onClick={handleAddBonus}>
-        {intl.formatMessage({ id: "NEW_CHARACTER_ADD_STAT_BONUS" })}
+        {intl.formatMessage({ id: "ADD_STAT_BONUS" })}
       </Button>
     </>
   );

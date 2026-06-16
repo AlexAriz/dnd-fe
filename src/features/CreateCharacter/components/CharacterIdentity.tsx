@@ -18,7 +18,7 @@ function CharacterIdentity({ setFile }: CharacterIdentityProps) {
 
       <TextField
         className="max-w-xl grow"
-        label={intl.formatMessage({ id: "NEW_CHARACTER_NAME" })}
+        label={intl.formatMessage({ id: "NAME" })}
         onChange={(e) => dispatch(newCharacterActions.setName(e.target.value))}
       />
     </div>

@@ -65,7 +65,7 @@ function NewCharacterPage() {
 
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          {intl.formatMessage({ id: "NEW_CHARACTER_ABILITY_SCORE" })}
+          {intl.formatMessage({ id: "ABILITY_SCORE" })}
         </AccordionSummary>
 
         <AccordionDetails>
@@ -74,9 +74,7 @@ function NewCharacterPage() {
       </Accordion>
 
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          {intl.formatMessage({ id: "NEW_CHARACTER_SKILLS" })}
-        </AccordionSummary>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>{intl.formatMessage({ id: "SKILLS" })}</AccordionSummary>
 
         <AccordionDetails>
           <SkillsSection />

@@ -33,7 +33,7 @@ function StatInput({ statSummary }: StatInputProps) {
             }),
           )
         }
-        helperText={intl.formatMessage({ id: "NEW_CHARACTER_ABILITY_SCORE_MODIFIER" }, { modifier })}
+        helperText={intl.formatMessage({ id: "ABILITY_SCORE_MODIFIER" }, { modifier })}
       />
     </Grid>
   );

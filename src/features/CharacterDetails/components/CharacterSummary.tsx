@@ -15,11 +15,11 @@ function CharacterSummary() {
 
   return (
     <Stack spacing="2" className="pt-2">
-      <Stack direction="row">
+      <Stack direction={{ xs: "column", sm: "row" }} className="space-x-2 space-y-2">
         <Stack direction="row" className="grow space-x-2">
           <CharacterAvatar />
 
-          <Stack>
+          <Stack className="grow">
             <Typography variant="h5">{character.name}</Typography>
 
             <List dense>
@@ -33,13 +33,20 @@ function CharacterSummary() {
               ))}
             </List>
           </Stack>
+
+          <Stack className="justify-center">
+            <CharacterInspiration />
+          </Stack>
         </Stack>
 
-        <Stack direction="row" className="items-center space-x-2">
-          <CharacterInspiration />
+        <CharacterHealth />
+      </Stack>
 
-          <CharacterHealth />
-        </Stack>
+      <Stack direction="row">
+        <Typography>Proficiency: {character.proficiencyBonus} | </Typography>
+        <Typography>Speed: {character.speeds.walk} | </Typography>
+        <Typography>Initiative: {character.initiative} | </Typography>
+        <Typography>AC: {character.armorClass}</Typography>
       </Stack>
     </Stack>
   );

@@ -19,11 +19,11 @@ function CharacterBase() {
     <Grid container spacing={2} columns={3}>
       <Grid size={1}>
         <FormControl className="w-full">
-          <InputLabel>{intl.formatMessage({ id: "NEW_CHARACTER_CLASS" })}</InputLabel>
+          <InputLabel>{intl.formatMessage({ id: "CLASS" })}</InputLabel>
           <Select
             disabled={isLoading || !classes}
             defaultValue=""
-            label={intl.formatMessage({ id: "NEW_CHARACTER_CLASS" })}
+            label={intl.formatMessage({ id: "CLASS" })}
             onChange={(e) => {
               dispatch(newCharacterActions.setClassId(e.target.value));
             }}
@@ -41,7 +41,7 @@ function CharacterBase() {
       <Grid size={1}>
         <NumberField
           className="w-full"
-          label={intl.formatMessage({ id: "NEW_CHARACTER_LEVEL" })}
+          label={intl.formatMessage({ id: "LEVEL" })}
           min={1}
           max={20}
           step={1}
@@ -53,7 +53,7 @@ function CharacterBase() {
       <Grid size={1}>
         <NumberField
           className="w-full"
-          label={intl.formatMessage({ id: "NEW_CHARACTER_ARMOR_CLASS" })}
+          label={intl.formatMessage({ id: "ARMOR_CLASS" })}
           min={1}
           step={1}
           defaultValue={1}
@@ -64,7 +64,7 @@ function CharacterBase() {
       <Grid size={1}>
         <NumberField
           className="w-full"
-          label={intl.formatMessage({ id: "NEW_CHARACTER_HITPOINTS" })}
+          label={intl.formatMessage({ id: "HITPOINTS" })}
           min={1}
           step={1}
           defaultValue={1}
@@ -75,7 +75,7 @@ function CharacterBase() {
       <Grid size={1}>
         <NumberField
           className="w-full"
-          label={intl.formatMessage({ id: "NEW_CHARACTER_SPEED" })}
+          label={intl.formatMessage({ id: "SPEED" })}
           min={1}
           step={1}
           defaultValue={30}
