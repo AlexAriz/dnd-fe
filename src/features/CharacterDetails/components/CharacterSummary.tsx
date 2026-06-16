@@ -8,13 +8,14 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import CharacterInspiration from "./CharacterInspiration";
 import CharacterHealth from "./CharacterHealth";
+import Divider from "@mui/material/Divider";
 
 function CharacterSummary() {
   const character = useRequiredContext(ActiveCharacterContext);
   const intl = useIntl();
 
   return (
-    <Stack spacing="2" className="pt-2">
+    <Stack className="pt-2 space-y-4">
       <Stack direction={{ xs: "column", sm: "row" }} className="space-x-2 space-y-2">
         <Stack direction="row" className="grow space-x-2">
           <CharacterAvatar />
@@ -42,11 +43,26 @@ function CharacterSummary() {
         <CharacterHealth />
       </Stack>
 
-      <Stack direction="row">
-        <Typography>Proficiency: {character.proficiencyBonus} | </Typography>
-        <Typography>Speed: {character.speeds.walk} | </Typography>
-        <Typography>Initiative: {character.initiative} | </Typography>
-        <Typography>AC: {character.armorClass}</Typography>
+      <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} className="justify-evenly">
+        <Stack className="space-y-2">
+          <Typography align="center">{intl.formatMessage({ id: "PROFICIENCY_BONUS" })}</Typography>
+          <Typography align="center">{character.proficiencyBonus}</Typography>
+        </Stack>
+
+        <Stack className="space-y-2">
+          <Typography align="center">{intl.formatMessage({ id: "SPEED" })}</Typography>
+          <Typography align="center">{character.speeds.walk}</Typography>
+        </Stack>
+
+        <Stack className="space-y-2">
+          <Typography align="center">{intl.formatMessage({ id: "INITIATIVE" })}</Typography>
+          <Typography align="center">{character.initiative}</Typography>
+        </Stack>
+
+        <Stack className="space-y-2">
+          <Typography align="center">{intl.formatMessage({ id: "ARMOR_CLASS" })}</Typography>
+          <Typography align="center">{character.armorClass}</Typography>
+        </Stack>
       </Stack>
     </Stack>
   );
