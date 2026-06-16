@@ -16,7 +16,8 @@ import { useNavigate } from "react-router";
 import { Modules } from "Constants/routes";
 import CharacterIdentity from "../components/CharacterIdentity";
 import { uploadFile } from "Libs/Supabase";
-import { useGetProfileState } from "State/Profile";
+import useRequiredContext from "Hooks/useRequiredContext";
+import ProfileContext from "Context/ProfileContext";
 import Toast from "Components/Toast";
 
 function NewCharacterPage() {
@@ -26,7 +27,7 @@ function NewCharacterPage() {
   const canSubmit = useAppSelector(newCharacterSelectors.selectCanSubmit);
   const character = useAppSelector(newCharacterSelectors.selectCharacter);
   const [createCharacter] = useCreateCharacterMutation();
-  const { data: profile } = useGetProfileState();
+  const profile = useRequiredContext(ProfileContext);
   const [file, setFile] = useState<File>();
   const [loading, setLoading] = useState<boolean>(false);
   const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
@@ -37,7 +38,7 @@ function NewCharacterPage() {
       setLoading(true);
       const newCharacter = await createCharacter(character).unwrap();
       if (file) {
-        await uploadFile(file, `${profile?.id}/${newCharacter.id}/avatar`, "CharacterAvatars");
+        await uploadFile(file, `${profile.id}/${newCharacter.id}/avatar`, "CharacterAvatars");
       }
       dispatch(newCharacterActions.resetCharacter());
       navigate(Modules.CHARACTERS);

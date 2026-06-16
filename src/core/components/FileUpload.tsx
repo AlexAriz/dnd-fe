@@ -15,10 +15,11 @@ const VisuallyHiddenInput = styled("input")({
 interface FileUploadProps {
   onChange: React.InputHTMLAttributes<HTMLInputElement>["onChange"];
   multiple?: boolean;
+  accept?: string;
 }
 
-function FileUpload({ onChange, multiple = false }: FileUploadProps) {
-  return <VisuallyHiddenInput type="file" onChange={onChange} multiple={multiple} />;
+function FileUpload({ onChange, accept, multiple = false }: FileUploadProps) {
+  return <VisuallyHiddenInput type="file" onChange={onChange} multiple={multiple} accept={accept} />;
 }
 
 export default FileUpload;

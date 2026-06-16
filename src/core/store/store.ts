@@ -5,9 +5,9 @@ import characterApi from "State/Character";
 import newCharacter from "Features/CreateCharacter/store";
 import profileApi from "State/Profile";
 import spellApi from "State/Spell";
-import classApi from "./Classes";
-import skillApi from "./Skills";
-import statApi from "./Stats";
+import classApi from "State/Classes";
+import skillApi from "State/Skills";
+import statApi from "State/Stats";
 
 const store = configureStore({
   reducer: {

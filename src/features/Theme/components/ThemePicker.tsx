@@ -5,8 +5,8 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Typography from "@mui/material/Typography";
 
-import type { Mode } from "Features/Theme/types/theme";
-import { THEMES } from "Features/Theme/constants/themes";
+import type { Mode } from "../types/theme";
+import { THEMES } from "../constants/themes";
 
 function ThemePicker() {
   const intl = useIntl();

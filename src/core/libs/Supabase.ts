@@ -75,14 +75,20 @@ export async function uploadFile(file: File, fileName: string, bucket: string) {
   }
 }
 
-export async function getFileUrl(fileName: string, bucket: string) {
-  const { data, error } = await client.storage.from(bucket).createSignedUrl(fileName, 60, {
-    transform: {
-      width: 96,
-      height: 96,
-      resize: "contain",
-    },
-  });
+interface GetImageUrlParams {
+  bucket: string;
+  filename: string;
+  options?: {
+    download?: boolean;
+    transform?: {
+      width?: number;
+      height?: number;
+      resize?: "fill" | "cover" | "contain";
+    };
+  };
+}
+export async function getImageUrl({ bucket, filename, options }: GetImageUrlParams) {
+  const { data, error } = await client.storage.from(bucket).createSignedUrl(filename, 60, options);
   if (error) {
     Logger.error("Error getting signed url", { ...error });
     return;

@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "Hooks/state";
 import type { StatSummary } from "State/Stats/type";
 import { newCharacterActions, newCharacterSelectors } from "../store";
 import { useIntl } from "react-intl";
+import { calculateModifier } from "Rules/stats";
 
 interface StatInputProps {
   statSummary: StatSummary;
@@ -12,7 +13,8 @@ interface StatInputProps {
 function StatInput({ statSummary }: StatInputProps) {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const modifier = useAppSelector((state) => newCharacterSelectors.selectStatModifier(state, statSummary.id));
+  const score = useAppSelector((state) => newCharacterSelectors.selectStatScore(state, statSummary.id));
+  const modifier = calculateModifier(score);
 
   return (
     <Grid size={1}>

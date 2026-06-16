@@ -15,11 +15,13 @@ export default defineConfig({
     alias: {
       Components: resolve(__dirname, "./src/core/components"),
       Constants: resolve(__dirname, "./src/core/constants"),
+      Context: resolve(__dirname, "./src/core/contexts"),
       Features: resolve(__dirname, "./src/features"),
       Hooks: resolve(__dirname, "./src/core/hooks"),
       Layouts: resolve(__dirname, "./src/core/layouts"),
       Libs: resolve(__dirname, "./src/core/libs"),
       Providers: resolve(__dirname, "./src/core/providers"),
+      Rules: resolve(__dirname, "./src/core/rules"),
       State: resolve(__dirname, "./src/core/store"),
       Types: resolve(__dirname, "./src/core/types"),
     },

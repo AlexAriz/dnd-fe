@@ -1,5 +1,5 @@
-import IconButton from "@mui/material/IconButton";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import ButtonBase from "@mui/material/ButtonBase";
+import Avatar from "@mui/material/Avatar";
 import { useEffect, useState } from "react";
 import FileUpload from "Components/FileUpload";
 
@@ -25,15 +25,10 @@ function CharacterAvatar({ setFile }: CharacterAvatarProps) {
   };
 
   return (
-    <div>
-      <div className="w-24 h-24">
-        <IconButton className="w-full h-full" disableRipple component="label" role={undefined} tabIndex={-1}>
-          {fileSrc && <img src={fileSrc} />}
-          {!fileSrc && <AccountBoxIcon className="w-full h-full" />}
-          <FileUpload onChange={handleFileSelect} />
-        </IconButton>
-      </div>
-    </div>
+    <ButtonBase className="w-24 h-24" disableRipple component="label" role={undefined} tabIndex={-1}>
+      <Avatar src={fileSrc} variant="rounded" sx={{ width: 96, height: 96 }} />
+      <FileUpload onChange={handleFileSelect} accept="image/*" />
+    </ButtonBase>
   );
 }
 

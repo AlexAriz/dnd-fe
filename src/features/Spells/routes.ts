@@ -2,7 +2,7 @@ import type { RouteObject } from "react-router";
 
 import { Modules } from "Constants/routes";
 import AppPage from "Layouts/AppPage/AppPage";
-import SpellList from "Features/Spells/views/SpellList";
+import SpellList from "./views/SpellList";
 import SPELL_PATHS from "./constants/paths";
 import SpellPage from "./views/SpellPage";
 

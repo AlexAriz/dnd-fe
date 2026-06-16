@@ -18,6 +18,9 @@
       "Constants/*": [
         "./src/core/constants/*"
       ],
+      "Context/*": [
+        "./src/core/contexts/*"
+      ],
       "Features/*": [
         "./src/features/*"
       ],
@@ -32,6 +35,9 @@
       ],
       "Providers/*": [
         "./src/core/providers/*"
+      ],
+      "Rules/*": [
+        "./src/core/rules/*"
       ],
       "State/*": [
         "./src/core/store/*"

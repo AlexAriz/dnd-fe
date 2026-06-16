@@ -179,7 +179,7 @@ const newCharacterSlice = createSlice({
   }),
   selectors: {
     selectCharacter: (character): CreateCharacterPayload => character,
-    selectStatModifier: (character, statId: AvailableStats) => Math.floor((character.stats[statId].value - 10) / 2),
+    selectStatScore: (character, statId: AvailableStats) => character.stats[statId].value,
     selectStatBonuses: (character): StatBonus[] => character.statBonuses,
     selectSkills: (character): CreateCharacterPayload["skills"] => {
       return character.skills;

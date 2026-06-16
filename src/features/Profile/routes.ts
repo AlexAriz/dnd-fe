@@ -2,7 +2,7 @@ import type { RouteObject } from "react-router";
 
 import { HiddenPaths } from "Constants/routes";
 import AppPage from "Layouts/AppPage/AppPage";
-import CompleteProfile from "Features/Profile/views/CompleteProfile";
+import CompleteProfile from "./views/CompleteProfile";
 
 const HomeRotues: RouteObject[] = [
   {

@@ -18,7 +18,7 @@ export interface StatBonus {
   statId: AvailableStats;
 }
 
-export interface CharacterDetail {
+export interface CharacterDetailResponse {
   id: string;
   name: string;
   armorClass: number;
@@ -45,6 +45,19 @@ export interface CharacterDetail {
     temporary: number | null;
     removed: number | null;
   };
+}
+
+export interface CharacterDetail extends Pick<
+  CharacterDetailResponse,
+  "id" | "name" | "classes" | "speeds" | "armorClass" | "inspiration"
+> {
+  stats: CharacterDetailResponse["stats"];
+  hitPoints: {
+    current: number;
+    max: number;
+  };
+  proficiencyBonus: number;
+  initiative: number;
 }
 
 export interface CreateCharacterPayload {

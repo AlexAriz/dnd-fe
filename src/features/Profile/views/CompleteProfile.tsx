@@ -2,12 +2,13 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useIntl } from "react-intl";
-import { useGetProfileState, usePostProfileMutation } from "State/Profile";
+import { usePostProfileMutation } from "State/Profile";
 import { HiddenPaths } from "Constants/routes";
 import { useNavigate } from "react-router";
 import Toast from "Components/Toast";
+import ProfileContext from "Context/ProfileContext";
 
 function CompleteProfile() {
   const intl = useIntl();
@@ -16,7 +17,7 @@ function CompleteProfile() {
   const [loading, setLoading] = useState<boolean>(false);
   const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
   const [postProfile] = usePostProfileMutation();
-  const { data: profile } = useGetProfileState();
+  const profile = useContext(ProfileContext);
   const hasProfile: boolean = !!profile;
 
   const onSubmit: React.SubmitEventHandler<HTMLFormElement> = async (event) => {
