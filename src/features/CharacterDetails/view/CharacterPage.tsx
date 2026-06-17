@@ -9,8 +9,12 @@ import TabPanel from "@mui/lab/TabPanel";
 import CharacterSummary from "../components/CharacterSummary";
 import { Modules } from "Constants/routes";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
+import { useIntl } from "react-intl";
+import CharacterAbilities from "../components/CharacterAbilities";
+import CharacterSkills from "../components/CharacterSkills";
 
 function CharacterPage() {
+  const intl = useIntl();
   const navigate = useNavigate();
   const { characterId } = useParams<{ characterId: string }>();
   const { data: character, isLoading } = useGetCharacterQuery(characterId ?? "");
@@ -34,12 +38,16 @@ function CharacterPage() {
 
       <TabContext value={activeTab}>
         <TabList onChange={(_e, newValue) => setActiveTab(newValue)} variant="scrollable" scrollButtons="auto">
-          <Tab label="Abilities" />
-          <Tab label="Skills" />
+          <Tab label={intl.formatMessage({ id: "ABILITIES" })} />
+          <Tab label={intl.formatMessage({ id: "SKILLS" })} />
         </TabList>
 
-        <TabPanel value={0}>Abilities</TabPanel>
-        <TabPanel value={1}>Skills</TabPanel>
+        <TabPanel value={0}>
+          <CharacterAbilities />
+        </TabPanel>
+        <TabPanel value={1}>
+          <CharacterSkills />
+        </TabPanel>
       </TabContext>
     </ActiveCharacterContext>
   );

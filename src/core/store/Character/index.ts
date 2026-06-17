@@ -45,6 +45,7 @@ const characterApi = createApi({
           speeds: apiCharacter.speeds,
           armorClass: apiCharacter.armorClass,
           inspiration: apiCharacter.inspiration,
+          skills: apiCharacter.skills,
           stats,
           hitPoints: {
             current: currentHitpoints,

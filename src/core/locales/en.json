@@ -1,4 +1,5 @@
 {
+  "ABILITIES": "Abilities",
   "ABILITY_SCORE_MODIFIER": "Modifier: {modifier,number}",
   "ABILITY_SCORE": "Ability Scores",
   "ADD_STAT_BONUS": "Add Stat bonus",

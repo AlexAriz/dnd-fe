@@ -49,9 +49,8 @@ export interface CharacterDetailResponse {
 
 export interface CharacterDetail extends Pick<
   CharacterDetailResponse,
-  "id" | "name" | "classes" | "speeds" | "armorClass" | "inspiration"
+  "id" | "name" | "classes" | "speeds" | "armorClass" | "inspiration" | "stats" | "skills"
 > {
-  stats: CharacterDetailResponse["stats"];
   hitPoints: {
     current: number;
     max: number;
