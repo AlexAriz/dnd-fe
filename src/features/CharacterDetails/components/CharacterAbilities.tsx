@@ -6,6 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { calculateModifier } from "Rules/stats";
+import Paper from "@mui/material/Paper";
 
 function CharacterAbilities() {
   const { data: stats, isLoading } = useGetStatsQuery();
@@ -17,7 +18,7 @@ function CharacterAbilities() {
     <Grid container columns={3} rowSpacing={2} columnSpacing={4}>
       {stats.map((stat) => (
         <Grid key={stat.id} size={1}>
-          <Stack className="border rounded">
+          <Stack component={Paper} variant="outlined">
             <Typography variant="body1" align="center">
               {stat.name}
             </Typography>

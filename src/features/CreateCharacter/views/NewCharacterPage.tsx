@@ -11,7 +11,7 @@ import Fab from "@mui/material/Fab";
 import { useAppDispatch, useAppSelector } from "Hooks/state";
 import { newCharacterActions, newCharacterSelectors } from "../store";
 import { useCreateCharacterMutation } from "State/Character";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Modules } from "Constants/routes";
 import CharacterIdentity from "../components/CharacterIdentity";
@@ -48,6 +48,12 @@ function NewCharacterPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(newCharacterActions.resetCharacter());
+    };
+  }, [dispatch]);
 
   return (
     <>

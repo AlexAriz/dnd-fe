@@ -17,7 +17,7 @@ function SkillsSection() {
   if (isLoading || !skills) return <CircularProgress />;
 
   return (
-    <Grid container spacing={2} columns={2}>
+    <Grid container spacing={2} columns={{ xs: 1, sm: 2 }}>
       {skills.map((skill) => (
         <Grid size={1} key={skill.name} className="flex items-center">
           <IconButton onClick={() => dispatch(newCharacterActions.toggleSkill(skill.name))}>

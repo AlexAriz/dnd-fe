@@ -15,7 +15,7 @@ function CharacterSkills() {
   if (isLoading || !skills) return <CircularProgress />;
 
   return (
-    <Grid container spacing={4} columns={2}>
+    <Grid container spacing={4} columns={{ xs: 1, sm: 2 }}>
       {skills?.map((skill) => (
         <Grid size={1} key={skill.name} className="flex items-center">
           {character.skills[skill.name].expertise ?
