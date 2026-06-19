@@ -20,8 +20,8 @@ function CharacterList() {
       {isLoading && <CircularProgress />}
 
       <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 9, lg: 12 }}>
-        {characters?.map((character, index) => (
-          <Grid key={index} size={3}>
+        {characters?.map((character) => (
+          <Grid key={character.id} size={3}>
             <CharacterCard character={character} />
           </Grid>
         ))}
