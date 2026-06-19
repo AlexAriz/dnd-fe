@@ -1,6 +1,12 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { appBaseQuery } from "Hooks/state";
-import type { CharacterDetail, CharacterDetailResponse, CharacterSummary, CreateCharacterPayload } from "./type";
+import type {
+  CharacterDetail,
+  CharacterDetailResponse,
+  CharacterSummary,
+  CreateCharacterPayload,
+  PatchCharacterPayload,
+} from "./type";
 import { calculateModifier } from "Rules/stats";
 
 const characterApi = createApi({
@@ -65,9 +71,18 @@ const characterApi = createApi({
       }),
       invalidatesTags: [{ type: "Character", id: "LIST" }],
     }),
+    patchCharacter: build.mutation<CharacterDetail, PatchCharacterPayload>({
+      query: ({ characterId, ...patchCharacterPayload }) => ({
+        url: `characters/${characterId}`,
+        method: "PATCH",
+        body: patchCharacterPayload,
+      }),
+      invalidatesTags: (_result, _error, { characterId }) => [{ type: "Character", id: characterId }],
+    }),
   }),
 });
 
 export default characterApi;
-export const { useGetCharactersQuery, useGetCharacterQuery, useCreateCharacterMutation } = characterApi;
+export const { useGetCharactersQuery, useGetCharacterQuery, useCreateCharacterMutation, usePatchCharacterMutation } =
+  characterApi;
 export const useGetCharacterState = characterApi.endpoints.getCharacter.useQueryState;

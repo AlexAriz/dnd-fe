@@ -76,3 +76,9 @@ export interface CreateCharacterPayload {
     base: number;
   };
 }
+
+export interface PatchCharacterPayload {
+  characterId: string;
+  inspiration?: boolean;
+  hitpoints?: number;
+}
