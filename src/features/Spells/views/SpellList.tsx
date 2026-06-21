@@ -10,10 +10,21 @@ import TableCell from "@mui/material/TableCell";
 import CheckIcon from "@mui/icons-material/Check";
 import { Link } from "react-router";
 import SPELL_PATHS from "../constants/paths";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import { useState } from "react";
+import type { SortableColumns, SortOrder } from "../types/type";
+import { Columns, Order } from "../constants/sorting";
 
 function SpellList() {
   const intl = useIntl();
-  const { data: spellSummaries, isLoading } = useGetSpellsQuery();
+  const [sortBy, setSortBy] = useState<SortableColumns>(Columns.NAME);
+  const [sortOrder, setSortOrder] = useState<SortOrder>(Order.ASC);
+  const { data: spellSummaries, isLoading } = useGetSpellsQuery({ sortBy, sortOrder });
+  const handleSortChange = (column: SortableColumns) => {
+    const isAsc: boolean = sortBy === column && sortOrder === Order.ASC;
+    setSortOrder(isAsc ? Order.DESC : Order.ASC);
+    setSortBy(column);
+  };
 
   return (
     <>
@@ -26,16 +37,34 @@ function SpellList() {
           <TableHead component="div">
             <TableRow component="div">
               <TableCell component="div" align="center">
-                {intl.formatMessage({ id: "NAME" })}
+                <TableSortLabel
+                  active={sortBy === Columns.NAME}
+                  direction={sortBy === Columns.NAME ? sortOrder : Order.ASC}
+                  onClick={() => handleSortChange(Columns.NAME)}
+                >
+                  {intl.formatMessage({ id: "NAME" })}
+                </TableSortLabel>
               </TableCell>
               <TableCell component="div" align="center">
                 {intl.formatMessage({ id: "SCHOOL" })}
               </TableCell>
               <TableCell component="div" align="center">
-                {intl.formatMessage({ id: "LEVEL" })}
+                <TableSortLabel
+                  active={sortBy === Columns.LEVEL}
+                  direction={sortBy === Columns.LEVEL ? sortOrder : Order.ASC}
+                  onClick={() => handleSortChange(Columns.LEVEL)}
+                >
+                  {intl.formatMessage({ id: "LEVEL" })}
+                </TableSortLabel>
               </TableCell>
               <TableCell component="div" align="center">
-                {intl.formatMessage({ id: "CONCENTRATION" })}
+                <TableSortLabel
+                  active={sortBy === Columns.CONCENTRATION}
+                  direction={sortBy === Columns.CONCENTRATION ? sortOrder : Order.ASC}
+                  onClick={() => handleSortChange(Columns.CONCENTRATION)}
+                >
+                  {intl.formatMessage({ id: "CONCENTRATION" })}
+                </TableSortLabel>
               </TableCell>
             </TableRow>
           </TableHead>
