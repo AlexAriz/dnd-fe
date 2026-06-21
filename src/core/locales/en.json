@@ -37,6 +37,7 @@
   "SPEED": "Speed",
   "SPELL_LEVEL": "{level, select, 0 {Cantrip} other {{level,number}} }{ritual, select, true {/Ritual} other {}}",
   "STAT": "Stat",
+  "SUBCLASS": "Subclass",
   "THEME": "Theme",
   "USERNAME": "Username"
 }

@@ -6,6 +6,7 @@ import newCharacter from "Features/CreateCharacter/store";
 import profileApi from "State/Profile";
 import spellApi from "State/Spell";
 import classApi from "State/Classes";
+import subClassApi from "State/SubClasses";
 import skillApi from "State/Skills";
 import statApi from "State/Stats";
 
@@ -14,6 +15,7 @@ const store = configureStore({
     auth,
     characterApi: characterApi.reducer,
     classApi: classApi.reducer,
+    subClassApi: subClassApi.reducer,
     newCharacter,
     profileApi: profileApi.reducer,
     skillApi: skillApi.reducer,
@@ -24,6 +26,7 @@ const store = configureStore({
     getDefaultMiddleware()
       .concat(characterApi.middleware)
       .concat(classApi.middleware)
+      .concat(subClassApi.middleware)
       .concat(profileApi.middleware)
       .concat(skillApi.middleware)
       .concat(spellApi.middleware)

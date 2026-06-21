@@ -4,15 +4,19 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 
-import { newCharacterActions } from "../store";
-import { useAppDispatch } from "Hooks/state";
+import { newCharacterActions, newCharacterSelectors } from "../store";
+import { useAppDispatch, useAppSelector } from "Hooks/state";
 import NumberField from "Components/NumberField";
 import { useIntl } from "react-intl";
 import Grid from "@mui/material/Grid";
+import { useGetSubClassesQuery } from "State/SubClasses";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 function CharacterBase() {
   const intl = useIntl();
   const { data: classes, isLoading } = useGetClassesQuery();
+  const selectedClassId = useAppSelector(newCharacterSelectors.selectClass);
+  const { data: subclasses } = useGetSubClassesQuery(selectedClassId ?? skipToken);
   const dispatch = useAppDispatch();
 
   return (
@@ -26,10 +30,32 @@ function CharacterBase() {
             label={intl.formatMessage({ id: "CLASS" })}
             onChange={(e) => {
               dispatch(newCharacterActions.setClassId(e.target.value));
+              dispatch(newCharacterActions.setSubClassId());
             }}
           >
             {classes &&
               classes.map((option) => (
+                <MenuItem key={option.id} value={option.id}>
+                  {option.name}
+                </MenuItem>
+              ))}
+          </Select>
+        </FormControl>
+      </Grid>
+
+      <Grid size={1}>
+        <FormControl className="w-full">
+          <InputLabel>{intl.formatMessage({ id: "SUBCLASS" })}</InputLabel>
+          <Select
+            disabled={!subclasses || subclasses.length === 0}
+            defaultValue=""
+            label={intl.formatMessage({ id: "SUBCLASS" })}
+            onChange={(e) => {
+              dispatch(newCharacterActions.setSubClassId(e.target.value));
+            }}
+          >
+            {subclasses &&
+              subclasses.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
                   {option.name}
                 </MenuItem>

@@ -65,6 +65,7 @@ export interface CreateCharacterPayload {
     classId: string;
     level: number;
   };
+  characterSubClass?: string;
   armorClass: number;
   stats: Record<AvailableStats, StatDetails>;
   statBonuses: StatBonus[];

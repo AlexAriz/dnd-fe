@@ -136,6 +136,9 @@ const newCharacterSlice = createSlice({
     setClassId: create.reducer<string>((character, action) => {
       character.characterClass.classId = action.payload;
     }),
+    setSubClassId: create.reducer<string | undefined>((character, action) => {
+      character.characterSubClass = action.payload;
+    }),
     setLevel: create.reducer<number>((character, action) => {
       character.characterClass.level = action.payload;
     }),
@@ -191,6 +194,8 @@ const newCharacterSlice = createSlice({
 
       return true;
     },
+    selectClass: (character): string => character.characterClass.classId,
+    selectSubClass: (character): string | undefined => character.characterSubClass,
   },
 });
 
