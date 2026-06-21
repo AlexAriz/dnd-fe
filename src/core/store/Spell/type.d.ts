@@ -25,4 +25,17 @@ export interface SpellDetail {
   magicSchool: {
     name: string;
   };
+  classes: {
+    id: string;
+    name: string;
+  }[];
+  subClasses: {
+    id: string;
+    name: string;
+    shortName: string;
+    class: {
+      id: string;
+      name: string;
+    };
+  }[];
 }
