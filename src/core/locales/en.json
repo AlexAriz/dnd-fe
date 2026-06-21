@@ -5,7 +5,7 @@
   "ADD_STAT_BONUS": "Add Stat bonus",
   "ARMOR_CLASS": "Armor Class",
   "BONUS": "{count,plural,one {Bonus} other {Bonuses}}",
-  "CHARACTER_CLASS": "{name} | Level {level,number}",
+  "CHARACTER_CLASS": "Level {level,number} | {name}{subclass,select, undefined {} other { | {subclass}}}",
   "CLASS": "Class",
   "CONCENTRATION": "Concentration",
   "CONFIRM_PASSWORD": "Confirm password",

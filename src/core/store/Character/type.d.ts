@@ -1,15 +1,22 @@
 import type { AvailableSkills, SkillDetails } from "State/Skills/type";
 import type { AvailableStats, StatDetails } from "State/Stats/type";
 
+interface CharacterClass {
+  id: string;
+  name: string;
+  level: number;
+  isStartingClass: boolean;
+  subClass?: {
+    id: string;
+    name: string;
+    shortName: string;
+  };
+}
+
 export interface CharacterSummary {
   id: string;
   name: string;
-  classes: {
-    id: string;
-    name: string;
-    level: number;
-    isStartingClass: boolean;
-  }[];
+  classes: CharacterClass[];
 }
 
 export interface StatBonus {
@@ -22,12 +29,7 @@ export interface CharacterDetailResponse {
   id: string;
   name: string;
   armorClass: number;
-  classes: {
-    id: string;
-    name: string;
-    level: number;
-    isStartingClass: boolean;
-  }[];
+  classes: CharacterClass[];
   inspiration: boolean;
   stats: Record<AvailableStats, StatDetails>;
   statBonuses: StatBonus[];

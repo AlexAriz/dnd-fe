@@ -71,7 +71,7 @@ const characterApi = createApi({
       }),
       invalidatesTags: [{ type: "Character", id: "LIST" }],
     }),
-    patchCharacter: build.mutation<CharacterDetail, PatchCharacterPayload>({
+    patchCharacter: build.mutation<void, PatchCharacterPayload>({
       query: ({ characterId, ...patchCharacterPayload }) => ({
         url: `characters/${characterId}`,
         method: "PATCH",

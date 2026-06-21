@@ -28,7 +28,7 @@ function CharacterSummary() {
                 <ListItem key={characterClass.id} disableGutters>
                   {intl.formatMessage(
                     { id: "CHARACTER_CLASS" },
-                    { name: characterClass.name, level: characterClass.level },
+                    { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass?.name },
                   )}
                 </ListItem>
               ))}
