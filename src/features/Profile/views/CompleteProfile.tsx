@@ -42,7 +42,7 @@ function CompleteProfile() {
 
   return (
     <>
-      <Typography variant="h1">{intl.formatMessage({ id: "MODULE_PROFILE" })}</Typography>
+      <Typography variant="h4">{intl.formatMessage({ id: "MODULE_PROFILE" })}</Typography>
 
       <Stack className="flex flex-col px-4 py-8 w-1/2 md:w-lg space-y-4" component="form" onSubmit={onSubmit}>
         <TextField

@@ -28,7 +28,7 @@ function SpellList() {
 
   return (
     <>
-      <Typography variant="h1">{intl.formatMessage({ id: "MODULE_SPELLS" })}</Typography>
+      <Typography variant="h4">{intl.formatMessage({ id: "MODULE_SPELLS" })}</Typography>
 
       {isLoading && <CircularProgress />}
 
