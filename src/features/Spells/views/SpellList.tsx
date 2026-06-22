@@ -32,71 +32,73 @@ function SpellList() {
 
       {isLoading && <CircularProgress />}
 
-      {spellSummaries && (
-        <Table size="small" component="div">
-          <TableHead component="div">
-            <TableRow component="div">
-              <TableCell component="div" align="center">
-                <TableSortLabel
-                  active={sortBy === Columns.NAME}
-                  direction={sortBy === Columns.NAME ? sortOrder : Order.ASC}
-                  onClick={() => handleSortChange(Columns.NAME)}
-                >
-                  {intl.formatMessage({ id: "NAME" })}
-                </TableSortLabel>
-              </TableCell>
-              <TableCell component="div" align="center">
-                {intl.formatMessage({ id: "SCHOOL" })}
-              </TableCell>
-              <TableCell component="div" align="center">
-                <TableSortLabel
-                  active={sortBy === Columns.LEVEL}
-                  direction={sortBy === Columns.LEVEL ? sortOrder : Order.ASC}
-                  onClick={() => handleSortChange(Columns.LEVEL)}
-                >
-                  {intl.formatMessage({ id: "LEVEL" })}
-                </TableSortLabel>
-              </TableCell>
-              <TableCell component="div" align="center">
-                <TableSortLabel
-                  active={sortBy === Columns.CONCENTRATION}
-                  direction={sortBy === Columns.CONCENTRATION ? sortOrder : Order.ASC}
-                  onClick={() => handleSortChange(Columns.CONCENTRATION)}
-                >
-                  {intl.formatMessage({ id: "CONCENTRATION" })}
-                </TableSortLabel>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-
-          <TableBody component="div">
-            {spellSummaries.map((spellSummary) => (
-              <TableRow
-                component={Link}
-                to={SPELL_PATHS.DETAILS.replace(":spellId", spellSummary.id)}
-                key={spellSummary.id}
-                hover
-              >
-                <TableCell component="div" align="left">
-                  {spellSummary.name}
+      <div className="overflow-x-scroll">
+        {spellSummaries && (
+          <Table size="small" component="div">
+            <TableHead component="div">
+              <TableRow component="div">
+                <TableCell component="div" align="center">
+                  <TableSortLabel
+                    active={sortBy === Columns.NAME}
+                    direction={sortBy === Columns.NAME ? sortOrder : Order.ASC}
+                    onClick={() => handleSortChange(Columns.NAME)}
+                  >
+                    {intl.formatMessage({ id: "NAME" })}
+                  </TableSortLabel>
                 </TableCell>
                 <TableCell component="div" align="center">
-                  {spellSummary.magicSchool.name}
+                  {intl.formatMessage({ id: "SCHOOL" })}
                 </TableCell>
                 <TableCell component="div" align="center">
-                  {intl.formatMessage(
-                    { id: "SPELL_LEVEL" },
-                    { level: spellSummary.level, ritual: spellSummary.ritual.toString() },
-                  )}
+                  <TableSortLabel
+                    active={sortBy === Columns.LEVEL}
+                    direction={sortBy === Columns.LEVEL ? sortOrder : Order.ASC}
+                    onClick={() => handleSortChange(Columns.LEVEL)}
+                  >
+                    {intl.formatMessage({ id: "LEVEL" })}
+                  </TableSortLabel>
                 </TableCell>
                 <TableCell component="div" align="center">
-                  {spellSummary.concentration && <CheckIcon />}
+                  <TableSortLabel
+                    active={sortBy === Columns.CONCENTRATION}
+                    direction={sortBy === Columns.CONCENTRATION ? sortOrder : Order.ASC}
+                    onClick={() => handleSortChange(Columns.CONCENTRATION)}
+                  >
+                    {intl.formatMessage({ id: "CONCENTRATION" })}
+                  </TableSortLabel>
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      )}
+            </TableHead>
+
+            <TableBody component="div">
+              {spellSummaries.map((spellSummary) => (
+                <TableRow
+                  component={Link}
+                  to={SPELL_PATHS.DETAILS.replace(":spellId", spellSummary.id)}
+                  key={spellSummary.id}
+                  hover
+                >
+                  <TableCell component="div" align="left">
+                    {spellSummary.name}
+                  </TableCell>
+                  <TableCell component="div" align="center">
+                    {spellSummary.magicSchool.name}
+                  </TableCell>
+                  <TableCell component="div" align="center">
+                    {intl.formatMessage(
+                      { id: "SPELL_LEVEL" },
+                      { level: spellSummary.level, ritual: spellSummary.ritual.toString() },
+                    )}
+                  </TableCell>
+                  <TableCell component="div" align="center">
+                    {spellSummary.concentration && <CheckIcon />}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
+      </div>
     </>
   );
 }
