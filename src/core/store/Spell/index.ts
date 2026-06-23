@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { appBaseQuery } from "Hooks/state";
 import type { SpellDetail, SpellSummary } from "./type";
-import type { SortableColumns, SortOrder } from "Features/Spells/types/type";
+import type { SortableColumns, SortOrder } from "Features/SpellList/types/type";
 
 const spellApi = createApi({
   reducerPath: "spellApi",

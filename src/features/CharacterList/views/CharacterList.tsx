@@ -15,7 +15,7 @@ function CharacterList() {
 
   return (
     <>
-      <Typography variant="h4">{intl.formatMessage({ id: "MODULE_CHARACTERS" })}</Typography>
+      <Typography variant="h3">{intl.formatMessage({ id: "MODULE_CHARACTERS" })}</Typography>
 
       {isLoading && <CircularProgress />}
 

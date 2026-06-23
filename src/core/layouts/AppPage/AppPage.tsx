@@ -32,12 +32,12 @@ function AppPage() {
   return showLoader ?
       <LoadingPage />
     : <ProfileContext value={profile}>
-        <div className="w-lvw h-lvh scroll-auto">
+        <main className="w-lvw h-lvh flex flex-col">
           <Header />
-          <main className="pt-16 w-lvw px-3">
+          <div className="flex-1 pt-16 px-3 min-h-0">
             <Outlet />
-          </main>
-        </div>
+          </div>
+        </main>
       </ProfileContext>;
 }
 

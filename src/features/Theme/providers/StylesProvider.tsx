@@ -10,6 +10,15 @@ const darkTheme = createTheme({
   colorSchemes: {
     dark: true,
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
 });
 function StylesProvider({ children }: React.PropsWithChildren) {
   return (

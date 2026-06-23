@@ -36,9 +36,15 @@ function Markdown({ children }: Options) {
         p(props) {
           return <Typography variant="body1" gutterBottom {...props} />;
         },
-        ul: List,
-        ol: List,
-        li: ListItem,
+        ul(props) {
+          return <List {...props} disablePadding />;
+        },
+        ol(props) {
+          return <List {...props} disablePadding />;
+        },
+        li(props) {
+          return <ListItem {...props} className={`${props.className} py-0`} />;
+        },
         table: Table,
         thead: TableHead,
         tbody: TableBody,
