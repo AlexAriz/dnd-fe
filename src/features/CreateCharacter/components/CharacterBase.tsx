@@ -11,13 +11,23 @@ import { useIntl } from "react-intl";
 import Grid from "@mui/material/Grid";
 import { useGetSubClassesQuery } from "State/SubClasses";
 import { skipToken } from "@reduxjs/toolkit/query";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { useGetStatsQuery } from "State/Stats";
+import ToggleButton from "@mui/material/ToggleButton";
+import type { AvailableStats } from "State/Stats/type";
 
 function CharacterBase() {
   const intl = useIntl();
   const { data: classes, isLoading } = useGetClassesQuery();
   const selectedClassId = useAppSelector(newCharacterSelectors.selectClass);
+  const statProficiencies = useAppSelector(newCharacterSelectors.selectStatProficiencies);
   const { data: subclasses } = useGetSubClassesQuery(selectedClassId ?? skipToken);
+  const { data: stats } = useGetStatsQuery();
   const dispatch = useAppDispatch();
+
+  const onChangeProficiencies = (_event: React.MouseEvent<HTMLElement>, newProficiencies: AvailableStats[]) => {
+    dispatch(newCharacterActions.setStatProficiencies(newProficiencies));
+  };
 
   return (
     <Grid container spacing={2} columns={3}>
@@ -76,38 +86,17 @@ function CharacterBase() {
         />
       </Grid>
 
-      <Grid size={1}>
-        <NumberField
-          className="w-full"
-          label={intl.formatMessage({ id: "ARMOR_CLASS" })}
-          min={1}
-          step={1}
-          defaultValue={1}
-          onValueChange={(value) => dispatch(newCharacterActions.setArmorClass(value ?? 1))}
-        />
-      </Grid>
-
-      <Grid size={1}>
-        <NumberField
-          className="w-full"
-          label={intl.formatMessage({ id: "HITPOINTS" })}
-          min={1}
-          step={1}
-          defaultValue={1}
-          onValueChange={(value) => dispatch(newCharacterActions.setHitpoints(value ?? 1))}
-        />
-      </Grid>
-
-      <Grid size={1}>
-        <NumberField
-          className="w-full"
-          label={intl.formatMessage({ id: "SPEED" })}
-          min={1}
-          step={1}
-          defaultValue={30}
-          onValueChange={(value) => dispatch(newCharacterActions.setSpeed(value ?? 1))}
-        />
-      </Grid>
+      {stats && (
+        <Grid size={3}>
+          <ToggleButtonGroup value={statProficiencies} onChange={onChangeProficiencies}>
+            {stats.map((stat) => (
+              <ToggleButton key={stat.id} value={stat.id}>
+                {stat.id}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </Grid>
+      )}
     </Grid>
   );
 }

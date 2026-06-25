@@ -178,11 +178,38 @@ const newCharacterSlice = createSlice({
         };
       }
     }),
+    setStatProficiencies: create.reducer<AvailableStats[]>((character, action) => {
+      Object.entries(character.stats).forEach(([_statId]) => {
+        const statId: AvailableStats = _statId as AvailableStats;
+        if (action.payload.includes(statId as AvailableStats)) {
+          character.stats[statId].proficiency = true;
+        } else {
+          character.stats[statId].proficiency = false;
+        }
+      });
+    }),
+    toggleStat: create.reducer<AvailableStats>((character, action) => {
+      if (character.stats[action.payload].proficiency) {
+        character.stats[action.payload] = {
+          ...character.stats[action.payload],
+          proficiency: false,
+        };
+      } else {
+        character.stats[action.payload] = {
+          ...character.stats[action.payload],
+          proficiency: true,
+        };
+      }
+    }),
     resetCharacter: () => initialState,
   }),
   selectors: {
     selectCharacter: (character): CreateCharacterPayload => character,
     selectStatScore: (character, statId: AvailableStats) => character.stats[statId].value,
+    selectStatProficiencies: (character) =>
+      Object.entries(character.stats)
+        .filter(([, statValue]) => statValue.proficiency)
+        .map(([statId]) => statId as AvailableStats),
     selectStatBonuses: (character): StatBonus[] => character.statBonuses,
     selectSkills: (character): CreateCharacterPayload["skills"] => {
       return character.skills;
