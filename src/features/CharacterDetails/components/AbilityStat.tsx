@@ -2,7 +2,7 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import useRequiredContext from "Hooks/useRequiredContext";
-import { calculateModifier } from "Rules/stats";
+import { getAbilityCheck, getAbilitySave } from "Rules/stats";
 import type { StatSummary } from "State/Stats/type";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import Divider from "@mui/material/Divider";
@@ -15,7 +15,6 @@ interface AbilityStatProps {
 function AbilityStat({ stat }: AbilityStatProps) {
   const intl = useIntl();
   const character = useRequiredContext(ActiveCharacterContext);
-  const bonus = character.stats[stat.id].proficiency ? character.proficiencyBonus : 0;
 
   return (
     <Stack component={Paper} variant="outlined" spacing={1}>
@@ -32,14 +31,14 @@ function AbilityStat({ stat }: AbilityStatProps) {
         <div>
           <Typography variant="caption">{intl.formatMessage({ id: "ABILITY_CHECK" })}</Typography>
           <Typography variant="h4" align="center">
-            {calculateModifier(character.stats[stat.id].value)}
+            {getAbilityCheck(character, stat.id)}
           </Typography>
         </div>
 
         <div>
           <Typography variant="caption">{intl.formatMessage({ id: "ABILITY_SAVE" })}</Typography>
           <Typography variant="h4" align="center">
-            {calculateModifier(character.stats[stat.id].value) + bonus}
+            {getAbilitySave(character, stat.id)}
           </Typography>
         </div>
       </Stack>

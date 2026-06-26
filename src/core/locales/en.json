@@ -8,6 +8,7 @@
   "ARMOR_CLASS": "Armor Class",
   "BONUS": "{count,plural,one {Bonus} other {Bonuses}}",
   "CHARACTER_CLASS": "Level {level,number} | {name}{subclass,select, undefined {} other { | {subclass}}}",
+  "CHARACTER_SKILL": "{skill} ({ability}): {check, number, ::sign-except-zero}",
   "CLASS": "Class",
   "CONCENTRATION": "Concentration",
   "CONFIRM_PASSWORD": "Confirm password",
