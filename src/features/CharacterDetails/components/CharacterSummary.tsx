@@ -46,7 +46,9 @@ function CharacterSummary() {
       <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} className="justify-evenly">
         <Stack className="space-y-2">
           <Typography align="center">{intl.formatMessage({ id: "PROFICIENCY_BONUS" })}</Typography>
-          <Typography align="center">{character.proficiencyBonus}</Typography>
+          <Typography align="center">
+            {intl.formatNumber(character.proficiencyBonus, { signDisplay: "exceptZero" })}
+          </Typography>
         </Stack>
 
         <Stack className="space-y-2">
@@ -56,7 +58,9 @@ function CharacterSummary() {
 
         <Stack className="space-y-2">
           <Typography align="center">{intl.formatMessage({ id: "INITIATIVE" })}</Typography>
-          <Typography align="center">{character.initiative}</Typography>
+          <Typography align="center">
+            {intl.formatNumber(character.initiative, { signDisplay: "exceptZero" })}
+          </Typography>
         </Stack>
 
         <Stack className="space-y-2">

@@ -31,14 +31,14 @@ function AbilityStat({ stat }: AbilityStatProps) {
         <div>
           <Typography variant="caption">{intl.formatMessage({ id: "ABILITY_CHECK" })}</Typography>
           <Typography variant="h4" align="center">
-            {getAbilityCheck(character, stat.id)}
+            {intl.formatNumber(getAbilityCheck(character, stat.id), { signDisplay: "exceptZero" })}
           </Typography>
         </div>
 
         <div>
           <Typography variant="caption">{intl.formatMessage({ id: "ABILITY_SAVE" })}</Typography>
           <Typography variant="h4" align="center">
-            {getAbilitySave(character, stat.id)}
+            {intl.formatNumber(getAbilitySave(character, stat.id), { signDisplay: "exceptZero" })}
           </Typography>
         </div>
       </Stack>

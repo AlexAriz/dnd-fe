@@ -2,7 +2,7 @@
   "ABILITIES": "Abilities",
   "ABILITY_CHECK": "Check",
   "ABILITY_SAVE": "Save",
-  "ABILITY_SCORE_MODIFIER": "Modifier: {modifier,number}",
+  "ABILITY_SCORE_MODIFIER": "Modifier: {modifier, number, ::sign-except-zero}",
   "ABILITY_SCORE": "Ability Scores",
   "ADD_STAT_BONUS": "Add Stat bonus",
   "ARMOR_CLASS": "Armor Class",
