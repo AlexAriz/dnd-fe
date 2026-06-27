@@ -1,3 +1,7 @@
+import { MagicSchools } from "Constants/magic";
+
+export type MagicSchool = (typeof MagicSchools)[keyof typeof MagicSchools];
+
 export interface SpellSummary {
   id: string;
   name: string;
@@ -8,7 +12,7 @@ export interface SpellSummary {
   concentration: boolean;
   ritual: boolean;
   magicSchool: {
-    name: string;
+    name: MagicSchool;
   };
 }
 
@@ -23,7 +27,7 @@ export interface SpellDetail {
   ritual: boolean;
   markdown: string;
   magicSchool: {
-    name: string;
+    name: MagicSchool;
   };
   classes: {
     id: string;
