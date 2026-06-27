@@ -1,4 +1,4 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import type { SpellSummary } from "State/Spell/type";
 import { useGetSpellsQuery } from "State/Spell";
 import useSpellColumns from "../hooks/useSpellColumns";
@@ -23,10 +23,25 @@ function SpellsTable({ activeSpellId, onSelectSpell }: SpellsTableProps) {
       disableColumnResize
       rowHeight={32}
       loading={isLoading}
+      sx={{
+        [`& .${gridClasses.row}:hover`]: {
+          cursor: "pointer",
+        },
+        [`& .${gridClasses.cell}:focus, & .${gridClasses.cell}:focus-within`]: {
+          outline: "none",
+        },
+        [`& .${gridClasses.columnHeader}:focus, & .${gridClasses.columnHeader}:focus-within`]: {
+          outline: "none",
+        },
+      }}
       slotProps={{
         loadingOverlay: {
           variant: "skeleton",
           noRowsVariant: "skeleton",
+        },
+        toolbar: {
+          csvOptions: { disableToolbarButton: true },
+          printOptions: { disableToolbarButton: true },
         },
       }}
       rows={spellSummaries}
