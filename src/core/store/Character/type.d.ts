@@ -24,6 +24,7 @@ export interface CharacterSpell {
   };
   concentration: boolean;
   ritual: boolean;
+  markdown: string;
   prepared: boolean;
 }
 

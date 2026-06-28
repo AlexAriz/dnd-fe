@@ -2,7 +2,7 @@ import Masonry from "@mui/lab/Masonry";
 import useRequiredContext from "Hooks/useRequiredContext";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import Paper from "@mui/material/Paper";
-import SpellDetails from "Features/SpellList/components/SpellDetails";
+import SpellCard from "Components/SpellCard";
 import type { CharacterSpell } from "State/Character/type";
 import { useIntl } from "react-intl";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -42,7 +42,7 @@ function PreparedSpells() {
         <Masonry columns={{ xs: 2, md: 3, lg: 4 }} sequential>
           {spells.map((spell) => (
             <Paper key={spell.id} className="p-2">
-              <SpellDetails spellId={spell.id} />
+              <SpellCard spellDetail={spell.markdown} />
             </Paper>
           ))}
         </Masonry>

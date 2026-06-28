@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { appBaseQuery } from "Hooks/state";
-import type { SpellDetail, SpellSummary } from "./type";
+import type { SpellSummary } from "./type";
 
 const spellApi = createApi({
   reducerPath: "spellApi",
@@ -9,14 +9,13 @@ const spellApi = createApi({
   endpoints: (build) => ({
     getSpells: build.query<SpellSummary[], void>({
       query: () => "spells",
-      providesTags: [{ type: "Spell", id: "LIST" }],
-    }),
-    getSpell: build.query<SpellDetail, string>({
-      query: (spellId) => `spells/${spellId}`,
-      providesTags: (_result, _error, id) => [{ type: "Spell", id }],
+      providesTags: (spells) =>
+        spells ?
+          [...spells.map(({ id }) => ({ type: "Spell" as const, id })), { type: "Spell", id: "LIST" }]
+        : [{ type: "Spell", id: "LIST" }],
     }),
   }),
 });
 
 export default spellApi;
-export const { useGetSpellsQuery, useGetSpellQuery } = spellApi;
+export const { useGetSpellsQuery } = spellApi;

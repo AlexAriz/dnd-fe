@@ -11,6 +11,7 @@ export interface SpellSummary {
   school: string;
   concentration: boolean;
   ritual: boolean;
+  markdown: string;
   magicSchool: {
     name: MagicSchool;
   };
