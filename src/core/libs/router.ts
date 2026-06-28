@@ -6,6 +6,8 @@ import CharacterRoutes from "Features/CharacterList/routes";
 import CreateCharacterRoutes from "Features/CreateCharacter/routes";
 import CharacterDetailsRoutes from "Features/CharacterDetails/routes";
 import { HiddenPaths, Modules } from "Constants/routes";
+import NotFound from "Layouts/NotFound";
+import AppPage from "Layouts/AppPage/AppPage";
 
 export default createBrowserRouter([
   {
@@ -23,4 +25,9 @@ export default createBrowserRouter([
   ...CharacterDetailsRoutes,
   ...SpellsRotues,
   ...AuthRoutes,
+  {
+    path: "*",
+    Component: AppPage,
+    children: [{ path: "*", Component: NotFound }],
+  },
 ]);

@@ -8,7 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import { Link } from "react-router";
+import Link from "@mui/material/Link";
+import { NavLink } from "react-router";
 
 function Markdown({ children }: Options) {
   return (
@@ -58,7 +59,11 @@ function Markdown({ children }: Options) {
           return <TableCell children={props.children} />;
         },
         a(props) {
-          return <Link to={props.href as string}>{props.children}</Link>;
+          return (
+            <Link component={NavLink} to={`/${props.href as string}`}>
+              {props.children}
+            </Link>
+          );
         },
       }}
     >
