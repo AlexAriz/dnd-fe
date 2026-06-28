@@ -1,19 +1,23 @@
-import { DataGrid, gridClasses } from "@mui/x-data-grid";
-import type { SpellSummary } from "State/Spell/type";
-import { useGetSpellsQuery } from "State/Spell";
-import useSpellColumns from "../hooks/useSpellColumns";
+import { DataGrid, gridClasses, type GridColDef } from "@mui/x-data-grid";
+import type { BaseSpell } from "Types/spell";
 
-interface SpellsTableProps {
+interface SpellsTableProps<T extends BaseSpell> {
   activeSpellId?: string;
   onSelectSpell: (spellId: string | undefined) => void;
+  spells?: T[];
+  columns: GridColDef<T>[];
+  loading?: boolean;
 }
 
-function SpellsTable({ activeSpellId, onSelectSpell }: SpellsTableProps) {
-  const { data: spellSummaries, isLoading } = useGetSpellsQuery();
-  const columns = useSpellColumns();
-
+function SpellsTable<T extends BaseSpell>({
+  activeSpellId,
+  onSelectSpell,
+  spells,
+  columns,
+  loading = false,
+}: SpellsTableProps<T>) {
   return (
-    <DataGrid<SpellSummary>
+    <DataGrid<T>
       density="compact"
       showToolbar
       showCellVerticalBorder
@@ -22,7 +26,7 @@ function SpellsTable({ activeSpellId, onSelectSpell }: SpellsTableProps) {
       disableColumnSelector
       disableColumnResize
       rowHeight={32}
-      loading={isLoading}
+      loading={loading}
       sx={{
         [`& .${gridClasses.row}:hover`]: {
           cursor: "pointer",
@@ -44,10 +48,10 @@ function SpellsTable({ activeSpellId, onSelectSpell }: SpellsTableProps) {
           printOptions: { disableToolbarButton: true },
         },
       }}
-      rows={spellSummaries}
+      rows={spells}
       columns={columns}
       onRowClick={(params) => {
-        const spellId = params.id as SpellSummary["id"];
+        const spellId = params.id as T["id"];
         onSelectSpell(spellId === activeSpellId ? undefined : spellId);
       }}
     />

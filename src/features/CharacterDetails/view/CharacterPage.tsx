@@ -12,6 +12,7 @@ import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import { useIntl } from "react-intl";
 import CharacterAbilities from "../components/CharacterAbilities";
 import CharacterSkills from "../components/CharacterSkills";
+import CharacterSpells from "../components/CharacterSpells";
 
 function CharacterPage() {
   const intl = useIntl();
@@ -40,6 +41,7 @@ function CharacterPage() {
         <TabList onChange={(_e, newValue) => setActiveTab(newValue)} variant="scrollable" scrollButtons="auto">
           <Tab label={intl.formatMessage({ id: "ABILITIES" })} />
           <Tab label={intl.formatMessage({ id: "SKILLS" })} />
+          <Tab label={intl.formatMessage({ id: "SPELLS" })} />
         </TabList>
 
         <TabPanel value={0}>
@@ -47,6 +49,9 @@ function CharacterPage() {
         </TabPanel>
         <TabPanel value={1}>
           <CharacterSkills />
+        </TabPanel>
+        <TabPanel value={2}>
+          <CharacterSpells />
         </TabPanel>
       </TabContext>
     </ActiveCharacterContext>

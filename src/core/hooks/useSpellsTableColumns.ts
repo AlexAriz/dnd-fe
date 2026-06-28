@@ -1,9 +1,9 @@
 import { useIntl } from "react-intl";
 import type { GridColDef } from "@mui/x-data-grid";
-import type { SpellSummary } from "State/Spell/type";
 import { MagicSchools } from "Constants/magic";
+import type { BaseSpell } from "Types/spell";
 
-function useSpellColumns(): GridColDef<SpellSummary>[] {
+function useSpellsTableColumns<T extends BaseSpell>(): GridColDef<T>[] {
   const intl = useIntl();
 
   return [
@@ -56,4 +56,4 @@ function useSpellColumns(): GridColDef<SpellSummary>[] {
   ];
 }
 
-export default useSpellColumns;
+export default useSpellsTableColumns;

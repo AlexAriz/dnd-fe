@@ -1,6 +1,6 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { skipToken } from "@reduxjs/toolkit/query";
-import Markdown from "Components/Markdown";
+import SpellCard from "Components/SpellCard";
 import { useGetSpellQuery } from "State/Spell";
 
 interface SpellDetailsProps {
@@ -12,7 +12,7 @@ function SpellDetails({ spellId }: SpellDetailsProps) {
 
   if (isFetching || !spell) return <CircularProgress />;
 
-  return <Markdown>{spell.markdown}</Markdown>;
+  return <SpellCard spellDetail={spell.markdown} />;
 }
 
 export default SpellDetails;

@@ -59,6 +59,7 @@ const characterApi = createApi({
           },
           proficiencyBonus: 1 + Math.ceil(overallLevel / 4),
           initiative: calculateModifier(stats.DEX.value),
+          spells: apiCharacter.spells,
         };
       },
       providesTags: (_result, _error, id) => [{ type: "Character", id }],

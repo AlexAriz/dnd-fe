@@ -1,27 +1,21 @@
+import useRequiredContext from "Hooks/useRequiredContext";
+import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import SpellsTable from "Components/SpellsTable";
-import Stack from "@mui/material/Stack";
 import { useState } from "react";
-import SpellDetails from "../components/SpellDetails";
+import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
-import { useGetSpellsQuery } from "State/Spell";
-import useSpellsTableColumns from "Hooks/useSpellsTableColumns";
-import type { SpellSummary } from "State/Spell/type";
+import SpellDetails from "Features/SpellList/components/SpellDetails";
+import useCharacterSpellsColumns from "../hooks/useCharacterSpellsColumns";
 
-function SpellList() {
-  const { data: spellSummaries, isLoading } = useGetSpellsQuery();
+function CharacterSpells() {
+  const character = useRequiredContext(ActiveCharacterContext);
   const [spellId, setSpellId] = useState<string>();
-  const columns = useSpellsTableColumns<SpellSummary>();
+  const columns = useCharacterSpellsColumns();
 
   return (
     <Stack direction={{ xs: "column-reverse", md: "row" }} className="h-full min-h-0">
       <div className="flex-1 overflow-auto">
-        <SpellsTable
-          onSelectSpell={setSpellId}
-          activeSpellId={spellId}
-          spells={spellSummaries}
-          columns={columns}
-          loading={isLoading}
-        />
+        <SpellsTable onSelectSpell={setSpellId} activeSpellId={spellId} spells={character.spells} columns={columns} />
       </div>
 
       {spellId && (
@@ -37,4 +31,4 @@ function SpellList() {
   );
 }
 
-export default SpellList;
+export default CharacterSpells;
