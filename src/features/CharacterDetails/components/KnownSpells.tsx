@@ -4,12 +4,14 @@ import SpellsTable from "Components/SpellsTable";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
-import type { CharacterSpell } from "State/Character/type";
+import type { CharacterSpell } from "State/CharacterSpells/type";
 import SpellCard from "Components/SpellCard";
 import useCharacterSpellsColumns from "../hooks/useCharacterSpellsColumns";
+import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 
-function CharacterSpells() {
+function KnownSpells() {
   const character = useRequiredContext(ActiveCharacterContext);
+  const { data: spells = [] } = useGetCharacterSpellsQuery(character.id);
   const [spellId, setSpellId] = useState<string>();
   const [activeSpell, setActiveSpell] = useState<CharacterSpell>();
   const columns = useCharacterSpellsColumns();
@@ -20,10 +22,10 @@ function CharacterSpells() {
         <SpellsTable
           onSelectSpell={(spellId) => {
             setSpellId(spellId);
-            setActiveSpell(character.spells.find((spell) => spell.id === spellId));
+            setActiveSpell(spells?.find((spell) => spell.id === spellId));
           }}
           activeSpellId={spellId}
-          spells={character.spells}
+          spells={spells}
           columns={columns}
         />
       </div>
@@ -41,4 +43,4 @@ function CharacterSpells() {
   );
 }
 
-export default CharacterSpells;
+export default KnownSpells;

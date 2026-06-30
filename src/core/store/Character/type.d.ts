@@ -1,5 +1,4 @@
 import type { AvailableSkills, SkillDetails } from "State/Skills/type";
-import type { MagicSchool } from "State/Spell/type";
 import type { AvailableStats, StatDetails } from "State/Stats/type";
 
 interface CharacterClass {
@@ -12,20 +11,6 @@ interface CharacterClass {
     name: string;
     shortName: string;
   };
-}
-
-export interface CharacterSpell {
-  id: string;
-  name: string;
-  level: number;
-  school: string;
-  magicSchool: {
-    name: MagicSchool;
-  };
-  concentration: boolean;
-  ritual: boolean;
-  markdown: string;
-  prepared: boolean;
 }
 
 export interface CharacterSummary {
@@ -62,12 +47,11 @@ export interface CharacterDetailResponse {
     temporary: number | null;
     removed: number | null;
   };
-  spells: CharacterSpell[];
 }
 
 export interface CharacterDetail extends Pick<
   CharacterDetailResponse,
-  "id" | "name" | "classes" | "speeds" | "armorClass" | "inspiration" | "stats" | "skills" | "spells"
+  "id" | "name" | "classes" | "speeds" | "armorClass" | "inspiration" | "stats" | "skills"
 > {
   hitPoints: {
     current: number;

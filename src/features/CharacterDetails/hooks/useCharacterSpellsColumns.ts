@@ -1,6 +1,6 @@
 import { useIntl } from "react-intl";
 import type { GridColDef } from "@mui/x-data-grid";
-import type { CharacterSpell } from "State/Character/type";
+import type { CharacterSpell } from "State/CharacterSpells/type";
 import useSpellsTableColumns from "Hooks/useSpellsTableColumns";
 
 function useCharacterSpellsColumns(): GridColDef<CharacterSpell>[] {

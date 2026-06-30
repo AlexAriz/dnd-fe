@@ -12,14 +12,17 @@ import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import { useIntl } from "react-intl";
 import CharacterAbilities from "../components/CharacterAbilities";
 import CharacterSkills from "../components/CharacterSkills";
-import CharacterSpells from "../components/CharacterSpells";
+import KnownSpells from "../components/KnownSpells";
 import PreparedSpells from "../components/PreparedSpells";
+import { skipToken } from "@reduxjs/toolkit/query";
+import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 
 function CharacterPage() {
   const intl = useIntl();
   const navigate = useNavigate();
   const { characterId } = useParams<{ characterId: string }>();
-  const { data: character, isLoading } = useGetCharacterQuery(characterId ?? "");
+  const { data: character, isLoading } = useGetCharacterQuery(characterId ?? skipToken);
+  useGetCharacterSpellsQuery(characterId ?? skipToken);
   const [activeTab, setActiveTab] = useState<number>(0);
 
   if (!characterId) {
@@ -53,7 +56,7 @@ function CharacterPage() {
           <CharacterSkills />
         </TabPanel>
         <TabPanel value={2} className="px-0">
-          <CharacterSpells />
+          <KnownSpells />
         </TabPanel>
         <TabPanel value={3} className="px-0">
           <PreparedSpells />

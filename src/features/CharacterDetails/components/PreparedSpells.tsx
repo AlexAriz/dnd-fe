@@ -3,17 +3,20 @@ import useRequiredContext from "Hooks/useRequiredContext";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import Paper from "@mui/material/Paper";
 import SpellCard from "Components/SpellCard";
-import type { CharacterSpell } from "State/Character/type";
+import type { CharacterSpell } from "State/CharacterSpells/type";
 import { useIntl } from "react-intl";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
+import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 
 function PreparedSpells() {
   const intl = useIntl();
   const character = useRequiredContext(ActiveCharacterContext);
-  const spellHash: Record<number, CharacterSpell[]> = character.spells
+  const { data: spells = [] } = useGetCharacterSpellsQuery(character.id);
+
+  const spellHash: Record<number, CharacterSpell[]> = spells
     .filter((spell) => spell.prepared)
     .reduce(
       (hash, spell) => {
