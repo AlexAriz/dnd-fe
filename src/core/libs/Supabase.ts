@@ -47,6 +47,7 @@ export const login = async (email: string, password: string) => {
   const response = await client.auth.signInWithPassword({ email, password });
   if (response.error) {
     Logger.error("Error signing in", { ...response.error });
+    throw response.error;
   }
   return response.data.user;
 };
@@ -55,7 +56,8 @@ export const signup = async (email: string, password: string) => {
   const response = await client.auth.signUp({ email, password });
   if (response.error) {
     Logger.error("Error signing up", { ...response.error });
-    return false;
+    throw response.error;
+    // return false;
   }
   return true;
 };

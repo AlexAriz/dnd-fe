@@ -1,4 +1,4 @@
-import { PublicRoutes } from "Constants/routes";
+import { HiddenPaths, PublicRoutes } from "Constants/routes";
 import type { AuthFlow, AuthFlowObject } from "Types/auth";
 
 export const SUPABASE_URL: string = import.meta.env.VITE_SUPABASE_URL;
@@ -9,12 +9,12 @@ export const AUTH_FLOW_MAP: Readonly<Record<AuthFlow, AuthFlowObject>> = {
     submitButton: "LOGIN",
     linkText: "SIGNUP",
     linkRoute: PublicRoutes.SIGNUP,
-    errorMessage: "ERROR_LOGIN",
+    redirectRoute: HiddenPaths.ROOT,
   },
   signup: {
     submitButton: "SIGNUP",
     linkText: "LOGIN",
     linkRoute: PublicRoutes.LOGIN,
-    errorMessage: "ERROR_SIGNUP",
+    redirectRoute: PublicRoutes.LOGIN,
   },
 };

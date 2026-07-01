@@ -1,42 +1,39 @@
 import { useState } from "react";
 import { useIntl } from "react-intl";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import { Heading } from "@astryxdesign/core/Heading";
+import { TextInput } from "@astryxdesign/core/TextInput";
 
-import { HiddenPaths } from "Constants/routes";
-import router from "Libs/router";
 import { login } from "Libs/Supabase";
 import AuthForm from "../components/AuthForm";
 
 function Login() {
   const intl = useIntl();
-  const [email, setEmail] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const formValid: boolean = Boolean(email && password);
 
   const handleSubmit = async () => {
-    const user = await login(email!, password!);
-    if (user) {
-      router.navigate(HiddenPaths.ROOT);
-    }
+    await login(email!, password!);
   };
 
   return (
     <AuthForm onSubmit={handleSubmit} isValid={formValid} flow="login">
-      <Typography variant="h3">{intl.formatMessage({ id: "LOGIN" })}</Typography>
+      <Heading level={3}>{intl.formatMessage({ id: "LOGIN" })}</Heading>
 
-      <TextField
+      <TextInput
         label={intl.formatMessage({ id: "EMAIL" })}
         placeholder={intl.formatMessage({ id: "EMAIL" })}
         type="email"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={setEmail}
+        value={email}
       />
 
-      <TextField
+      <TextInput
         label={intl.formatMessage({ id: "PASSWORD" })}
         placeholder={intl.formatMessage({ id: "PASSWORD" })}
         type="password"
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={setPassword}
+        value={password}
       />
     </AuthForm>
   );

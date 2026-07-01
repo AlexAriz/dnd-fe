@@ -1,4 +1,4 @@
-import type { PublicRoutes } from "Constants/routes";
+import type { PublicRoutes, HiddenPaths } from "Constants/routes";
 
 export type AuthFlow = "login" | "signup";
 
@@ -6,5 +6,5 @@ export interface AuthFlowObject {
   submitButton: string;
   linkText: string;
   linkRoute: (typeof PublicRoutes)[keyof typeof PublicRoutes];
-  errorMessage: string;
+  redirectRoute: typeof HiddenPaths.ROOT | typeof PublicRoutes.LOGIN;
 }
