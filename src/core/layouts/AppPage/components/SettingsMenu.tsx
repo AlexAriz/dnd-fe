@@ -1,38 +1,35 @@
+import { DropdownMenu } from "@astryxdesign/core/DropdownMenu";
+import { useIntl } from "react-intl";
 import { useState } from "react";
-
-import IconButton from "@mui/material/IconButton";
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import SettingsIcon from "@mui/icons-material/Settings";
-
-import Logout from "Layouts/AppPage/components/Logout";
-import ThemePicker from "Features/Theme/components/ThemePicker";
+import { logout } from "Libs/Supabase";
+import router from "Libs/router";
+import { PublicRoutes } from "Constants/routes";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 function SettingsMenu() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const intl = useIntl();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    const success = await logout();
+    if (success) {
+      router.navigate(PublicRoutes.LOGIN);
+    }
+    setLoading(false);
+  };
 
   return (
-    <>
-      <IconButton onClick={() => setIsOpen(true)}>
-        <SettingsIcon />
-      </IconButton>
-
-      <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)} color="neutral">
-        <Box className="w-64">
-          <List>
-            <ListItem className="justify-between">
-              <ThemePicker />
-            </ListItem>
-
-            <ListItem className="justify-between">
-              <Logout />
-            </ListItem>
-          </List>
-        </Box>
-      </Drawer>
-    </>
+    <DropdownMenu
+      button={{
+        label: intl.formatMessage({ id: "MENU" }),
+        icon: <UserCircleIcon />,
+        variant: "ghost",
+        isIconOnly: true,
+      }}
+      hasChevron={false}
+      items={[{ label: intl.formatMessage({ id: "LOGOUT" }), onClick: handleLogout, isDisabled: loading }]}
+    />
   );
 }
 export default SettingsMenu;

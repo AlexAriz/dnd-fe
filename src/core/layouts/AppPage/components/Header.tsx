@@ -1,19 +1,9 @@
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-
+import { TopNav } from "@astryxdesign/core/TopNav";
 import Nav from "./Nav";
 import SettingsMenu from "./SettingsMenu";
 
 function Header() {
-  return (
-    <AppBar position="fixed">
-      <Toolbar>
-        <Nav />
-
-        <SettingsMenu />
-      </Toolbar>
-    </AppBar>
-  );
+  return <TopNav startContent={<Nav />} endContent={<SettingsMenu />} />;
 }
 
 export default Header;

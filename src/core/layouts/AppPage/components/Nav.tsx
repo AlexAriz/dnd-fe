@@ -1,49 +1,20 @@
-import { useState } from "react";
-
-import IconButton from "@mui/material/IconButton";
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import MenuIcon from "@mui/icons-material/Menu";
-
-import NavList from "./NavList";
+import { useIntl } from "react-intl";
+import { TopNavItem } from "@astryxdesign/core/TopNav";
+import { Modules } from "Constants/routes";
+import { matchPath, useLocation } from "react-router";
 
 function Nav() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const intl = useIntl();
+  const { pathname } = useLocation();
 
-  return (
-    <div className="grow">
-      <IconButton
-        sx={{
-          display: { xs: "block", sm: "none" },
-        }}
-        onClick={() => setIsOpen(true)}
-      >
-        <MenuIcon />
-      </IconButton>
-
-      <Drawer
-        sx={{
-          display: { xs: "block", sm: "none" },
-        }}
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        color="neutral"
-      >
-        <Box className="w-64" component="nav">
-          <NavList onNavigate={() => setIsOpen(false)} />
-        </Box>
-      </Drawer>
-
-      <Box
-        component="nav"
-        sx={{
-          display: { xs: "none", sm: "block" },
-        }}
-      >
-        <NavList className="flex" />
-      </Box>
-    </div>
-  );
+  return Object.entries(Modules).map(([route, path]) => (
+    <TopNavItem
+      key={path}
+      label={intl.formatMessage({ id: `MODULE_${route}` })}
+      href={path}
+      isSelected={Boolean(matchPath(path.concat("/*"), pathname))}
+    />
+  ));
 }
 
 export default Nav;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useMatch, useNavigate } from "react-router";
+import { AppShell } from "@astryxdesign/core/AppShell";
 
 import Header from "Layouts/AppPage/components/Header";
 import LoadingPage from "Layouts/AppPage/components/LoadingPage";
@@ -32,12 +33,9 @@ function AppPage() {
   return showLoader ?
       <LoadingPage />
     : <ProfileContext value={profile}>
-        <main className="w-lvw h-lvh flex flex-col">
-          <Header />
-          <div className="flex-1 pt-16 px-3 min-h-0">
-            <Outlet />
-          </div>
-        </main>
+        <AppShell topNav={<Header />}>
+          <Outlet />
+        </AppShell>
       </ProfileContext>;
 }
 
