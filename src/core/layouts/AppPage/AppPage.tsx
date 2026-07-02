@@ -33,7 +33,7 @@ function AppPage() {
   return showLoader ?
       <LoadingPage />
     : <ProfileContext value={profile}>
-        <AppShell topNav={<Header />}>
+        <AppShell contentPadding={6} topNav={<Header />}>
           <Outlet />
         </AppShell>
       </ProfileContext>;

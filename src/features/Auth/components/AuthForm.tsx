@@ -33,14 +33,14 @@ function AuthForm({ children, onSubmit, isValid, flow }: AuthFormProps) {
       await onSubmit();
       router.navigate(AUTH_FLOW_MAP[flow].redirectRoute);
     } catch (error) {
-      toast({ body: (error as AuthError).message, type: "error" });
+      toast({ body: (error as AuthError).message, type: "error", isAutoHide: true });
     } finally {
       setButtonLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="px-4 py-8 w-1/2 md:w-lg">
+    <form onSubmit={handleSubmit} className="w-1/2 md:w-lg">
       <FormLayout>{children}</FormLayout>
 
       <div className="flex justify-end space-x-2 pt-2">
