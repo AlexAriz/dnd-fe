@@ -2,7 +2,7 @@ import { MagicSchools } from "Constants/magic";
 
 export type MagicSchool = (typeof MagicSchools)[keyof typeof MagicSchools];
 
-export interface SpellSummary {
+export interface SpellSummaryResponse {
   id: string;
   name: string;
   source: string;
@@ -15,6 +15,16 @@ export interface SpellSummary {
   magicSchool: {
     name: MagicSchool;
   };
+}
+
+export interface SpellSummary
+  extends
+    Record<string, unkonwn>,
+    Pick<
+      SpellSummaryResponse,
+      "id" | "name" | "source" | "page" | "level" | "school" | "concentration" | "ritual" | "markdown"
+    > {
+  magicSchool: MagicSchool;
 }
 
 export interface SpellDetail {

@@ -1,9 +1,9 @@
-import type { SpellSummary } from "State/Spell/type";
+import type { SpellSummary, SpellSummaryResponse } from "State/Spell/type";
 
 export interface CharacterSpellApiResponse {
   spellId: string;
   prepared: boolean;
-  spell: SpellSummary;
+  spell: SpellSummaryResponse;
 }
 
 export interface CharacterSpell extends SpellSummary {

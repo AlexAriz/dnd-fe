@@ -1,11 +1,15 @@
-import Markdown from "Components/Markdown";
+import { Markdown } from "@astryxdesign/core/Markdown";
 
 interface SpellCardProps {
   spellDetail: string;
 }
 
 function SpellCard({ spellDetail }: SpellCardProps) {
-  return <Markdown>{spellDetail}</Markdown>;
+  return (
+    <Markdown contentWidth="98%" density="compact">
+      {spellDetail}
+    </Markdown>
+  );
 }
 
 export default SpellCard;

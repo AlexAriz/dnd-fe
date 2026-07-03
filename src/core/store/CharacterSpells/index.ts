@@ -11,7 +11,11 @@ const characterSpellsApi = createApi({
       query: (characterId) => `characters/${characterId}/spells`,
       providesTags: (_result, _error, id) => [{ type: "CharacterSpells", id }],
       transformResponse: (response: CharacterSpellApiResponse[]): CharacterSpell[] =>
-        response.map((characterSpell) => ({ ...characterSpell.spell, prepared: characterSpell.prepared })),
+        response.map((characterSpell) => ({
+          ...characterSpell.spell,
+          magicSchool: characterSpell.spell.magicSchool.name,
+          prepared: characterSpell.prepared,
+        })),
     }),
   }),
 });
