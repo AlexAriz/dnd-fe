@@ -6,7 +6,7 @@ import { NavLink } from "react-router";
 
 function StylesProvider({ children }: React.PropsWithChildren) {
   return (
-    <Theme theme={neutralTheme} mode="dark">
+    <Theme theme={neutralTheme} mode="light">
       <LinkProvider component={NavLink}>{children}</LinkProvider>
     </Theme>
   );

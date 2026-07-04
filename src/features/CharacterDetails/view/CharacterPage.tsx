@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useGetCharacterQuery } from "State/Character";
-import CircularProgress from "@mui/material/CircularProgress";
+import LoadingContent from "Components/LoadingContent";
 import { TabList, Tab } from "@astryxdesign/core/TabList";
 import TabPanel from "Components/TabPanel";
 import CharacterSummary from "../components/CharacterSummary";
@@ -28,7 +28,7 @@ function CharacterPage() {
   }
 
   if (isLoading) {
-    return <CircularProgress />;
+    return <LoadingContent size="xl" />;
   }
 
   if (!character) {

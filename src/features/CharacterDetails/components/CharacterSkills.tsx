@@ -1,19 +1,17 @@
-import Grid from "@mui/material/Grid";
+import { Grid } from "@astryxdesign/core/Grid";
 import { useGetSkillsQuery } from "State/Skills";
-import CircularProgress from "@mui/material/CircularProgress";
+import LoadingContent from "Components/LoadingContent";
 import SkillStat from "./SkillStat";
 
 function CharacterSkills() {
   const { data: skills, isLoading } = useGetSkillsQuery();
 
-  if (isLoading || !skills) return <CircularProgress />;
+  if (isLoading || !skills) return <LoadingContent />;
 
   return (
-    <Grid container spacing={4} columns={{ xs: 1, sm: 2 }}>
+    <Grid columns={2} gap={4}>
       {skills?.map((skill) => (
-        <Grid size={1} key={skill.name} className="flex items-center">
-          <SkillStat skill={skill} />
-        </Grid>
+        <SkillStat key={skill.name} skill={skill} />
       ))}
     </Grid>
   );
