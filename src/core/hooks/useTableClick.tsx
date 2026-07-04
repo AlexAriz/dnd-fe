@@ -20,14 +20,17 @@ function useTableClick<T extends Record<string, unknown>>(config: UseTableClickC
   return useMemo(
     (): TablePlugin<T> => ({
       transformBodyCell(props, _column, item) {
+        const className = [
+          props.htmlProps.className,
+          "hover:cursor-pointer",
+          config.selectedItem?.id === item.id ? "bg-(--color-overlay-hover)" : "",
+        ];
+
         return {
           ...props,
           htmlProps: {
             ...props.htmlProps,
-            className: (props.htmlProps.className ?? "").concat(
-              "hover:cursor-pointer",
-              config.selectedItem?.id === item.id ? "bg-(--color-overlay-hover)" : "",
-            ),
+            className: className.join(" "),
             onClick: () => onClick(item),
           },
         };
