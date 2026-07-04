@@ -1,3 +1,4 @@
+import React from "react";
 import { Collapsible, CollapsibleGroup } from "@astryxdesign/core/Collapsible";
 import { Card } from "@astryxdesign/core/Card";
 import useRequiredContext from "Hooks/useRequiredContext";
@@ -7,6 +8,7 @@ import type { CharacterSpell } from "State/CharacterSpells/type";
 import { useIntl } from "react-intl";
 import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 import { Stack } from "@astryxdesign/core/Stack";
+import { Divider } from "@astryxdesign/core/Divider";
 
 function PreparedSpells() {
   const intl = useIntl();
@@ -36,20 +38,19 @@ function PreparedSpells() {
     <CollapsibleGroup type="multiple" defaultValue={Object.keys(spellHash)}>
       <Card>
         <Stack gap={3}>
-          {Object.entries(spellHash).map(([level, spells]) => (
-            <Collapsible
-              key={level}
-              trigger={intl.formatMessage({ id: "SPELL_DETAIL_LEVEL" }, { level })}
-              value={level}
-            >
-              <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-x-4 space-y-4">
-                {spells.map((spell) => (
-                  <Card key={spell.id} className="inline-block">
-                    <SpellCard spellDetail={spell.markdown} />
-                  </Card>
-                ))}
-              </div>
-            </Collapsible>
+          {Object.entries(spellHash).map(([level, spells], index, array) => (
+            <React.Fragment key={level}>
+              <Collapsible trigger={intl.formatMessage({ id: "SPELL_DETAIL_LEVEL" }, { level })} value={level}>
+                <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-x-4 space-y-4">
+                  {spells.map((spell) => (
+                    <Card key={spell.id} className="inline-block">
+                      <SpellCard spellDetail={spell.markdown} />
+                    </Card>
+                  ))}
+                </div>
+              </Collapsible>
+              {array.length !== index + 1 && <Divider isFullBleed />}
+            </React.Fragment>
           ))}
         </Stack>
       </Card>
