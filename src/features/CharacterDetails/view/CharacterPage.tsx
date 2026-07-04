@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useGetCharacterQuery } from "State/Character";
 import CircularProgress from "@mui/material/CircularProgress";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import Tab from "@mui/material/Tab";
-import TabPanel from "@mui/lab/TabPanel";
+import { TabList, Tab } from "@astryxdesign/core/TabList";
+import TabPanel from "Components/TabPanel";
 import CharacterSummary from "../components/CharacterSummary";
 import { Modules } from "Constants/routes";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
@@ -23,7 +21,7 @@ function CharacterPage() {
   const { characterId } = useParams<{ characterId: string }>();
   const { data: character, isLoading } = useGetCharacterQuery(characterId ?? skipToken);
   useGetCharacterSpellsQuery(characterId ?? skipToken);
-  const [activeTab, setActiveTab] = useState<number>(0);
+  const [activeTab, setActiveTab] = useState<string>(intl.formatMessage({ id: "ABILITIES" }));
 
   if (!characterId) {
     navigate(Modules.CHARACTERS);
@@ -41,27 +39,28 @@ function CharacterPage() {
     <ActiveCharacterContext value={character}>
       <CharacterSummary />
 
-      <TabContext value={activeTab}>
-        <TabList onChange={(_e, newValue) => setActiveTab(newValue)} variant="scrollable" scrollButtons="auto">
-          <Tab label={intl.formatMessage({ id: "ABILITIES" })} />
-          <Tab label={intl.formatMessage({ id: "SKILLS" })} />
-          <Tab label={intl.formatMessage({ id: "KNOWN_SPELLS" })} />
-          <Tab label={intl.formatMessage({ id: "PREPARED_SPELLS" })} />
-        </TabList>
+      <TabList value={activeTab} onChange={setActiveTab} layout="fill" hasDivider>
+        <Tab value={intl.formatMessage({ id: "ABILITIES" })} label={intl.formatMessage({ id: "ABILITIES" })} />
+        <Tab value={intl.formatMessage({ id: "SKILLS" })} label={intl.formatMessage({ id: "SKILLS" })} />
+        <Tab value={intl.formatMessage({ id: "KNOWN_SPELLS" })} label={intl.formatMessage({ id: "KNOWN_SPELLS" })} />
+        <Tab
+          value={intl.formatMessage({ id: "PREPARED_SPELLS" })}
+          label={intl.formatMessage({ id: "PREPARED_SPELLS" })}
+        />
+      </TabList>
 
-        <TabPanel value={0} className="px-0">
-          <CharacterAbilities />
-        </TabPanel>
-        <TabPanel value={1} className="px-0">
-          <CharacterSkills />
-        </TabPanel>
-        <TabPanel value={2} className="px-0">
-          <KnownSpells />
-        </TabPanel>
-        <TabPanel value={3} className="px-0">
-          <PreparedSpells />
-        </TabPanel>
-      </TabContext>
+      <TabPanel value={intl.formatMessage({ id: "ABILITIES" })} currentValue={activeTab}>
+        <CharacterAbilities />
+      </TabPanel>
+      <TabPanel value={intl.formatMessage({ id: "SKILLS" })} currentValue={activeTab}>
+        <CharacterSkills />
+      </TabPanel>
+      <TabPanel value={intl.formatMessage({ id: "KNOWN_SPELLS" })} currentValue={activeTab}>
+        <KnownSpells />
+      </TabPanel>
+      <TabPanel value={intl.formatMessage({ id: "PREPARED_SPELLS" })} currentValue={activeTab}>
+        <PreparedSpells />
+      </TabPanel>
     </ActiveCharacterContext>
   );
 }
