@@ -9,6 +9,7 @@ import { Table, useTableSortable, useTableSortableState, type TableColumn } from
 import useTableClick from "Hooks/useTableClick";
 import { useState } from "react";
 import type { SpellSummary } from "State/Spell/type";
+import SkeletonTable from "./SkeletonTable";
 
 interface SpellsTableProps<T extends SpellSummary> {
   spells?: T[];
@@ -16,6 +17,7 @@ interface SpellsTableProps<T extends SpellSummary> {
   fieldDefs: ReadonlyArray<FieldDefinition>;
   setSpell: (spell: T | undefined) => void;
   activeSpell: T | undefined;
+  isLoading?: boolean;
 }
 
 function SpellsTable<T extends SpellSummary>({
@@ -24,6 +26,7 @@ function SpellsTable<T extends SpellSummary>({
   fieldDefs,
   setSpell,
   activeSpell,
+  isLoading = false,
 }: SpellsTableProps<T>) {
   const [filters, setFilters] = useState<PowerSearchFilter[]>([]);
   const { config, applyFilters } = usePowerSearchConfig(fieldDefs);
@@ -45,15 +48,18 @@ function SpellsTable<T extends SpellSummary>({
         onChange={(newFilters) => setFilters([...newFilters])}
         resultCount={filteredSpells.length}
       />
-      <Table
-        data={sortedSpells}
-        columns={columns}
-        plugins={{ sortable: sortablePlugin, clickable: clickablePlugin }}
-        density="compact"
-        dividers="grid"
-        hasHover
-        scrollWrapper={undefined}
-      />
+      {isLoading ?
+        <SkeletonTable rows={10} columns={columns.length} />
+      : <Table
+          data={sortedSpells}
+          columns={columns}
+          plugins={{ sortable: sortablePlugin, clickable: clickablePlugin }}
+          density="compact"
+          dividers="grid"
+          hasHover
+          scrollWrapper={undefined}
+        />
+      }
     </Stack>
   );
 }

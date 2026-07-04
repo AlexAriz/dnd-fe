@@ -6,7 +6,7 @@ import type { SpellSummary } from "State/Spell/type";
 import SpellCard from "Components/SpellCard";
 
 function SpellList() {
-  const { data: spellSummaries } = useGetSpellsQuery();
+  const { data: spellSummaries, isLoading } = useGetSpellsQuery();
   const [activeSpell, setActiveSpell] = useState<SpellSummary>();
   const { columns, fields } = useSpellsTableColumns<SpellSummary>();
 
@@ -19,6 +19,7 @@ function SpellList() {
           setSpell={setActiveSpell}
           spells={spellSummaries}
           columns={columns}
+          isLoading={isLoading}
         />
       </div>
 

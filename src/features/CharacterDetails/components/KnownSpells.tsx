@@ -9,7 +9,7 @@ import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 
 function KnownSpells() {
   const character = useRequiredContext(ActiveCharacterContext);
-  const { data: spells = [] } = useGetCharacterSpellsQuery(character.id);
+  const { data: spells = [], isLoading } = useGetCharacterSpellsQuery(character.id);
   const [activeSpell, setActiveSpell] = useState<CharacterSpell>();
   const { columns, fields } = useCharacterSpellsColumns();
 
@@ -22,6 +22,7 @@ function KnownSpells() {
           setSpell={setActiveSpell}
           spells={spells}
           columns={columns}
+          isLoading={isLoading}
         />
       </div>
 
