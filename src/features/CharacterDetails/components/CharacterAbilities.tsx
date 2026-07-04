@@ -1,19 +1,17 @@
-import Grid from "@mui/material/Grid";
+import { Grid } from "@astryxdesign/core/Grid";
 import { useGetStatsQuery } from "State/Stats";
-import CircularProgress from "@mui/material/CircularProgress";
+import LoadingContent from "Components/LoadingContent";
 import AbilityStat from "./AbilityStat";
 
 function CharacterAbilities() {
   const { data: stats, isLoading } = useGetStatsQuery();
 
-  if (isLoading || !stats) return <CircularProgress />;
+  if (isLoading || !stats) return <LoadingContent />;
 
   return (
-    <Grid container columns={3} rowSpacing={2} columnSpacing={4}>
+    <Grid columns={3} rowGap={2} columnGap={4}>
       {stats.map((stat) => (
-        <Grid key={stat.id} size={1}>
-          <AbilityStat stat={stat} />
-        </Grid>
+        <AbilityStat key={stat.id} stat={stat} />
       ))}
     </Grid>
   );

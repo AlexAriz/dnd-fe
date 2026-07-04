@@ -1,12 +1,11 @@
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import useRequiredContext from "Hooks/useRequiredContext";
 import { getAbilityCheck, getAbilitySave } from "Rules/stats";
 import type { StatSummary } from "State/Stats/type";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
-import Divider from "@mui/material/Divider";
 import { useIntl } from "react-intl";
+import { Card } from "@astryxdesign/core/Card";
+import { Layout, LayoutFooter, LayoutHeader, LayoutPanel, Stack } from "@astryxdesign/core/Layout";
+import { Text } from "@astryxdesign/core/Text";
 
 interface AbilityStatProps {
   stat: StatSummary;
@@ -17,36 +16,40 @@ function AbilityStat({ stat }: AbilityStatProps) {
   const character = useRequiredContext(ActiveCharacterContext);
 
   return (
-    <Stack component={Paper} variant="outlined" spacing={1}>
-      <Typography variant="body1" align="center">
-        {stat.name}
-      </Typography>
-
-      <Stack
-        direction="row"
-        className="justify-center"
-        spacing={2}
-        divider={<Divider orientation="vertical" flexItem />}
-      >
-        <div>
-          <Typography variant="caption">{intl.formatMessage({ id: "ABILITY_CHECK" })}</Typography>
-          <Typography variant="h4" align="center">
-            {intl.formatNumber(getAbilityCheck(character, stat.id), { signDisplay: "exceptZero" })}
-          </Typography>
-        </div>
-
-        <div>
-          <Typography variant="caption">{intl.formatMessage({ id: "ABILITY_SAVE" })}</Typography>
-          <Typography variant="h4" align="center">
-            {intl.formatNumber(getAbilitySave(character, stat.id), { signDisplay: "exceptZero" })}
-          </Typography>
-        </div>
-      </Stack>
-
-      <Typography variant="body2" align="center">
-        {character.stats[stat.id].value}
-      </Typography>
-    </Stack>
+    <Card>
+      <Layout
+        header={
+          <LayoutHeader hasDivider className="text-center">
+            <Text>{stat.name}</Text>
+          </LayoutHeader>
+        }
+        start={
+          <LayoutPanel width="50%" hasDivider>
+            <Stack align="end">
+              <Text type="supporting">{intl.formatMessage({ id: "ABILITY_CHECK" })}</Text>
+              <Text type="large">
+                {intl.formatNumber(getAbilityCheck(character, stat.id), { signDisplay: "exceptZero" })}
+              </Text>
+            </Stack>
+          </LayoutPanel>
+        }
+        end={
+          <LayoutPanel width="50%">
+            <Stack align="start">
+              <Text type="supporting">{intl.formatMessage({ id: "ABILITY_SAVE" })}</Text>
+              <Text type="large">
+                {intl.formatNumber(getAbilitySave(character, stat.id), { signDisplay: "exceptZero" })}
+              </Text>
+            </Stack>
+          </LayoutPanel>
+        }
+        footer={
+          <LayoutFooter hasDivider className="text-center">
+            <Text>{character.stats[stat.id].value}</Text>
+          </LayoutFooter>
+        }
+      />
+    </Card>
   );
 }
 
