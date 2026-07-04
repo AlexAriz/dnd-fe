@@ -1,7 +1,22 @@
 import type { TablePlugin } from "@astryxdesign/core/Table";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
-function useTableClick<T extends Record<string, unknown>>(callback: (item: T) => void): TablePlugin<T> {
+interface UseTableClickConfig<T extends Record<string, unknown>> {
+  selectedItem: T | undefined;
+  onClickItem: (item: T | undefined) => void;
+}
+function useTableClick<T extends Record<string, unknown>>(config: UseTableClickConfig<T>): TablePlugin<T> {
+  const onClick = useCallback(
+    (item: T) => {
+      if (item.id === config.selectedItem?.id) {
+        config.onClickItem(undefined);
+      } else {
+        config.onClickItem(item);
+      }
+    },
+    [config],
+  );
+
   return useMemo(
     (): TablePlugin<T> => ({
       transformBodyCell(props, _column, item) {
@@ -9,12 +24,16 @@ function useTableClick<T extends Record<string, unknown>>(callback: (item: T) =>
           ...props,
           htmlProps: {
             ...props.htmlProps,
-            onClick: () => callback(item),
+            className: (props.htmlProps.className ?? "").concat(
+              "hover:cursor-pointer",
+              config.selectedItem?.id === item.id ? "bg-(--color-overlay-hover)" : "",
+            ),
+            onClick: () => onClick(item),
           },
         };
       },
     }),
-    [callback],
+    [config.selectedItem?.id, onClick],
   );
 }
 

@@ -17,7 +17,7 @@ function KnownSpells() {
     <div className="flex flex-col-reverse md:flex-row h-full min-h-0">
       <div className="flex-1 overflow-auto">
         <SpellsTable
-          activeSpellId={activeSpell?.id}
+          activeSpell={activeSpell}
           fieldDefs={fields}
           setSpell={setActiveSpell}
           spells={spells}

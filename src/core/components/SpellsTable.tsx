@@ -15,7 +15,7 @@ interface SpellsTableProps<T extends SpellSummary> {
   columns: TableColumn<T>[];
   fieldDefs: ReadonlyArray<FieldDefinition>;
   setSpell: (spell: T | undefined) => void;
-  activeSpellId?: string;
+  activeSpell: T | undefined;
 }
 
 function SpellsTable<T extends SpellSummary>({
@@ -23,7 +23,7 @@ function SpellsTable<T extends SpellSummary>({
   columns,
   fieldDefs,
   setSpell,
-  activeSpellId,
+  activeSpell,
 }: SpellsTableProps<T>) {
   const [filters, setFilters] = useState<PowerSearchFilter[]>([]);
   const { config, applyFilters } = usePowerSearchConfig(fieldDefs);
@@ -35,14 +35,7 @@ function SpellsTable<T extends SpellSummary>({
   });
   const sortablePlugin = useTableSortable<T>(sortConfig);
 
-  const onRowClick = (spell: T) => {
-    if (spell.id === activeSpellId) {
-      setSpell(undefined);
-    } else {
-      setSpell(spell);
-    }
-  };
-  const clickablePlugin = useTableClick<T>(onRowClick);
+  const clickablePlugin = useTableClick<T>({ selectedItem: activeSpell, onClickItem: setSpell });
 
   return (
     <Stack gap={4}>
