@@ -1,12 +1,10 @@
 import { useIntl } from "react-intl";
-import Typography from "@mui/material/Typography";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Heading } from "@astryxdesign/core/Heading";
+import LoadingContent from "Components/LoadingContent";
 import { useGetCharactersQuery } from "State/Character";
 import CharacterCard from "../components/CharacterCard";
-import Grid from "@mui/material/Grid";
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
-import { Link } from "react-router";
+import { Stack } from "@astryxdesign/core/Stack";
+import { Button } from "@astryxdesign/core/Button";
 import { CHARACTER_PATHS } from "Constants/routes";
 
 function CharacterList() {
@@ -15,21 +13,19 @@ function CharacterList() {
 
   return (
     <>
-      <Typography variant="h3">{intl.formatMessage({ id: "MODULE_CHARACTERS" })}</Typography>
+      <div className="flex justify-between mb-4">
+        <Heading level={1}>{intl.formatMessage({ id: "MODULE_CHARACTERS" })}</Heading>
 
-      {isLoading && <CircularProgress />}
+        <Button href={CHARACTER_PATHS.CREATE} label={intl.formatMessage({ id: "CREATE" })} variant="primary" />
+      </div>
 
-      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 9, lg: 12 }}>
+      {isLoading && <LoadingContent />}
+
+      <Stack direction="horizontal" wrap="wrap" gap={4}>
         {characters?.map((character) => (
-          <Grid key={character.id} size={3}>
-            <CharacterCard character={character} />
-          </Grid>
+          <CharacterCard key={character.id} character={character} />
         ))}
-      </Grid>
-
-      <Fab color="primary" className="fixed bottom-3 right-3" component={Link} to={CHARACTER_PATHS.CREATE}>
-        <AddIcon />
-      </Fab>
+      </Stack>
     </>
   );
 }
