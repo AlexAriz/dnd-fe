@@ -39,7 +39,7 @@ function CharacterPage() {
     <ActiveCharacterContext value={character}>
       <CharacterSummary />
 
-      <TabList value={activeTab} onChange={setActiveTab} layout="fill" hasDivider>
+      <TabList value={activeTab} onChange={setActiveTab} hasDivider>
         <Tab value={intl.formatMessage({ id: "ABILITIES" })} label={intl.formatMessage({ id: "ABILITIES" })} />
         <Tab value={intl.formatMessage({ id: "SKILLS" })} label={intl.formatMessage({ id: "SKILLS" })} />
         <Tab value={intl.formatMessage({ id: "KNOWN_SPELLS" })} label={intl.formatMessage({ id: "KNOWN_SPELLS" })} />
