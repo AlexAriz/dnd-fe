@@ -1,17 +1,15 @@
-import Card from "@mui/material/Card";
 import type { CharacterSummary } from "State/Character/type";
-import CardActionArea from "@mui/material/CardActionArea";
-import Typography from "@mui/material/Typography";
-import CardContent from "@mui/material/CardContent";
 import { useIntl } from "react-intl";
-import { Link } from "react-router";
 import { CHARACTER_PATHS } from "Constants/routes";
 import { useEffect, useState } from "react";
 import { getImageUrl } from "Libs/Supabase";
 import useRequiredContext from "Hooks/useRequiredContext";
 import ProfileContext from "Context/ProfileContext";
-import CardMedia from "@mui/material/CardMedia";
 import { CharacterAvatarSize } from "Constants/avatar";
+import { ClickableCard } from "@astryxdesign/core/ClickableCard";
+import { Item } from "@astryxdesign/core/Item";
+import { Avatar } from "@astryxdesign/core/Avatar";
+import { Text } from "@astryxdesign/core/Text";
 
 interface CharacterCardProps {
   character: CharacterSummary;
@@ -45,27 +43,21 @@ function CharacterCard({ character }: CharacterCardProps) {
   }, [character.id, profile.id]);
 
   return (
-    <Card>
-      <CardActionArea component={Link} to={CHARACTER_PATHS.DETAILS.replace(":characterId", character.id)}>
-        <div className="flex">
-          <CardMedia src={avatarSrc} component="img" sx={{ width: CharacterAvatarSize.WIDTH }} />
-          <CardContent>
-            <Typography variant="h6" gutterBottom>
-              {character.name}
-            </Typography>
-
-            {character.classes.map((characterClass) => (
-              <Typography key={characterClass.id} variant="caption">
-                {intl.formatMessage(
-                  { id: "CHARACTER_CLASS" },
-                  { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass?.name },
-                )}
-              </Typography>
-            ))}
-          </CardContent>
-        </div>
-      </CardActionArea>
-    </Card>
+    <ClickableCard label={character.name} href={CHARACTER_PATHS.DETAILS.replace(":characterId", character.id)}>
+      <Item
+        label={character.name}
+        startContent={<Avatar src={avatarSrc} name={character.name} size={CharacterAvatarSize.HEIGHT} />}
+        description={character.classes.map((characterClass) => (
+          <Text key={characterClass.id} type="supporting">
+            {intl.formatMessage(
+              { id: "CHARACTER_CLASS" },
+              { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass?.name },
+            )}
+          </Text>
+        ))}
+        className="p-0"
+      />
+    </ClickableCard>
   );
 }
 
