@@ -2,11 +2,9 @@ import useRequiredContext from "Hooks/useRequiredContext";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import { useEffect, useState } from "react";
 import { getImageUrl } from "Libs/Supabase";
-import Avatar from "@mui/material/Avatar";
+import { Avatar } from "@astryxdesign/core/Avatar";
 import ProfileContext from "Context/ProfileContext";
-
-const WIDTH = 96;
-const HEIGHT = 96;
+import { CharacterAvatarSize } from "Constants/avatar";
 
 function CharacterAvatar() {
   const character = useRequiredContext(ActiveCharacterContext);
@@ -20,8 +18,8 @@ function CharacterAvatar() {
         filename: `${profile.id}/${character.id}/avatar`,
         options: {
           transform: {
-            width: WIDTH,
-            height: HEIGHT,
+            width: CharacterAvatarSize.WIDTH,
+            height: CharacterAvatarSize.HEIGHT,
             resize: "contain",
           },
         },
@@ -36,7 +34,7 @@ function CharacterAvatar() {
     }
   }, [character.id, profile.id]);
 
-  return <Avatar src={avatarSrc} variant="rounded" sx={{ width: WIDTH, height: HEIGHT }} />;
+  return <Avatar src={avatarSrc} name={character.name} size={CharacterAvatarSize.HEIGHT} />;
 }
 
 export default CharacterAvatar;

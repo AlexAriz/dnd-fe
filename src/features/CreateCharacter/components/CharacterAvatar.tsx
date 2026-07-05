@@ -2,6 +2,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import Avatar from "@mui/material/Avatar";
 import { useEffect, useState } from "react";
 import FileUpload from "Components/FileUpload";
+import { CharacterAvatarSize } from "Constants/avatar";
 
 interface CharacterAvatarProps {
   setFile: (file: File) => void;
@@ -26,7 +27,11 @@ function CharacterAvatar({ setFile }: CharacterAvatarProps) {
 
   return (
     <ButtonBase className="w-24 h-24" disableRipple component="label" role={undefined} tabIndex={-1}>
-      <Avatar src={fileSrc} variant="rounded" sx={{ width: 96, height: 96 }} />
+      <Avatar
+        src={fileSrc}
+        variant="rounded"
+        sx={{ width: CharacterAvatarSize.WIDTH, height: CharacterAvatarSize.HEIGHT }}
+      />
       <FileUpload onChange={handleFileSelect} accept="image/*" />
     </ButtonBase>
   );

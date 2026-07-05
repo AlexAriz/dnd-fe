@@ -1,72 +1,87 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Stack, StackItem } from "@astryxdesign/core/Stack";
+import { Heading, Text } from "@astryxdesign/core/Text";
 import { useIntl } from "react-intl";
 import CharacterAvatar from "./CharacterAvatar";
 import useRequiredContext from "Hooks/useRequiredContext";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import { List, ListItem } from "@astryxdesign/core/List";
 import CharacterInspiration from "./CharacterInspiration";
 import CharacterHealth from "./CharacterHealth";
-import Divider from "@mui/material/Divider";
+import { Divider } from "@astryxdesign/core/Divider";
 
 function CharacterSummary() {
   const character = useRequiredContext(ActiveCharacterContext);
   const intl = useIntl();
 
   return (
-    <Stack className="pt-2 space-y-4">
-      <Stack direction={{ xs: "column", sm: "row" }} className="space-x-2 space-y-2">
-        <Stack direction="row" className="grow space-x-2">
+    <Stack gap={4}>
+      <Stack direction="horizontal" gap={2} wrap="wrap">
+        <StackItem>
           <CharacterAvatar />
+        </StackItem>
 
-          <Stack className="grow">
-            <Typography variant="h5">{character.name}</Typography>
+        <StackItem size="fill">
+          <Stack>
+            <Heading level={1}>{character.name}</Heading>
 
-            <List dense>
+            <List density="compact">
               {character.classes.map((characterClass) => (
-                <ListItem key={characterClass.id} disableGutters>
-                  {intl.formatMessage(
+                <ListItem
+                  key={characterClass.id}
+                  className="pl-0"
+                  label={intl.formatMessage(
                     { id: "CHARACTER_CLASS" },
                     { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass?.name },
                   )}
-                </ListItem>
+                />
               ))}
             </List>
           </Stack>
+        </StackItem>
 
-          <Stack className="justify-center">
-            <CharacterInspiration />
-          </Stack>
-        </Stack>
+        <StackItem crossAlignSelf="center">
+          <CharacterInspiration />
+        </StackItem>
 
-        <CharacterHealth />
+        <StackItem>
+          <CharacterHealth />
+        </StackItem>
       </Stack>
 
-      <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} className="justify-evenly">
-        <Stack className="space-y-2">
-          <Typography align="center">{intl.formatMessage({ id: "PROFICIENCY_BONUS" })}</Typography>
-          <Typography align="center">
-            {intl.formatNumber(character.proficiencyBonus, { signDisplay: "exceptZero" })}
-          </Typography>
-        </Stack>
+      <Stack direction="horizontal" justify="evenly">
+        <StackItem>
+          <Stack align="center" gap={2}>
+            <Text type="supporting">{intl.formatMessage({ id: "PROFICIENCY_BONUS" })}</Text>
+            <Text type="large">{intl.formatNumber(character.proficiencyBonus, { signDisplay: "exceptZero" })}</Text>
+          </Stack>
+        </StackItem>
 
-        <Stack className="space-y-2">
-          <Typography align="center">{intl.formatMessage({ id: "SPEED" })}</Typography>
-          <Typography align="center">{character.speeds.walk}</Typography>
-        </Stack>
+        <Divider orientation="vertical" className="self-stretch h-auto" />
 
-        <Stack className="space-y-2">
-          <Typography align="center">{intl.formatMessage({ id: "INITIATIVE" })}</Typography>
-          <Typography align="center">
-            {intl.formatNumber(character.initiative, { signDisplay: "exceptZero" })}
-          </Typography>
-        </Stack>
+        <StackItem>
+          <Stack align="center" gap={2}>
+            <Text type="supporting">{intl.formatMessage({ id: "SPEED" })}</Text>
+            <Text type="large">{character.speeds.walk}</Text>
+          </Stack>
+        </StackItem>
 
-        <Stack className="space-y-2">
-          <Typography align="center">{intl.formatMessage({ id: "ARMOR_CLASS" })}</Typography>
-          <Typography align="center">{character.armorClass}</Typography>
-        </Stack>
+        <Divider orientation="vertical" className="self-stretch h-auto" />
+
+        <StackItem>
+          <Stack align="center" gap={2}>
+            <Text type="supporting">{intl.formatMessage({ id: "INITIATIVE" })}</Text>
+            <Text type="large">{intl.formatNumber(character.initiative, { signDisplay: "exceptZero" })}</Text>
+          </Stack>
+        </StackItem>
+
+        <Divider orientation="vertical" className="self-stretch h-auto" />
+
+        <StackItem>
+          <Stack align="center" gap={2}>
+            <Text type="supporting">{intl.formatMessage({ id: "ARMOR_CLASS" })}</Text>
+            <Text type="large">{character.armorClass}</Text>
+          </Stack>
+        </StackItem>
       </Stack>
     </Stack>
   );

@@ -11,6 +11,7 @@ import { getImageUrl } from "Libs/Supabase";
 import useRequiredContext from "Hooks/useRequiredContext";
 import ProfileContext from "Context/ProfileContext";
 import CardMedia from "@mui/material/CardMedia";
+import { CharacterAvatarSize } from "Constants/avatar";
 
 interface CharacterCardProps {
   character: CharacterSummary;
@@ -27,8 +28,8 @@ function CharacterCard({ character }: CharacterCardProps) {
         filename: `${profile.id}/${character.id}/avatar`,
         options: {
           transform: {
-            width: 96,
-            height: 96,
+            width: CharacterAvatarSize.WIDTH,
+            height: CharacterAvatarSize.HEIGHT,
             resize: "contain",
           },
         },
@@ -47,7 +48,7 @@ function CharacterCard({ character }: CharacterCardProps) {
     <Card>
       <CardActionArea component={Link} to={CHARACTER_PATHS.DETAILS.replace(":characterId", character.id)}>
         <div className="flex">
-          <CardMedia src={avatarSrc} component="img" sx={{ width: 96 }} />
+          <CardMedia src={avatarSrc} component="img" sx={{ width: CharacterAvatarSize.WIDTH }} />
           <CardContent>
             <Typography variant="h6" gutterBottom>
               {character.name}
