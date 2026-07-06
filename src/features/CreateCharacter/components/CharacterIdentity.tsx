@@ -1,63 +1,59 @@
-import TextField from "@mui/material/TextField";
-import { useAppDispatch } from "Hooks/state";
+import { useAppDispatch, useAppSelector } from "Hooks/state";
 import { useIntl } from "react-intl";
-import { newCharacterActions } from "../store";
-import CharacterAvatar from "./CharacterAvatar";
-import NumberField from "Components/NumberField";
-import Grid from "@mui/material/Grid";
+import { newCharacterActions, newCharacterSelectors } from "../store";
+import { Stack, StackItem } from "@astryxdesign/core/Stack";
+import { TextInput } from "@astryxdesign/core/TextInput";
+import { FileInput, type FileInputProps } from "@astryxdesign/core/FileInput";
+import { useEffect, useState } from "react";
+import { Avatar } from "@astryxdesign/core/Avatar";
+import { CharacterAvatarSize } from "Constants/avatar";
 
 interface CharacterIdentityProps {
-  setFile: (file: File) => void;
+  file: File | null;
+  setFile: (file: File | null) => void;
 }
 
-function CharacterIdentity({ setFile }: CharacterIdentityProps) {
+function CharacterIdentity({ file, setFile }: CharacterIdentityProps) {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const character = useAppSelector(newCharacterSelectors.selectCharacter);
+  const [fileSrc, setFileSrc] = useState<string>();
+
+  useEffect(() => {
+    return () => {
+      if (fileSrc) URL.revokeObjectURL(fileSrc);
+    };
+  }, [fileSrc]);
+
+  const handleFileSelect: FileInputProps["onChange"] = (files) => {
+    const file = Array.isArray(files) ? files[0] : files;
+
+    setFile(file);
+    setFileSrc(file ? URL.createObjectURL(file) : undefined);
+  };
 
   return (
-    <Grid container columns={{ xs: 3, md: 6 }} spacing={2} className="my-2 items-center">
-      <Grid size={3} className="flex items-center space-x-2">
-        <CharacterAvatar setFile={setFile} />
-        <TextField
-          className="grow"
-          label={intl.formatMessage({ id: "NAME" })}
-          onChange={(e) => dispatch(newCharacterActions.setName(e.target.value))}
-        />
-      </Grid>
+    <Stack direction="horizontal" gap={2}>
+      <StackItem>
+        <Avatar src={fileSrc} name={character.name} size={CharacterAvatarSize.HEIGHT} />
+      </StackItem>
 
-      <Grid size={1}>
-        <NumberField
-          className="w-full"
-          label={intl.formatMessage({ id: "ARMOR_CLASS" })}
-          min={1}
-          step={1}
-          defaultValue={1}
-          onValueChange={(value) => dispatch(newCharacterActions.setArmorClass(value ?? 1))}
-        />
-      </Grid>
+      <StackItem size="fill">
+        <Stack gap={2}>
+          <StackItem>
+            <TextInput
+              label={intl.formatMessage({ id: "NAME" })}
+              value={character.name}
+              onChange={(value) => dispatch(newCharacterActions.setName(value))}
+            />
+          </StackItem>
 
-      <Grid size={1}>
-        <NumberField
-          className="w-full"
-          label={intl.formatMessage({ id: "HITPOINTS" })}
-          min={1}
-          step={1}
-          defaultValue={1}
-          onValueChange={(value) => dispatch(newCharacterActions.setHitpoints(value ?? 1))}
-        />
-      </Grid>
-
-      <Grid size={1}>
-        <NumberField
-          className="w-full"
-          label={intl.formatMessage({ id: "SPEED" })}
-          min={1}
-          step={1}
-          defaultValue={30}
-          onValueChange={(value) => dispatch(newCharacterActions.setSpeed(value ?? 1))}
-        />
-      </Grid>
-    </Grid>
+          <StackItem>
+            <FileInput label="Avatar" isLabelHidden value={file} onChange={handleFileSelect} accept="image/*" />
+          </StackItem>
+        </Stack>
+      </StackItem>
+    </Stack>
   );
 }
 
