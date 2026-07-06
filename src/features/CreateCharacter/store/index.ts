@@ -205,6 +205,10 @@ const newCharacterSlice = createSlice({
   }),
   selectors: {
     selectCharacter: (character): CreateCharacterPayload => character,
+    selectArmorClass: (character) => character.armorClass,
+    selectHitpoints: (character) => character.hitpoints.base,
+    selectSpeed: (character) => character.speed.walk,
+    selectLevel: (character) => character.characterClass.level,
     selectStatScore: (character, statId: AvailableStats) => character.stats[statId].value,
     selectStatProficiencies: (character) =>
       Object.entries(character.stats)
