@@ -49,16 +49,16 @@ function CharacterPage() {
         />
       </TabList>
 
-      <TabPanel value={intl.formatMessage({ id: "ABILITIES" })} currentValue={activeTab}>
+      <TabPanel className="pt-6" value={intl.formatMessage({ id: "ABILITIES" })} currentValue={activeTab}>
         <CharacterAbilities />
       </TabPanel>
-      <TabPanel value={intl.formatMessage({ id: "SKILLS" })} currentValue={activeTab}>
+      <TabPanel className="pt-6" value={intl.formatMessage({ id: "SKILLS" })} currentValue={activeTab}>
         <CharacterSkills />
       </TabPanel>
-      <TabPanel value={intl.formatMessage({ id: "KNOWN_SPELLS" })} currentValue={activeTab}>
+      <TabPanel className="pt-6" value={intl.formatMessage({ id: "KNOWN_SPELLS" })} currentValue={activeTab}>
         <KnownSpells />
       </TabPanel>
-      <TabPanel value={intl.formatMessage({ id: "PREPARED_SPELLS" })} currentValue={activeTab}>
+      <TabPanel className="pt-6" value={intl.formatMessage({ id: "PREPARED_SPELLS" })} currentValue={activeTab}>
         <PreparedSpells />
       </TabPanel>
     </ActiveCharacterContext>
