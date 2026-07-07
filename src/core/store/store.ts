@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import auth from "State/Auth";
+import theme from "State/Theme";
 import characterApi from "State/Character";
 import characterSpellsApi from "State/CharacterSpells";
 import newCharacter from "Features/CreateCharacter/store";
@@ -23,6 +24,7 @@ const store = configureStore({
     skillApi: skillApi.reducer,
     spellApi: spellApi.reducer,
     statApi: statApi.reducer,
+    theme,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()

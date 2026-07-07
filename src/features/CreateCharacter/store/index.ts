@@ -188,19 +188,6 @@ const newCharacterSlice = createSlice({
         }
       });
     }),
-    toggleStat: create.reducer<AvailableStats>((character, action) => {
-      if (character.stats[action.payload].proficiency) {
-        character.stats[action.payload] = {
-          ...character.stats[action.payload],
-          proficiency: false,
-        };
-      } else {
-        character.stats[action.payload] = {
-          ...character.stats[action.payload],
-          proficiency: true,
-        };
-      }
-    }),
     resetCharacter: () => initialState,
   }),
   selectors: {
@@ -215,9 +202,7 @@ const newCharacterSlice = createSlice({
         .filter(([, statValue]) => statValue.proficiency)
         .map(([statId]) => statId as AvailableStats),
     selectStatBonuses: (character): StatBonus[] => character.statBonuses,
-    selectSkills: (character): CreateCharacterPayload["skills"] => {
-      return character.skills;
-    },
+    selectSkill: (character, skillName: AvailableSkills) => character.skills[skillName],
     selectCanSubmit: (character): boolean => {
       if (!character.name || !character.characterClass.classId) {
         return false;

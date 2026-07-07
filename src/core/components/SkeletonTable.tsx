@@ -11,7 +11,7 @@ function SkeletonTable({ rows, columns }: SkeletonTableProps) {
       {Array.from({ length: rows }).map((_, rowIndex) => (
         <Stack gap={2} key={rowIndex} direction="horizontal">
           {Array.from({ length: columns }).map((_, colIndex) => (
-            <Skeleton height="2rem" key={colIndex} index={rowIndex * rows + colIndex} />
+            <Skeleton height="2rem" key={colIndex} index={rowIndex * columns + colIndex} />
           ))}
         </Stack>
       ))}

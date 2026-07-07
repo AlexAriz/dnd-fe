@@ -6,7 +6,7 @@ import router from "Libs/router";
 import { PublicRoutes } from "Constants/routes";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 
-function SettingsMenu() {
+function UserMenu() {
   const intl = useIntl();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -32,4 +32,4 @@ function SettingsMenu() {
     />
   );
 }
-export default SettingsMenu;
+export default UserMenu;

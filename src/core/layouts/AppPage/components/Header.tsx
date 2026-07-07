@@ -1,9 +1,20 @@
 import { TopNav } from "@astryxdesign/core/TopNav";
 import Nav from "./Nav";
-import SettingsMenu from "./SettingsMenu";
+import UserMenu from "./UserMenu";
+import ThemePicker from "Features/Theme/components/ThemePicker";
 
 function Header() {
-  return <TopNav startContent={<Nav />} endContent={<SettingsMenu />} />;
+  return (
+    <TopNav
+      startContent={<Nav />}
+      endContent={
+        <>
+          <ThemePicker />
+          <UserMenu />
+        </>
+      }
+    />
+  );
 }
 
 export default Header;

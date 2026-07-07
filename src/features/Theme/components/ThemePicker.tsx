@@ -1,36 +1,22 @@
 import { useIntl } from "react-intl";
 
-import { useColorScheme } from "@mui/material/styles";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
-import Typography from "@mui/material/Typography";
-
-import type { Mode } from "../types/theme";
-import { THEMES } from "../constants/themes";
+import { IconButton } from "@astryxdesign/core/IconButton";
+import { useAppDispatch, useAppSelector } from "Hooks/state";
+import { themeActions, themeSelectors } from "State/Theme";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
 function ThemePicker() {
   const intl = useIntl();
-  const { mode, setMode } = useColorScheme();
-  if (!mode) {
-    return null;
-  }
-
-  const toggleTheme = (_event: React.MouseEvent<HTMLElement>, newMode: Mode) => {
-    setMode(newMode);
-  };
+  const dispatch = useAppDispatch();
+  const theme = useAppSelector(themeSelectors.selectTheme);
 
   return (
-    <>
-      <Typography>{intl.formatMessage({ id: "THEME" })}</Typography>
-
-      <ToggleButtonGroup value={mode} exclusive onChange={toggleTheme}>
-        {Object.values(THEMES).map(({ value, Icon }) => (
-          <ToggleButton key={value} value={value}>
-            <Icon />
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
-    </>
+    <IconButton
+      label={intl.formatMessage({ id: "THEME" })}
+      icon={theme === "dark" ? <SunIcon /> : <MoonIcon />}
+      variant="ghost"
+      onClick={() => dispatch(themeActions.toggleTheme())}
+    />
   );
 }
 
