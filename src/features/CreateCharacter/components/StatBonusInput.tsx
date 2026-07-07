@@ -1,24 +1,22 @@
-import Button from "@mui/material/Button";
-import FormControl from "@mui/material/FormControl";
-import Grid from "@mui/material/Grid";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
-import NumberField from "Components/NumberField";
 import { useAppDispatch } from "Hooks/state";
 import { useState } from "react";
 import type { AvailableStats } from "State/Stats/type";
 import { newCharacterActions } from "../store";
 import { useGetStatsQuery } from "State/Stats";
 import { useIntl } from "react-intl";
+import { Grid } from "@astryxdesign/core/Grid";
+import { Button } from "@astryxdesign/core/Button";
+import { TextInput } from "@astryxdesign/core/TextInput";
+import { Selector } from "@astryxdesign/core/Selector";
+import { NumberInput } from "@astryxdesign/core/NumberInput";
+import { Stack } from "@astryxdesign/core/Stack";
 
 function StatBonusInput() {
   const intl = useIntl();
   const { data: stats = [] } = useGetStatsQuery();
   const dispatch = useAppDispatch();
   const [bonusName, setBonusName] = useState<string>("");
-  const [bonusStatId, setBonusStatId] = useState<AvailableStats | "">("");
+  const [bonusStatId, setBonusStatId] = useState<AvailableStats | null>(null);
   const [bonusScore, setBonusScore] = useState<number>(0);
 
   const canAddBonus: boolean = Boolean(bonusName && bonusStatId && bonusScore);
@@ -28,56 +26,43 @@ function StatBonusInput() {
       newCharacterActions.addStatBonus({ name: bonusName!, statId: bonusStatId as AvailableStats, bonus: bonusScore! }),
     );
     setBonusName("");
-    setBonusStatId("");
+    setBonusStatId(null);
     setBonusScore(0);
   };
 
   return (
-    <>
-      <Grid container spacing={2} columns={3}>
-        <Grid size={1}>
-          <TextField
-            className="w-full"
-            label={intl.formatMessage({ id: "NAME" })}
-            value={bonusName}
-            onChange={(e) => setBonusName(e.target.value)}
-          />
-        </Grid>
+    <Stack gap={2}>
+      <Grid columns={3} gap={2}>
+        <TextInput label={intl.formatMessage({ id: "NAME" })} value={bonusName} onChange={setBonusName} />
 
-        <Grid size={1}>
-          <FormControl className="w-full">
-            <InputLabel>{intl.formatMessage({ id: "STAT" })}</InputLabel>
-            <Select
-              value={bonusStatId}
-              label={intl.formatMessage({ id: "STAT" })}
-              onChange={(e) => setBonusStatId(e.target.value as AvailableStats)}
-            >
-              {stats.map((stat) => (
-                <MenuItem key={stat.id} value={stat.id}>
-                  {stat.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
+        <Selector
+          label={intl.formatMessage({ id: "STAT" })}
+          options={stats.map((option) => ({
+            value: option.id,
+            label: option.name,
+          }))}
+          value={bonusStatId}
+          onChange={(statId) => setBonusStatId(statId as AvailableStats)}
+          hasClear
+        />
 
-        <Grid size={1}>
-          <NumberField
-            className="w-full"
-            label={intl.formatMessage({ id: "BONUS" }, { count: 1 })}
-            min={1}
-            max={20}
-            step={1}
-            value={bonusScore}
-            onValueChange={(value) => setBonusScore(value ?? 0)}
-          />
-        </Grid>
+        <NumberInput
+          label={intl.formatMessage({ id: "BONUS" }, { count: 1 })}
+          min={1}
+          max={20}
+          step={1}
+          value={bonusScore}
+          onChange={setBonusScore}
+        />
       </Grid>
 
-      <Button variant="outlined" disabled={!canAddBonus} onClick={handleAddBonus}>
-        {intl.formatMessage({ id: "ADD_STAT_BONUS" })}
-      </Button>
-    </>
+      <Button
+        label={intl.formatMessage({ id: "ADD_STAT_BONUS" })}
+        variant="primary"
+        isDisabled={!canAddBonus}
+        onClick={handleAddBonus}
+      />
+    </Stack>
   );
 }
 

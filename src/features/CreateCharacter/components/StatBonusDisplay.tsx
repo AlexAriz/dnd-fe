@@ -1,10 +1,10 @@
-import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import DeleteIcon from "@mui/icons-material/Delete";
 import type { StatBonus } from "State/Character/type";
 import { useAppDispatch } from "Hooks/state";
 import { newCharacterActions } from "../store";
+import { Grid, GridSpan } from "@astryxdesign/core/Grid";
+import { Text } from "@astryxdesign/core/Text";
+import { IconButton } from "@astryxdesign/core/IconButton";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 interface StatBonusDisplayProps {
   statBonus: StatBonus;
@@ -15,24 +15,27 @@ function StatBonusDisplay({ statBonus, index }: StatBonusDisplayProps) {
   const dispatch = useAppDispatch();
 
   return (
-    <Grid container spacing={2} columns={6}>
-      <Grid size={3} className="flex items-center">
-        <Typography>{statBonus.name}</Typography>
-      </Grid>
+    <Grid columns={6} gap={2}>
+      <GridSpan columns={3} className="flex items-center">
+        <Text>{statBonus.name}</Text>
+      </GridSpan>
 
-      <Grid size={1} className="flex items-center justify-center">
-        <Typography>{statBonus.statId}</Typography>
-      </Grid>
+      <GridSpan columns={1} className="flex items-center justify-center">
+        <Text>{statBonus.statId}</Text>
+      </GridSpan>
 
-      <Grid size={1} className="flex items-center justify-center">
-        <Typography>{statBonus.bonus}</Typography>
-      </Grid>
+      <GridSpan columns={1} className="flex items-center justify-center">
+        <Text>{statBonus.bonus}</Text>
+      </GridSpan>
 
-      <Grid size={1} className="flex items-center justify-end-safe">
-        <IconButton onClick={() => dispatch(newCharacterActions.removeStatBonus(index))}>
-          <DeleteIcon />
-        </IconButton>
-      </Grid>
+      <GridSpan columns={1} className="flex items-center justify-end-safe">
+        <IconButton
+          label=""
+          icon={<TrashIcon />}
+          variant="primary"
+          onClick={() => dispatch(newCharacterActions.removeStatBonus(index))}
+        />
+      </GridSpan>
     </Grid>
   );
 }
