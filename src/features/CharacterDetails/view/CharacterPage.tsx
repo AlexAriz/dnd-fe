@@ -14,6 +14,7 @@ import KnownSpells from "../components/KnownSpells";
 import PreparedSpells from "../components/PreparedSpells";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
+import { useGetCharacterClassesQuery } from "State/CharacterClasses";
 
 function CharacterPage() {
   const intl = useIntl();
@@ -21,6 +22,7 @@ function CharacterPage() {
   const { characterId } = useParams<{ characterId: string }>();
   const { data: character, isLoading } = useGetCharacterQuery(characterId ?? skipToken);
   useGetCharacterSpellsQuery(characterId ?? skipToken);
+  useGetCharacterClassesQuery(characterId ?? skipToken);
   const [activeTab, setActiveTab] = useState<string>(intl.formatMessage({ id: "ABILITIES" }));
 
   if (!characterId) {

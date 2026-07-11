@@ -8,9 +8,12 @@ import { List, ListItem } from "@astryxdesign/core/List";
 import CharacterInspiration from "./CharacterInspiration";
 import CharacterHealth from "./CharacterHealth";
 import { Divider } from "@astryxdesign/core/Divider";
+import { Spinner } from "@astryxdesign/core/Spinner";
+import { useGetCharacterClassesQuery } from "State/CharacterClasses";
 
 function CharacterSummary() {
   const character = useRequiredContext(ActiveCharacterContext);
+  const { data: classes = [], isLoading: isLoadingClasses } = useGetCharacterClassesQuery(character.id);
   const intl = useIntl();
 
   return (
@@ -24,14 +27,15 @@ function CharacterSummary() {
           <Stack>
             <Heading level={1}>{character.name}</Heading>
 
+            {isLoadingClasses && <Spinner />}
             <List density="compact">
-              {character.classes.map((characterClass) => (
+              {classes.map((characterClass) => (
                 <ListItem
                   key={characterClass.id}
                   className="pl-0"
                   label={intl.formatMessage(
                     { id: "CHARACTER_CLASS" },
-                    { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass?.name },
+                    { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass },
                   )}
                 />
               ))}

@@ -29,7 +29,7 @@ export interface CharacterDetailResponse {
   id: string;
   name: string;
   armorClass: number;
-  classes: CharacterClass[];
+  proficiencyBonus: number;
   inspiration: boolean;
   stats: Record<AvailableStats, StatDetails>;
   statBonuses: StatBonus[];
@@ -51,13 +51,12 @@ export interface CharacterDetailResponse {
 
 export interface CharacterDetail extends Pick<
   CharacterDetailResponse,
-  "id" | "name" | "classes" | "speeds" | "armorClass" | "inspiration" | "stats" | "skills"
+  "id" | "name" | "proficiencyBonus" | "speeds" | "armorClass" | "inspiration" | "stats" | "skills"
 > {
   hitPoints: {
     current: number;
     max: number;
   };
-  proficiencyBonus: number;
   initiative: number;
 }
 

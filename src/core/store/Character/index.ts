@@ -39,25 +39,19 @@ const characterApi = createApi({
           apiCharacter.hitPoints.base + (apiCharacter.hitPoints.bonus ?? 0) + (apiCharacter.hitPoints.temporary ?? 0);
         const currentHitpoints = maxHitpoints - (apiCharacter.hitPoints.removed ?? 0);
 
-        const overallLevel: number = apiCharacter.classes.reduce(
-          (acc, characterClass) => acc + characterClass.level,
-          0,
-        );
-
         return {
           id: apiCharacter.id,
           name: apiCharacter.name,
-          classes: apiCharacter.classes,
           speeds: apiCharacter.speeds,
           armorClass: apiCharacter.armorClass,
           inspiration: apiCharacter.inspiration,
+          proficiencyBonus: apiCharacter.proficiencyBonus,
           skills: apiCharacter.skills,
           stats,
           hitPoints: {
             current: currentHitpoints,
             max: maxHitpoints,
           },
-          proficiencyBonus: 1 + Math.ceil(overallLevel / 4),
           initiative: calculateModifier(stats.DEX.value),
         };
       },

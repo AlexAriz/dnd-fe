@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import auth from "State/Auth";
 import theme from "State/Theme";
 import characterApi from "State/Character";
+import characterClassesApi from "State/CharacterClasses";
 import characterSpellsApi from "State/CharacterSpells";
 import newCharacter from "Features/CreateCharacter/store";
 import profileApi from "State/Profile";
@@ -16,6 +17,7 @@ const store = configureStore({
   reducer: {
     auth,
     characterApi: characterApi.reducer,
+    characterClassesApi: characterClassesApi.reducer,
     characterSpellsApi: characterSpellsApi.reducer,
     classApi: classApi.reducer,
     subClassApi: subClassApi.reducer,
@@ -29,6 +31,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(characterApi.middleware)
+      .concat(characterClassesApi.middleware)
       .concat(characterSpellsApi.middleware)
       .concat(classApi.middleware)
       .concat(subClassApi.middleware)
