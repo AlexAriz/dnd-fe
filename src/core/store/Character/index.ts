@@ -7,7 +7,6 @@ import type {
   CreateCharacterPayload,
   PatchCharacterPayload,
 } from "./type";
-import { calculateModifier } from "Rules/stats";
 
 const characterApi = createApi({
   reducerPath: "characterApi",
@@ -23,18 +22,7 @@ const characterApi = createApi({
     }),
     getCharacter: build.query<CharacterDetail, string>({
       query: (characterId) => `characters/${characterId}`,
-      transformResponse: (apiCharacter: CharacterDetailResponse) => {
-        const stats: CharacterDetailResponse["stats"] = {
-          ...apiCharacter.stats,
-        };
-        apiCharacter.statBonuses.forEach((statBonus) => {
-          const baseStat = stats[statBonus.statId];
-          stats[statBonus.statId] = {
-            ...baseStat,
-            value: baseStat.value + statBonus.bonus,
-          };
-        });
-
+      transformResponse: (apiCharacter: CharacterDetailResponse): CharacterDetail => {
         const maxHitpoints: number =
           apiCharacter.hitPoints.base + (apiCharacter.hitPoints.bonus ?? 0) + (apiCharacter.hitPoints.temporary ?? 0);
         const currentHitpoints = maxHitpoints - (apiCharacter.hitPoints.removed ?? 0);
@@ -46,13 +34,10 @@ const characterApi = createApi({
           armorClass: apiCharacter.armorClass,
           inspiration: apiCharacter.inspiration,
           proficiencyBonus: apiCharacter.proficiencyBonus,
-          skills: apiCharacter.skills,
-          stats,
           hitPoints: {
             current: currentHitpoints,
             max: maxHitpoints,
           },
-          initiative: calculateModifier(stats.DEX.value),
         };
       },
       providesTags: (_result, _error, id) => [{ type: "Character", id }],

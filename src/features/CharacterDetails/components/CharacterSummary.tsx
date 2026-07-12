@@ -10,10 +10,13 @@ import CharacterHealth from "./CharacterHealth";
 import { Divider } from "@astryxdesign/core/Divider";
 import { Spinner } from "@astryxdesign/core/Spinner";
 import { useGetCharacterClassesQuery } from "State/CharacterClasses";
+import { useGetCharacterStatsQuery } from "State/CharacterStats";
+import { getInitiative } from "Rules/stats";
 
 function CharacterSummary() {
   const character = useRequiredContext(ActiveCharacterContext);
   const { data: classes = [], isLoading: isLoadingClasses } = useGetCharacterClassesQuery(character.id);
+  const { data: stats } = useGetCharacterStatsQuery(character.id);
   const intl = useIntl();
 
   return (
@@ -74,7 +77,11 @@ function CharacterSummary() {
         <StackItem>
           <Stack align="center" gap={2}>
             <Text type="supporting">{intl.formatMessage({ id: "INITIATIVE" })}</Text>
-            <Text type="large">{intl.formatNumber(character.initiative, { signDisplay: "exceptZero" })}</Text>
+            <Text type="large">
+              {intl.formatNumber(getInitiative(stats), {
+                signDisplay: "exceptZero",
+              })}
+            </Text>
           </Stack>
         </StackItem>
 

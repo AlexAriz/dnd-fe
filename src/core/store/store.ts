@@ -12,12 +12,16 @@ import classApi from "State/Classes";
 import subClassApi from "State/SubClasses";
 import skillApi from "State/Skills";
 import statApi from "State/Stats";
+import characterSkillsApi from "./CharacterSkills";
+import characterStatsApi from "./CharacterStats";
 
 const store = configureStore({
   reducer: {
     auth,
     characterApi: characterApi.reducer,
     characterClassesApi: characterClassesApi.reducer,
+    characterSkillsApi: characterSkillsApi.reducer,
+    characterStatsApi: characterStatsApi.reducer,
     characterSpellsApi: characterSpellsApi.reducer,
     classApi: classApi.reducer,
     subClassApi: subClassApi.reducer,
@@ -32,6 +36,8 @@ const store = configureStore({
     getDefaultMiddleware()
       .concat(characterApi.middleware)
       .concat(characterClassesApi.middleware)
+      .concat(characterSkillsApi.middleware)
+      .concat(characterStatsApi.middleware)
       .concat(characterSpellsApi.middleware)
       .concat(classApi.middleware)
       .concat(subClassApi.middleware)

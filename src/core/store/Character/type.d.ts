@@ -31,9 +31,6 @@ export interface CharacterDetailResponse {
   armorClass: number;
   proficiencyBonus: number;
   inspiration: boolean;
-  stats: Record<AvailableStats, StatDetails>;
-  statBonuses: StatBonus[];
-  skills: Record<AvailableSkills, SkillDetails>;
   speeds: {
     walk: number;
     fly: number | null;
@@ -51,13 +48,12 @@ export interface CharacterDetailResponse {
 
 export interface CharacterDetail extends Pick<
   CharacterDetailResponse,
-  "id" | "name" | "proficiencyBonus" | "speeds" | "armorClass" | "inspiration" | "stats" | "skills"
+  "id" | "name" | "proficiencyBonus" | "speeds" | "armorClass" | "inspiration"
 > {
   hitPoints: {
     current: number;
     max: number;
   };
-  initiative: number;
 }
 
 export interface CreateCharacterPayload {

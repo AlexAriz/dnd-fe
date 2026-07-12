@@ -1,24 +1,29 @@
-import type { CharacterDetail } from "State/Character/type";
-import type { SkillSummary } from "State/Skills/type";
+import type { CharacterSkill } from "State/CharacterSkills/type";
+import type { CharacterStat } from "State/CharacterStats/type";
 import type { AvailableStats } from "State/Stats/type";
 
 export function calculateModifier(baseValue: number): number {
   return Math.floor((baseValue - 10) / 2);
 }
 
-export function getAbilityCheck(character: CharacterDetail, statId: AvailableStats): number {
-  return calculateModifier(character.stats[statId].value);
+export function getInitiative(stats: Record<AvailableStats, CharacterStat> | undefined): number {
+  return calculateModifier(stats?.DEX.value ?? 0);
 }
 
-export function getAbilitySave(character: CharacterDetail, statId: AvailableStats): number {
-  const bonus = character.stats[statId].proficiency ? character.proficiencyBonus : 0;
-  return calculateModifier(character.stats[statId].value) + bonus;
+export function getAbilityCheck(stat: CharacterStat): number {
+  return calculateModifier(stat.value);
 }
 
-export function getSkillCheck(character: CharacterDetail, skill: SkillSummary): number {
+export function getAbilitySave(stat: CharacterStat, proficiencyBonus: number): number {
+  const bonus = stat.proficiency ? proficiencyBonus : 0;
+  return calculateModifier(stat.value) + bonus;
+}
+
+export function getSkillCheck(skill: CharacterSkill, proficiencyBonus: number): number {
   const bonus =
-    character.skills[skill.name].expertise ? character.proficiencyBonus * 2
-    : character.skills[skill.name].proficiency ? character.proficiencyBonus
+    skill.expertise ? proficiencyBonus * 2
+    : skill.proficiency ? proficiencyBonus
     : 0;
-  return calculateModifier(character.stats[skill.statId].value) + bonus;
+
+  return calculateModifier(skill.statValue) + bonus;
 }

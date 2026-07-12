@@ -5,6 +5,8 @@ import { Text } from "@astryxdesign/core/Text";
 import { Icon } from "@astryxdesign/core/Icon";
 import { getSkillCheck } from "Rules/stats";
 import { useIntl } from "react-intl";
+import { useGetCharacterSkillsQuery } from "State/CharacterSkills";
+import LoadingContent from "Components/LoadingContent";
 
 interface SkillStatProps {
   skill: SkillSummary;
@@ -13,9 +15,13 @@ interface SkillStatProps {
 function SkillStat({ skill }: SkillStatProps) {
   const intl = useIntl();
   const character = useRequiredContext(ActiveCharacterContext);
+  const { data: skills, isLoading } = useGetCharacterSkillsQuery(character.id);
+
+  if (!skills?.[skill.name] || isLoading) return <LoadingContent />;
+
   const icon =
-    character.skills[skill.name].expertise ? "checkDouble"
-    : character.skills[skill.name].proficiency ? "check"
+    skills[skill.name].expertise ? "checkDouble"
+    : skills[skill.name].proficiency ? "check"
     : "close";
 
   return (
@@ -24,7 +30,11 @@ function SkillStat({ skill }: SkillStatProps) {
       <Text>
         {intl.formatMessage(
           { id: "CHARACTER_SKILL" },
-          { skill: skill.name, ability: skill.statId, check: getSkillCheck(character, skill) },
+          {
+            skill: skill.name,
+            ability: skill.statId,
+            check: getSkillCheck(skills[skill.name], character.proficiencyBonus),
+          },
         )}
       </Text>
     </div>

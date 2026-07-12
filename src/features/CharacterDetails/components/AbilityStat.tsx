@@ -6,6 +6,8 @@ import { useIntl } from "react-intl";
 import { Card } from "@astryxdesign/core/Card";
 import { Layout, LayoutFooter, LayoutHeader, LayoutPanel, Stack } from "@astryxdesign/core/Layout";
 import { Text } from "@astryxdesign/core/Text";
+import { useGetCharacterStatsQuery } from "State/CharacterStats";
+import LoadingContent from "Components/LoadingContent";
 
 interface AbilityStatProps {
   stat: StatSummary;
@@ -14,6 +16,8 @@ interface AbilityStatProps {
 function AbilityStat({ stat }: AbilityStatProps) {
   const intl = useIntl();
   const character = useRequiredContext(ActiveCharacterContext);
+  const { data: stats, isLoading } = useGetCharacterStatsQuery(character.id);
+  if (isLoading || !stats?.[stat.id]) return <LoadingContent />;
 
   return (
     <Card>
@@ -28,7 +32,9 @@ function AbilityStat({ stat }: AbilityStatProps) {
             <Stack align="end">
               <Text type="supporting">{intl.formatMessage({ id: "ABILITY_CHECK" })}</Text>
               <Text type="large">
-                {intl.formatNumber(getAbilityCheck(character, stat.id), { signDisplay: "exceptZero" })}
+                {intl.formatNumber(getAbilityCheck(stats[stat.id]), {
+                  signDisplay: "exceptZero",
+                })}
               </Text>
             </Stack>
           </LayoutPanel>
@@ -38,14 +44,16 @@ function AbilityStat({ stat }: AbilityStatProps) {
             <Stack align="start">
               <Text type="supporting">{intl.formatMessage({ id: "ABILITY_SAVE" })}</Text>
               <Text type="large">
-                {intl.formatNumber(getAbilitySave(character, stat.id), { signDisplay: "exceptZero" })}
+                {intl.formatNumber(getAbilitySave(stats[stat.id], character.proficiencyBonus), {
+                  signDisplay: "exceptZero",
+                })}
               </Text>
             </Stack>
           </LayoutPanel>
         }
         footer={
           <LayoutFooter hasDivider className="text-center">
-            <Text>{character.stats[stat.id].value}</Text>
+            <Text>{stats[stat.id].value}</Text>
           </LayoutFooter>
         }
       />
