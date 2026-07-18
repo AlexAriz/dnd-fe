@@ -30,6 +30,7 @@ export interface CharacterDetailResponse {
   name: string;
   armorClass: number;
   proficiencyBonus: number;
+  initiative: number;
   inspiration: boolean;
   speeds: {
     walk: number;
@@ -46,10 +47,7 @@ export interface CharacterDetailResponse {
   };
 }
 
-export interface CharacterDetail extends Pick<
-  CharacterDetailResponse,
-  "id" | "name" | "proficiencyBonus" | "speeds" | "armorClass" | "inspiration"
-> {
+export interface CharacterDetail extends Omit<CharacterDetailResponse, "hitPoints"> {
   hitPoints: {
     current: number;
     max: number;

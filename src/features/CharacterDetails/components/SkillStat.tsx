@@ -3,7 +3,6 @@ import type { SkillSummary } from "State/Skills/type";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import { Text } from "@astryxdesign/core/Text";
 import { Icon } from "@astryxdesign/core/Icon";
-import { getSkillCheck } from "Rules/stats";
 import { useIntl } from "react-intl";
 import { useGetCharacterSkillsQuery } from "State/CharacterSkills";
 import LoadingContent from "Components/LoadingContent";
@@ -33,7 +32,7 @@ function SkillStat({ skill }: SkillStatProps) {
           {
             skill: skill.name,
             ability: skill.statId,
-            check: getSkillCheck(skills[skill.name], character.proficiencyBonus),
+            check: skills[skill.name].check,
           },
         )}
       </Text>

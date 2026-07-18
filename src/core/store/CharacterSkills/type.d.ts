@@ -1,6 +1,6 @@
 export interface CharacterSkill {
   name: string;
-  statValue: number;
+  check: number;
   proficiency: boolean;
   expertise: boolean;
 }

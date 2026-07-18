@@ -1,5 +1,4 @@
 import useRequiredContext from "Hooks/useRequiredContext";
-import { getAbilityCheck, getAbilitySave } from "Rules/stats";
 import type { StatSummary } from "State/Stats/type";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import { useIntl } from "react-intl";
@@ -32,7 +31,7 @@ function AbilityStat({ stat }: AbilityStatProps) {
             <Stack align="end">
               <Text type="supporting">{intl.formatMessage({ id: "ABILITY_CHECK" })}</Text>
               <Text type="large">
-                {intl.formatNumber(getAbilityCheck(stats[stat.id]), {
+                {intl.formatNumber(stats[stat.id].check, {
                   signDisplay: "exceptZero",
                 })}
               </Text>
@@ -44,7 +43,7 @@ function AbilityStat({ stat }: AbilityStatProps) {
             <Stack align="start">
               <Text type="supporting">{intl.formatMessage({ id: "ABILITY_SAVE" })}</Text>
               <Text type="large">
-                {intl.formatNumber(getAbilitySave(stats[stat.id], character.proficiencyBonus), {
+                {intl.formatNumber(stats[stat.id].save, {
                   signDisplay: "exceptZero",
                 })}
               </Text>
