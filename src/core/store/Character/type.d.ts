@@ -1,16 +1,13 @@
 import type { AvailableSkills, SkillDetails } from "State/Skills/type";
 import type { AvailableStats, StatDetails } from "State/Stats/type";
+import type { SubClassSummary } from "State/SubClasses/type";
 
 interface CharacterClass {
   id: string;
   name: string;
   level: number;
   isStartingClass: boolean;
-  subClass?: {
-    id: string;
-    name: string;
-    shortName: string;
-  };
+  subClass?: SubClassSummary;
 }
 
 export interface CharacterSummary {

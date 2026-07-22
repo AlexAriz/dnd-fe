@@ -1,13 +1,13 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { appBaseQuery } from "Hooks/state";
-import type { CharacterSpell } from "./type";
+import type { SpellSummary } from "State/Spell/type";
 
 const characterSpellsApi = createApi({
   reducerPath: "characterSpellsApi",
   baseQuery: appBaseQuery(),
   tagTypes: ["CharacterSpells"],
   endpoints: (build) => ({
-    getCharacterSpells: build.query<CharacterSpell[], string>({
+    getCharacterSpells: build.query<SpellSummary[], string>({
       query: (characterId) => `characters/${characterId}/spells`,
       providesTags: (_result, _error, id) => [{ type: "CharacterSpells", id }],
     }),

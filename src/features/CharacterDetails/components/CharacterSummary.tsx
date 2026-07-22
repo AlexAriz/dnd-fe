@@ -35,7 +35,7 @@ function CharacterSummary() {
                   className="pl-0"
                   label={intl.formatMessage(
                     { id: "CHARACTER_CLASS" },
-                    { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass },
+                    { name: characterClass.name, level: characterClass.level, subclass: characterClass.subClass?.name },
                   )}
                 />
               ))}

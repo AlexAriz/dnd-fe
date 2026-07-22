@@ -4,7 +4,7 @@ import { Card } from "@astryxdesign/core/Card";
 import useRequiredContext from "Hooks/useRequiredContext";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import SpellCard from "Components/SpellCard";
-import type { CharacterSpell } from "State/CharacterSpells/type";
+import type { SpellSummary } from "State/Spell/type";
 import { useIntl } from "react-intl";
 import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 import { Stack } from "@astryxdesign/core/Stack";
@@ -15,7 +15,7 @@ function PreparedSpells() {
   const character = useRequiredContext(ActiveCharacterContext);
   const { data: spells = [] } = useGetCharacterSpellsQuery(character.id);
 
-  const spellHash: Record<number, CharacterSpell[]> = spells
+  const spellHash: Record<number, SpellSummary[]> = spells
     .filter((spell) => spell.prepared)
     .reduce(
       (hash, spell) => {
@@ -31,7 +31,7 @@ function PreparedSpells() {
           };
         }
       },
-      {} as Record<number, CharacterSpell[]>,
+      {} as Record<number, SpellSummary[]>,
     );
 
   return (

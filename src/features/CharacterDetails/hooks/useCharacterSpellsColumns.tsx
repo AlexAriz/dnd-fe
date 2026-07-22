@@ -1,16 +1,16 @@
 import { useIntl } from "react-intl";
-import type { CharacterSpell } from "State/CharacterSpells/type";
+import type { SpellSummary } from "State/Spell/type";
 import useSpellsTableColumns from "Hooks/useSpellsTableColumns";
 import type { TableColumn } from "@astryxdesign/core/Table";
 import type { FieldDefinition } from "@astryxdesign/core/PowerSearch";
 import { Icon } from "@astryxdesign/core/Icon";
 
 function useCharacterSpellsColumns(): {
-  columns: TableColumn<CharacterSpell>[];
+  columns: TableColumn<SpellSummary>[];
   fields: ReadonlyArray<FieldDefinition>;
 } {
   const intl = useIntl();
-  const { columns: baseColumns, fields: baseFields } = useSpellsTableColumns<CharacterSpell>();
+  const { columns: baseColumns, fields: baseFields } = useSpellsTableColumns<SpellSummary>();
 
   return {
     fields: baseFields.concat({
