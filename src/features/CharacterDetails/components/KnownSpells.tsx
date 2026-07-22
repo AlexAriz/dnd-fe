@@ -5,11 +5,11 @@ import { useState } from "react";
 import type { SpellSummary } from "State/Spell/type";
 import SpellCard from "Components/SpellCard";
 import useCharacterSpellsColumns from "../hooks/useCharacterSpellsColumns";
-import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
+import { useGetKnownSpellsQuery } from "State/CharacterSpells";
 
 function KnownSpells() {
   const character = useRequiredContext(ActiveCharacterContext);
-  const { data: spells = [], isLoading } = useGetCharacterSpellsQuery(character.id);
+  const { data: spells = [], isLoading } = useGetKnownSpellsQuery(character.id);
   const [activeSpell, setActiveSpell] = useState<SpellSummary>();
   const { columns, fields } = useCharacterSpellsColumns();
 

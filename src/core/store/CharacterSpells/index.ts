@@ -7,12 +7,12 @@ const characterSpellsApi = createApi({
   baseQuery: appBaseQuery(),
   tagTypes: ["CharacterSpells"],
   endpoints: (build) => ({
-    getCharacterSpells: build.query<SpellSummary[], string>({
-      query: (characterId) => `characters/${characterId}/spells`,
+    getKnownSpells: build.query<SpellSummary[], string>({
+      query: (characterId) => `characters/${characterId}/spells/known`,
       providesTags: (_result, _error, id) => [{ type: "CharacterSpells", id }],
     }),
   }),
 });
 
 export default characterSpellsApi;
-export const { useGetCharacterSpellsQuery } = characterSpellsApi;
+export const { useGetKnownSpellsQuery } = characterSpellsApi;

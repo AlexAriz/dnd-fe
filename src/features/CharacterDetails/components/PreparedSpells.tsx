@@ -6,14 +6,14 @@ import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import SpellCard from "Components/SpellCard";
 import type { SpellSummary } from "State/Spell/type";
 import { useIntl } from "react-intl";
-import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
+import { useGetKnownSpellsQuery } from "State/CharacterSpells";
 import { Stack } from "@astryxdesign/core/Stack";
 import { Divider } from "@astryxdesign/core/Divider";
 
 function PreparedSpells() {
   const intl = useIntl();
   const character = useRequiredContext(ActiveCharacterContext);
-  const { data: spells = [] } = useGetCharacterSpellsQuery(character.id);
+  const { data: spells = [] } = useGetKnownSpellsQuery(character.id);
 
   const spellHash: Record<number, SpellSummary[]> = spells
     .filter((spell) => spell.prepared)
