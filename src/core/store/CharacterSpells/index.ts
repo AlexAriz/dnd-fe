@@ -1,15 +1,14 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { appBaseQuery } from "Hooks/state";
-import type { SpellSummary } from "State/Spell/type";
-import type { LearnSpellPayload } from "./type";
+import type { CharacterSpell, LearnSpellPayload } from "./type";
 
 const characterSpellsApi = createApi({
   reducerPath: "characterSpellsApi",
   baseQuery: appBaseQuery(),
   tagTypes: ["CharacterSpells"],
   endpoints: (build) => ({
-    getKnownSpells: build.query<SpellSummary[], string>({
-      query: (characterId) => `characters/${characterId}/spells/known`,
+    getCharacterSpells: build.query<CharacterSpell[], string>({
+      query: (characterId) => `characters/${characterId}/spells`,
       providesTags: (_result, _error, id) => [{ type: "CharacterSpells", id }],
     }),
     learnSpell: build.mutation<void, LearnSpellPayload>({
@@ -23,4 +22,4 @@ const characterSpellsApi = createApi({
 });
 
 export default characterSpellsApi;
-export const { useGetKnownSpellsQuery, useLearnSpellMutation } = characterSpellsApi;
+export const { useGetCharacterSpellsQuery, useLearnSpellMutation } = characterSpellsApi;

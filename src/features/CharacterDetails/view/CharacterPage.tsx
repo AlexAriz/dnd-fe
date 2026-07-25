@@ -13,7 +13,7 @@ import CharacterSkills from "../components/CharacterSkills";
 import KnownSpells from "../components/KnownSpells";
 import PreparedSpells from "../components/PreparedSpells";
 import { skipToken } from "@reduxjs/toolkit/query";
-import { useGetKnownSpellsQuery } from "State/CharacterSpells";
+import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 import { useGetCharacterClassesQuery } from "State/CharacterClasses";
 import { useGetCharacterStatsQuery } from "State/CharacterStats";
 import { useGetCharacterSkillsQuery } from "State/CharacterSkills";
@@ -23,7 +23,7 @@ function CharacterPage() {
   const navigate = useNavigate();
   const { characterId } = useParams<{ characterId: string }>();
   const { data: character, isLoading } = useGetCharacterQuery(characterId ?? skipToken);
-  useGetKnownSpellsQuery(characterId ?? skipToken);
+  useGetCharacterSpellsQuery(characterId ?? skipToken);
   useGetCharacterClassesQuery(characterId ?? skipToken);
   useGetCharacterStatsQuery(characterId ?? skipToken);
   useGetCharacterSkillsQuery(characterId ?? skipToken);

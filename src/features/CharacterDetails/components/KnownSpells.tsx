@@ -2,15 +2,15 @@ import useRequiredContext from "Hooks/useRequiredContext";
 import ActiveCharacterContext from "../context/ActiveCharacterContext";
 import SpellsTable from "Components/SpellsTable";
 import { useState } from "react";
-import type { SpellSummary } from "State/Spell/type";
+import type { CharacterSpell } from "State/CharacterSpells/type";
 import SpellCard from "Components/SpellCard";
 import useCharacterSpellsColumns from "../hooks/useCharacterSpellsColumns";
-import { useGetKnownSpellsQuery } from "State/CharacterSpells";
+import { useGetCharacterSpellsQuery } from "State/CharacterSpells";
 
 function KnownSpells() {
   const character = useRequiredContext(ActiveCharacterContext);
-  const { data: spells = [], isLoading } = useGetKnownSpellsQuery(character.id);
-  const [activeSpell, setActiveSpell] = useState<SpellSummary>();
+  const { data: spells = [], isLoading } = useGetCharacterSpellsQuery(character.id);
+  const [activeSpell, setActiveSpell] = useState<CharacterSpell>();
   const { columns, fields } = useCharacterSpellsColumns();
 
   return (
