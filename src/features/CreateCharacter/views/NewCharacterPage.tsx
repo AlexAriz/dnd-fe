@@ -12,7 +12,7 @@ import CharacterIdentity from "../components/CharacterIdentity";
 import { uploadFile } from "Libs/Supabase";
 import useRequiredContext from "Hooks/useRequiredContext";
 import ProfileContext from "Context/ProfileContext";
-import { Layout, LayoutContent, LayoutFooter, LayoutHeader, LayoutPanel, Stack } from "@astryxdesign/core/Layout";
+import { Layout, LayoutContent, LayoutFooter, LayoutHeader, Stack } from "@astryxdesign/core/Layout";
 import { useToast } from "@astryxdesign/core/Toast";
 import { Button } from "@astryxdesign/core/Button";
 import { Tab, TabList } from "@astryxdesign/core/TabList";
@@ -57,9 +57,9 @@ function NewCharacterPage() {
           <CharacterIdentity file={file} setFile={setFile} />
         </LayoutHeader>
       }
-      start={
-        <LayoutPanel hasDivider>
-          <TabList value={activeTab} onChange={setActiveTab} orientation="vertical" className="flex-col">
+      content={
+        <LayoutContent padding={6}>
+          <TabList value={activeTab} onChange={setActiveTab}>
             <Tab
               className="justify-start"
               value={intl.formatMessage({ id: "NEW_CHARACTER_BASE" })}
@@ -76,19 +76,16 @@ function NewCharacterPage() {
               label={intl.formatMessage({ id: "SKILLS" })}
             />
           </TabList>
-        </LayoutPanel>
-      }
-      content={
-        <LayoutContent className="pr-6">
-          <TabPanel value={intl.formatMessage({ id: "NEW_CHARACTER_BASE" })} currentValue={activeTab}>
+
+          <TabPanel className="pt-6" value={intl.formatMessage({ id: "NEW_CHARACTER_BASE" })} currentValue={activeTab}>
             <CharacterBase />
           </TabPanel>
 
-          <TabPanel value={intl.formatMessage({ id: "ABILITY_SCORE" })} currentValue={activeTab}>
+          <TabPanel className="pt-6" value={intl.formatMessage({ id: "ABILITY_SCORE" })} currentValue={activeTab}>
             <AbilityScores />
           </TabPanel>
 
-          <TabPanel value={intl.formatMessage({ id: "SKILLS" })} currentValue={activeTab}>
+          <TabPanel className="pt-6" value={intl.formatMessage({ id: "SKILLS" })} currentValue={activeTab}>
             <SkillsSection />
           </TabPanel>
         </LayoutContent>

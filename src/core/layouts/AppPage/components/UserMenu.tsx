@@ -1,10 +1,10 @@
-import { DropdownMenu } from "@astryxdesign/core/DropdownMenu";
 import { useIntl } from "react-intl";
 import { useState } from "react";
 import { logout } from "Libs/Supabase";
 import router from "Libs/router";
 import { PublicRoutes } from "Constants/routes";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { IconButton } from "@astryxdesign/core/IconButton";
 
 function UserMenu() {
   const intl = useIntl();
@@ -20,15 +20,12 @@ function UserMenu() {
   };
 
   return (
-    <DropdownMenu
-      button={{
-        label: intl.formatMessage({ id: "MENU" }),
-        icon: <UserCircleIcon />,
-        variant: "ghost",
-        isIconOnly: true,
-      }}
-      hasChevron={false}
-      items={[{ label: intl.formatMessage({ id: "LOGOUT" }), onClick: handleLogout, isDisabled: loading }]}
+    <IconButton
+      label={intl.formatMessage({ id: "LOGOUT" })}
+      icon={<ArrowRightStartOnRectangleIcon />}
+      variant="ghost"
+      onClick={handleLogout}
+      isDisabled={loading}
     />
   );
 }
